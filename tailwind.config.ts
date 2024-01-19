@@ -11,7 +11,7 @@ const config: Config = {
       primary: "#F3E04B",
       "thin-primary": "#FAEE89",
       secondary: "#64B090",
-      black: "#1A1A1C",
+      black: "#000000",
       "deep-gray": "#D9D9D9",
       gray: "#F0F0ED",
       "thin-gray": "#F4F4F1",
