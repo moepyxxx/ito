@@ -8,7 +8,7 @@ const narrow = PT_Sans_Narrow({
   variable: "--font-narrow",
 });
 const noto = Noto_Sans_JP({
-  weight: "400",
+  weight: "300",
   subsets: ["latin"],
   variable: "--font-noto",
 });

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import { Button } from "./Button";
 
@@ -9,10 +10,14 @@ const meta = {
     layout: "centered",
   },
   args: {
-    children: "Button",
-    color: "primary",
-    variant: "contained",
-    size: "large",
+    children: "記録・観察をはじめる",
+    variant: {
+      type: "primary",
+    },
+    element: {
+      elementType: "button",
+      onClick: action("onClick"),
+    },
   },
   argTypes: {},
 } satisfies Meta<typeof Button>;
@@ -20,21 +25,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Color: Story = {
+export const Primary: Story = {};
+
+export const Secondary: Story = {
   args: {
-    color: "primary",
+    variant: {
+      type: "secondary",
+    },
   },
 };
-
-export const Variant: Story = {
+export const Default: Story = {
   args: {
-    variant: "outlined",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: "large",
+    variant: {
+      type: "default",
+    },
+    children: "次へ",
   },
 };
 
@@ -44,14 +49,21 @@ export const Disabled: Story = {
   },
 };
 
-export const WithCounter: Story = {
+export const DefaultDisabled: Story = {
   args: {
-    counter: 1,
+    disabled: true,
+    variant: {
+      type: "default",
+    },
+    children: "次へ",
   },
 };
 
-export const LongText: Story = {
+export const WithCounter: Story = {
   args: {
-    children: "Button with long long long text",
+    variant: {
+      type: "primary",
+      counter: 43,
+    },
   },
 };

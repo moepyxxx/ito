@@ -1,18 +1,12 @@
 import { tv } from "tailwind-variants";
 
 const buttonStyle = tv({
-  base: "py-2 px-3 text-black rounded-xl border-2 relative",
+  base: "py-2 px-3 text-black rounded-xl border-2 relative text-lg w-52",
   variants: {
-    color: {
-      primary: "bg-primary text-primary border-primary",
-      secondary: "bg-secondary text-secondary border-secondary",
-    },
     variant: {
-      contained: "text-black",
-      outlined: "bg-transparent",
-    },
-    size: {
-      large: "text-lg w-52",
+      primary: "bg-thin-primary border-thin-primary",
+      secondary: "bg-secondary border-secondary text-white",
+      default: "border-black text-sm w-28",
     },
     disabled: {
       true: "border-gray bg-gray text-deep-gray pointer-events-none",
@@ -21,33 +15,74 @@ const buttonStyle = tv({
 });
 
 const counterStyle = tv({
-  base: "absolute top-[-8px] right-[-8px] bg-primary text-white rounded-full w-5 h-5 text-center bg-primary bg-black text-sm",
+  base: "absolute top-[-12px] right-[-12px] bg-primary text-white rounded-full w-7 h-7 text-center bg-primary bg-black text-sm leading-loose font-narrow",
 });
 
-type Props = {
+export type Element =
+  | {
+      elementType: "button";
+      onClick: () => void;
+    }
+  | {
+      elementType: "a";
+      href: string;
+    };
+
+export type Variant =
+  | {
+      type: "primary" | "secondary";
+      counter?: number;
+    }
+  | {
+      type: "default";
+    };
+
+export type Props = {
   children: React.ReactNode;
-  color: "primary" | "secondary";
-  variant: "contained" | "outlined";
-  counter?: number;
+  variant: Variant;
   disabled?: boolean;
-  size: "large";
-  onClick: () => void;
+  element: Element;
 };
 
 export const Button: React.FC<Props> = ({
   children,
-  color,
   variant,
-  counter,
   disabled,
-  size,
+  element,
 }: Props) => {
+  const counter =
+    (variant.type === "primary" || variant.type === "secondary") &&
+    variant.counter != null
+      ? variant.counter
+      : undefined;
+
+  if (element.elementType === "button") {
+    return (
+      <button
+        onClick={element.onClick}
+        className={buttonStyle({ variant: variant.type, disabled })}
+        disabled={disabled}>
+        <Child counter={counter}>{children}</Child>
+      </button>
+    );
+  }
+
   return (
-    <button
-      className={buttonStyle({ color, variant, size, disabled })}
-      disabled={disabled}>
-      {children}
-      {counter && <span className={counterStyle()}>{counter}</span>}
-    </button>
+    <a
+      href={element.href}
+      className={buttonStyle({ variant: variant.type, disabled })}>
+      <Child counter={counter}>{children}</Child>
+    </a>
   );
 };
+
+type ChildProps = {
+  children: React.ReactNode;
+  counter?: number;
+};
+const Child: React.FC<ChildProps> = ({ children, counter }) => (
+  <>
+    {children}
+    {counter != null && <span className={counterStyle()}>{counter}</span>}
+  </>
+);
