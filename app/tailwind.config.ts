@@ -16,7 +16,6 @@ const config: Config = {
       gray: "#F0F0ED",
       "thin-gray": "#F4F4F1",
       white: "#FFFFFF",
-      base: "#F6F6F6",
     },
     fontFamily: {
       narrow: ["var(--font-narrow)", "sans-serif"],
