@@ -1,0 +1,1 @@
+export { TorisanIcon } from "./TorisanIcon";

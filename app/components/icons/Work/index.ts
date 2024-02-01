@@ -1,0 +1,1 @@
+export { WorkIcon } from "./WorkIcon";
