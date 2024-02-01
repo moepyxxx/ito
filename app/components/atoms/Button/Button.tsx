@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 const buttonStyle = tv({
-  base: "py-2 px-3 text-black rounded-xl border-2 relative text-lg w-52",
+  base: "py-2 px-3 text-black rounded-xl border relative text-lg w-52",
   variants: {
     variant: {
       primary: "bg-thin-primary border-thin-primary",
