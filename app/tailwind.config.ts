@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { getHtmlCodeFromColorKey } from "./utils/color";
 
 const config: Config = {
   content: [
@@ -8,15 +9,15 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      primary: "#F3E04B",
-      "thin-primary": "#FAEE89",
-      secondary: "#64B090",
-      black: "#000000",
-      "deep-gray": "#D9D9D9",
-      gray: "#F0F0ED",
-      "thin-gray": "#F4F4F1",
-      error: "#E83737",
-      white: "#FFFFFF",
+      primary: getHtmlCodeFromColorKey("primary"),
+      "thin-primary": getHtmlCodeFromColorKey("thin_primary"),
+      secondary: getHtmlCodeFromColorKey("secondary"),
+      black: getHtmlCodeFromColorKey("black"),
+      "deep-gray": getHtmlCodeFromColorKey("deep_gray"),
+      gray: getHtmlCodeFromColorKey("gray"),
+      "thin-gray": getHtmlCodeFromColorKey("thin_gray"),
+      error: getHtmlCodeFromColorKey("error"),
+      white: getHtmlCodeFromColorKey("white"),
     },
     fontFamily: {
       narrow: ["var(--font-narrow)", "sans-serif"],
