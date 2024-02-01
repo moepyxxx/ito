@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { PT_Sans_Narrow, Noto_Sans_JP } from "next/font/google";
+import { PT_Sans_Narrow, Noto_Sans_JP, Caveat } from "next/font/google";
 
 const narrow = PT_Sans_Narrow({
   weight: "400",
@@ -11,6 +11,10 @@ const noto = Noto_Sans_JP({
   weight: "300",
   subsets: ["latin"],
   variable: "--font-noto",
+});
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +29,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${narrow.variable} ${noto.variable} font-noto`}>
+      <body
+        className={`${narrow.variable} ${noto.variable} ${caveat.variable} font-noto`}>
         {children}
       </body>
     </html>

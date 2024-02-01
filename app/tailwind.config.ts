@@ -21,6 +21,7 @@ const config: Config = {
     fontFamily: {
       narrow: ["var(--font-narrow)", "sans-serif"],
       noto: ["var(--font-noto)", "sans-serif"],
+      caveat: ["var(--font-caveat)", "sans-serif"],
     },
   },
   plugins: [],
