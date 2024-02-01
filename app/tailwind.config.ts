@@ -15,6 +15,7 @@ const config: Config = {
       "deep-gray": "#D9D9D9",
       gray: "#F0F0ED",
       "thin-gray": "#F4F4F1",
+      error: "#E83737",
       white: "#FFFFFF",
     },
     fontFamily: {

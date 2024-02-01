@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import { Chip } from "./Chip";
 
@@ -11,6 +10,7 @@ const meta = {
   },
   args: {
     children: "観察ステージ",
+    color: "secondary",
   },
   argTypes: {},
 } satisfies Meta<typeof Chip>;
@@ -18,4 +18,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Base: Story = {};
+export const Secondary: Story = {};
+export const Error: Story = {
+  args: {
+    color: "error",
+  },
+};
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
