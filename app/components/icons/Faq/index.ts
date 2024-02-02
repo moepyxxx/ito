@@ -1,0 +1,1 @@
+export { FaqIcon } from "./FaqIcon";
