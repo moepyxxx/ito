@@ -10,7 +10,6 @@ const meta = {
     children: "今日のうにすけの体重を教えてください",
     element: "h1",
     size: "large",
-    align: "left",
   },
   argTypes: {},
 } satisfies Meta<typeof Typography>;
@@ -32,8 +31,10 @@ export const H2: Story = {
 export const H3: Story = {
   args: {
     size: "medium",
-    element: "h3",
     align: "center",
+    color: "error",
+    element: "h3",
+    children: "エラーが発生しました",
   },
 };
 export const P: Story = {

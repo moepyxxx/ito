@@ -1,0 +1,27 @@
+# .github/workflows/chromatic.yml
+
+name: "Chromatic"
+
+on: push
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true
+          workingDir: app

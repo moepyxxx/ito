@@ -1,4 +1,4 @@
-import { ColorVariantKeys } from "../../utils/color";
+import { ColorVariantKeys } from "@/utils/color";
 
 export type SvgProps = {
   color: ColorVariantKeys;
