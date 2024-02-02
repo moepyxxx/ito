@@ -1,3 +1,4 @@
+import { ColorVariantKeys } from "@/utils/color";
 import { tv } from "tailwind-variants";
 
 export const typographyStyle = tv({
@@ -27,7 +28,8 @@ export const typographyStyle = tv({
 
 type Props = {
   children: React.ReactNode;
-  align: "left" | "center" | "right";
+  color?: ColorVariantKeys;
+  align?: "left" | "center" | "right";
   element?: "p" | "h1" | "h2" | "h3";
   size?: "medium" | "small" | "large";
   className?: string;
@@ -35,6 +37,7 @@ type Props = {
 
 export const Typography: React.FC<Props> = ({
   children,
+  color = "black",
   element = "p",
   size = "medium",
   align = "left",
@@ -42,7 +45,11 @@ export const Typography: React.FC<Props> = ({
 }) => {
   const Element = element;
   return (
-    <Element className={`${typographyStyle({ size, align })} ${className}`}>
+    <Element
+      className={`${typographyStyle({
+        size,
+        align,
+      })} text-${color} ${className}`}>
       {children}
     </Element>
   );
