@@ -6,9 +6,7 @@ import { ProfileCheckIcon } from "./ProfileCheckIcon";
 const meta = {
   title: "atoms/ProfileCheckIcon",
   component: ProfileCheckIcon,
-  parameters: {
-    layout: "centered",
-  },
+
   args: {
     isChecked: true,
     nickname: "いと",

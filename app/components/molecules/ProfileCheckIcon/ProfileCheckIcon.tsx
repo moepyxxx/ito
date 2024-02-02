@@ -16,12 +16,16 @@ export const ProfileCheckIcon: React.FC<Props> = ({
     <div className="flex items-center">
       <div className="relative">
         {isChecked && (
-          <span>
+          <span className="absolute top-[-4px] right-[-4px]">
             <CheckIcon size={20} color="secondary" />
           </span>
         )}
-        <IconImage src={src} label={`${nickname}のアイコン画像`} />
-        <Typography element="p" size="small">
+        <IconImage
+          src={src}
+          label={`${nickname}のアイコン画像`}
+          outlined={isChecked ? "secondary" : undefined}
+        />
+        <Typography size="small" align="center" className="mt-2">
           {nickname}
         </Typography>
       </div>
