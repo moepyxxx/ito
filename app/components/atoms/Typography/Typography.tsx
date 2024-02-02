@@ -8,6 +8,7 @@ export const typographyStyle = tv({
       small: "text-sm",
       medium: "text-base",
       large: "text-lg",
+      xSmall: "text-xs",
     },
     underLine: {
       true: "underline",
@@ -31,7 +32,7 @@ type Props = {
   color?: ColorVariantKeys;
   align?: "left" | "center" | "right";
   element?: "p" | "h1" | "h2" | "h3";
-  size?: "medium" | "small" | "large";
+  size?: "medium" | "small" | "large" | "xSmall";
   className?: string;
 };
 

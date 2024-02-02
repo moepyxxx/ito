@@ -10,7 +10,7 @@ const meta = {
   component: IconButton,
 
   args: {
-    icon: <HomeIcon color="black" size={24} />,
+    icon: <HomeIcon color="black" size={28} />,
     label: "ホーム",
     description: "ホームへ移動",
     element: {

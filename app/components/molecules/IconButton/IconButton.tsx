@@ -25,7 +25,7 @@ export const IconButton: React.FC<Props> = ({
         aria-label={description}
         className={IconButtonStyle()}>
         {icon}
-        <Typography size="small" color="black">
+        <Typography size="xSmall" color="black">
           {label}
         </Typography>
       </button>
