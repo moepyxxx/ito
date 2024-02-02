@@ -5,9 +5,6 @@ import { TextLink } from "./TextLink";
 const meta = {
   title: "atoms/TextLink",
   component: TextLink,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     children: "保存して記録を終わる",
     color: "secondary",

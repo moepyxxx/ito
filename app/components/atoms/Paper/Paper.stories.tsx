@@ -6,9 +6,6 @@ import { Paper } from "./Paper";
 const meta = {
   title: "atoms/Paper",
   component: Paper,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     children: <div>鳥ちゃんについて説明します。</div>,
   },

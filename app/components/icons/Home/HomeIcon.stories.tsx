@@ -5,9 +5,6 @@ import { HomeIcon } from "./HomeIcon";
 const meta = {
   title: "icons/HomeIcon",
   component: HomeIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

@@ -5,9 +5,6 @@ import { Chip } from "./Chip";
 const meta = {
   title: "atoms/Chip",
   component: Chip,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     children: "観察ステージ",
     color: "secondary",

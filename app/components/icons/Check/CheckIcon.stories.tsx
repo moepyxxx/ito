@@ -5,9 +5,6 @@ import { CheckIcon } from "./CheckIcon";
 const meta = {
   title: "icons/CheckIcon",
   component: CheckIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

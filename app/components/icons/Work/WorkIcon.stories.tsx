@@ -5,9 +5,6 @@ import { WorkIcon } from "./WorkIcon";
 const meta = {
   title: "icons/WorkIcon",
   component: WorkIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

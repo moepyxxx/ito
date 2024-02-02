@@ -5,9 +5,6 @@ import { TorisanIcon } from "./TorisanIcon";
 const meta = {
   title: "icons/TorisanIcon",
   component: TorisanIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

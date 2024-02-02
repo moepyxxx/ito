@@ -5,9 +5,6 @@ import { FaqIcon } from "./FaqIcon";
 const meta = {
   title: "icons/FaqIcon",
   component: FaqIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

@@ -6,9 +6,6 @@ import { Button } from "./Button";
 const meta = {
   title: "atoms/Button",
   component: Button,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     children: "記録・観察をはじめる",
     variant: {

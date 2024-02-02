@@ -6,13 +6,11 @@ import { Typography } from "./Typography";
 const meta = {
   title: "atoms/Typography",
   component: Typography,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     children: "今日のうにすけの体重を教えてください",
     element: "h1",
     size: "large",
+    align: "left",
   },
   argTypes: {},
 } satisfies Meta<typeof Typography>;
@@ -35,6 +33,7 @@ export const H3: Story = {
   args: {
     size: "medium",
     element: "h3",
+    align: "center",
   },
 };
 export const P: Story = {

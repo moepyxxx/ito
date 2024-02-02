@@ -5,7 +5,8 @@ const iconImageStyle = tv({
   base: "rounded-full w-11 h-11",
   variants: {
     outlined: {
-      true: "border-primary border",
+      primary: "border-primary border-2",
+      secondary: "border-secondary border-2",
     },
   },
 });
@@ -13,14 +14,10 @@ const iconImageStyle = tv({
 type Props = {
   src: string;
   label: string;
-  outlined?: boolean;
+  outlined?: "primary" | "secondary";
 };
 
-export const IconImage: React.FC<Props> = ({
-  src,
-  label,
-  outlined = false,
-}) => {
+export const IconImage: React.FC<Props> = ({ src, label, outlined }) => {
   return (
     <Image
       src={src}

@@ -5,9 +5,6 @@ import { AccountIcon } from "./Account";
 const meta = {
   title: "icons/AccountIcon",
   component: AccountIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

@@ -5,9 +5,6 @@ import { DecoratedLeading } from "./DecoratedLeading";
 const meta = {
   title: "atoms/DecoratedLeading",
   component: DecoratedLeading,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     children: "Good Morning!",
     color: "primary",

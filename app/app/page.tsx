@@ -1,3 +1,9 @@
+import { Typography } from "@/components/atoms/Typography";
+
 export default function Home() {
-  return <p>Hello, world</p>;
+  return (
+    <Typography element="p" size="medium">
+      Hello!
+    </Typography>
+  );
 }

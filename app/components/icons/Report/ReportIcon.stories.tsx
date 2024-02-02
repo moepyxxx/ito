@@ -5,9 +5,6 @@ import { ReportIcon } from "./ReportIcon";
 const meta = {
   title: "icons/ReportIcon",
   component: ReportIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,

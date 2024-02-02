@@ -5,9 +5,6 @@ import { NotificationIcon } from "./NotificationIcon";
 const meta = {
   title: "icons/NotificationIcon",
   component: NotificationIcon,
-  parameters: {
-    layout: "centered",
-  },
   args: {
     color: "black",
     size: 24,
