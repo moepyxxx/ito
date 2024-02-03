@@ -44,7 +44,7 @@ const BaseTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form onSubmit={handleSubmit(console.warn)}>
       <FormCheckBox
         {...args}
         {...register("favoriteFoods")}
@@ -87,7 +87,7 @@ const RequiredTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form onSubmit={handleSubmit(console.warn)}>
       <FormCheckBox
         {...args}
         {...register("favoriteFoods")}
@@ -129,7 +129,7 @@ const DisabledTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form onSubmit={handleSubmit(console.warn)}>
       <FormCheckBox
         {...args}
         {...register("favoriteFoods")}

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import sampleImage from "../../../public/sample/icon.png";
 import { action } from "@storybook/addon-actions";
 
 import { IconButton } from "./IconButton";

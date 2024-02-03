@@ -38,7 +38,7 @@ const BaseTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)} className="max-w-96">
+    <form onSubmit={handleSubmit(console.warn)} className="max-w-96">
       <FormTextArea
         {...args}
         {...register("condition")}
@@ -79,7 +79,7 @@ const RequiredTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)} className="max-w-96">
+    <form onSubmit={handleSubmit(console.warn)} className="max-w-96">
       <FormTextArea
         {...args}
         {...register("condition")}
@@ -121,7 +121,7 @@ const DisabledTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)} className="max-w-96">
+    <form onSubmit={handleSubmit(console.warn)} className="max-w-96">
       <FormTextArea
         {...args}
         {...register("condition")}

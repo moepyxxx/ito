@@ -1,4 +1,4 @@
-import { Ref, RefCallback, SyntheticEvent, forwardRef, useId } from "react";
+import { SyntheticEvent, forwardRef, useId } from "react";
 import { Typography } from "../../Typography";
 import { Button } from "../../Button";
 

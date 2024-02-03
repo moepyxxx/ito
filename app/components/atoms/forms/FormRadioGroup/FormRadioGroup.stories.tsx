@@ -44,7 +44,7 @@ const BaseTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form onSubmit={handleSubmit(console.warn)}>
       <FormRadioGroup
         {...args}
         {...register("condition")}
@@ -86,7 +86,7 @@ const RequiredTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form onSubmit={handleSubmit(console.warn)}>
       <FormRadioGroup
         {...args}
         {...register("condition")}
@@ -128,7 +128,7 @@ const DisabledTemplate: Story["render"] = (args: any) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form onSubmit={handleSubmit(console.warn)}>
       <FormRadioGroup
         {...args}
         {...register("condition")}
