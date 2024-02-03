@@ -3,7 +3,7 @@ name: "Lint"
 on: push
 
 jobs:
-  chromatic:
+  test:
     runs-on: ubuntu-latest
     defaults:
       run:
