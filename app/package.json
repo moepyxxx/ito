@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",
+    "@storybook/addon-a11y": "^7.6.12",
     "@storybook/addon-essentials": "^7.6.9",
     "@storybook/addon-interactions": "^7.6.12",
     "@storybook/addon-links": "^7.6.9",
