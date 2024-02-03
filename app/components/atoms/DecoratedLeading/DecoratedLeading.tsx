@@ -1,3 +1,4 @@
+import { WithBaseElementProps } from "@/types";
 import { tv } from "tailwind-variants";
 
 const decoratedLeadingStyle = tv({
@@ -15,15 +16,22 @@ const decoratedLeadingStyle = tv({
 });
 
 type Props = {
-  children: React.ReactNode;
   color: "primary" | "secondary";
   size: "large" | "medium";
 };
 
-export const DecoratedLeading: React.FC<Props> = ({
+export const DecoratedLeading: React.FC<WithBaseElementProps<Props>> = ({
   children,
   color,
   size,
+  id,
+  className = "",
 }) => {
-  return <p className={decoratedLeadingStyle({ color, size })}>{children}</p>;
+  return (
+    <p
+      className={`${decoratedLeadingStyle({ color, size })} ${className}`}
+      id={id}>
+      {children}
+    </p>
+  );
 };

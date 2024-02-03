@@ -1,3 +1,4 @@
+import { WithBaseElementProps } from "@/types";
 import { ColorVariantKeys } from "@/utils/color";
 import { tv } from "tailwind-variants";
 
@@ -28,25 +29,25 @@ export const typographyStyle = tv({
 });
 
 type Props = {
-  children: React.ReactNode;
   color?: ColorVariantKeys;
   align?: "left" | "center" | "right";
   element?: "p" | "h1" | "h2" | "h3";
   size?: "medium" | "small" | "large" | "xSmall";
-  className?: string;
 };
 
-export const Typography: React.FC<Props> = ({
+export const Typography: React.FC<WithBaseElementProps<Props>> = ({
   children,
   color = "black",
   element = "p",
   size = "medium",
   align = "left",
   className = "",
+  id,
 }) => {
   const Element = element;
   return (
     <Element
+      id={id}
       className={`${typographyStyle({
         size,
         align,

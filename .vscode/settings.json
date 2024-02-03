@@ -9,5 +9,14 @@
   // 保存時にauto fixさせる
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "cSpell.words": [
+    "autodocs",
+    "chromaui",
+    "hookform",
+    "nextjs",
+    "noto",
+    "tailwindcss",
+    "Torisan"
+  ]
 }

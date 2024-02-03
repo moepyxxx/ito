@@ -7,14 +7,16 @@ const config: StorybookConfig = {
     "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
+    "@storybook/addon-a11y",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
   ],
   framework: {
     name: "@storybook/nextjs",
-    options: {},
+    options: {
+      // nextConfigPath: path.resolve(__dirname, "../next.config.js"),
+    },
   },
   docs: {
     autodocs: "tag",
@@ -28,6 +30,10 @@ const config: StorybookConfig = {
       };
     }
     return config;
+  },
+  typescript: {
+    check: true,
+    skipCompiler: false,
   },
 };
 export default config;

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import { Paper } from "./Paper";
 
@@ -9,7 +8,7 @@ const meta = {
   args: {
     children: <div>鳥ちゃんについて説明します。</div>,
   },
-  render: (args) => (
+  render: (args: any) => (
     <div className="w-80">
       <Paper {...args} />
     </div>
