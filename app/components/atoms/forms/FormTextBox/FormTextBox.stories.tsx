@@ -9,7 +9,7 @@ import { z } from "zod";
 type Story = StoryObj<typeof FormTextBox>;
 
 const meta = {
-  title: "form/FormTextBox",
+  title: "forms/FormTextBox",
   component: FormTextBox,
   args: {
     label: "今日の鳥さんの様子",

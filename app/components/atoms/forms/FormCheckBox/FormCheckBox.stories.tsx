@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { FormCheckBox } from "./FormCheckBox";
 import { Button } from "../../Button";
@@ -9,7 +9,7 @@ import { z } from "zod";
 type Story = StoryObj<typeof FormCheckBox>;
 
 const meta = {
-  title: "atoms/FormCheckBox",
+  title: "forms/FormCheckBox",
   component: FormCheckBox,
   args: {
     selections: [
