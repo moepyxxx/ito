@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import sampleImage from "@/public/sample/icon.png";
+import sampleImage from "../../../public/sample/icon.png";
 
 import { ProfileCheckIcon } from "./ProfileCheckIcon";
 
