@@ -1,3 +1,4 @@
+import { WithBaseElementProps } from "@/types";
 import { tv } from "tailwind-variants";
 
 const buttonStyle = tv({
@@ -39,20 +40,19 @@ export type Variant =
     };
 
 export type Props = {
-  children: React.ReactNode;
   variant?: Variant;
   disabled?: boolean;
   element?: Element;
-  className?: string;
 };
 
-export const Button: React.FC<Props> = ({
-  children,
-  variant = { type: "default" },
+export const Button: React.FC<WithBaseElementProps<Props>> = ({
   disabled,
+  variant = { type: "default" },
   element = { elementType: "button", buttonType: "button", onClick: () => {} },
-  className,
-}: Props) => {
+  children,
+  id,
+  className = "",
+}) => {
   const counter =
     (variant.type === "primary" || variant.type === "secondary") &&
     variant.counter != null
@@ -62,6 +62,7 @@ export const Button: React.FC<Props> = ({
   if (element.elementType === "button") {
     return (
       <button
+        id={id}
         onClick={element.onClick}
         type={element.buttonType}
         className={`${buttonStyle({
@@ -76,6 +77,7 @@ export const Button: React.FC<Props> = ({
 
   return (
     <a
+      id={id}
       href={element.href}
       className={`${buttonStyle({
         variant: variant.type,

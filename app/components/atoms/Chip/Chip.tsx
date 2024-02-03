@@ -1,3 +1,4 @@
+import { WithBaseElementProps } from "@/types";
 import { tv } from "tailwind-variants";
 
 const chipStyle = tv({
@@ -14,11 +15,20 @@ const chipStyle = tv({
 });
 
 type Props = {
-  children: React.ReactNode;
   color: "secondary" | "error";
   disabled?: boolean;
 };
 
-export const Chip: React.FC<Props> = ({ children, color, disabled }) => {
-  return <span className={chipStyle({ color, disabled })}>{children}</span>;
+export const Chip: React.FC<WithBaseElementProps<Props>> = ({
+  children,
+  color,
+  disabled,
+  id,
+  className = "",
+}) => {
+  return (
+    <span id={id} className={`${chipStyle({ color, disabled })} ${className}`}>
+      {children}
+    </span>
+  );
 };

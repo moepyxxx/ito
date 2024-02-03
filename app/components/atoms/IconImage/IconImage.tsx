@@ -1,3 +1,4 @@
+import { WithBaseElementProps } from "@/types";
 import Image from "next/image";
 import { tv } from "tailwind-variants";
 
@@ -17,14 +18,17 @@ type Props = {
   outlined?: "primary" | "secondary";
 };
 
-export const IconImage: React.FC<Props> = ({ src, label, outlined }) => {
+export const IconImage: React.FC<
+  WithBaseElementProps<Props, "className" | "id">
+> = ({ src, label, outlined, id, className = "" }) => {
   return (
     <Image
       src={src}
       alt={`鳥さんアイコン: ${label}`}
       width={44}
       height={44}
-      className={iconImageStyle({ outlined })}
+      className={`${iconImageStyle({ outlined })} ${className}`}
+      id={id}
     />
   );
 };
