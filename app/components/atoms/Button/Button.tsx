@@ -21,7 +21,8 @@ const counterStyle = tv({
 export type Element =
   | {
       elementType: "button";
-      onClick: () => void;
+      onClick?: () => void;
+      buttonType?: "button" | "submit";
     }
   | {
       elementType: "a";
@@ -39,16 +40,18 @@ export type Variant =
 
 export type Props = {
   children: React.ReactNode;
-  variant: Variant;
+  variant?: Variant;
   disabled?: boolean;
-  element: Element;
+  element?: Element;
+  className?: string;
 };
 
 export const Button: React.FC<Props> = ({
   children,
-  variant,
+  variant = { type: "default" },
   disabled,
-  element,
+  element = { elementType: "button", buttonType: "button", onClick: () => {} },
+  className,
 }: Props) => {
   const counter =
     (variant.type === "primary" || variant.type === "secondary") &&
@@ -60,7 +63,11 @@ export const Button: React.FC<Props> = ({
     return (
       <button
         onClick={element.onClick}
-        className={buttonStyle({ variant: variant.type, disabled })}
+        type={element.buttonType}
+        className={`${buttonStyle({
+          variant: variant.type,
+          disabled,
+        })} ${className}`}
         disabled={disabled}>
         <Child counter={counter}>{children}</Child>
       </button>
@@ -70,7 +77,10 @@ export const Button: React.FC<Props> = ({
   return (
     <a
       href={element.href}
-      className={buttonStyle({ variant: variant.type, disabled })}>
+      className={`${buttonStyle({
+        variant: variant.type,
+        disabled,
+      })} ${className}`}>
       <Child counter={counter}>{children}</Child>
     </a>
   );
