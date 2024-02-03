@@ -24,7 +24,7 @@ const meta = {
 
 export default meta;
 
-const BaseTemplate: Story["render"] = (args) => {
+const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     favoriteFoods: z.array(z.string()),
   });
@@ -65,7 +65,7 @@ export const Base: Story = {
   render: BaseTemplate,
 };
 
-const RequiredTemplate: Story["render"] = (args) => {
+const RequiredTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     favoriteFoods: z
       .array(z.string())
@@ -109,7 +109,7 @@ export const Required: Story = {
   render: RequiredTemplate,
 };
 
-const DisabledTemplate: Story["render"] = (args) => {
+const DisabledTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     favoriteFoods: z.array(z.string()),
   });

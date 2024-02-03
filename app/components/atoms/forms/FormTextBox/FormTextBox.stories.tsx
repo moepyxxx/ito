@@ -19,7 +19,7 @@ const meta = {
 
 export default meta;
 
-const BaseTemplate: Story["render"] = (args) => {
+const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     condition: z.string(),
   });
@@ -60,7 +60,7 @@ export const Base: Story = {
   render: BaseTemplate,
 };
 
-const RequiredTemplate: Story["render"] = (args) => {
+const RequiredTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     condition: z.string().min(1, "必須項目です"),
   });
@@ -102,7 +102,7 @@ export const Required: Story = {
   render: RequiredTemplate,
 };
 
-const DisabledTemplate: Story["render"] = (args) => {
+const DisabledTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     condition: z.string().min(1, "必須項目です"),
   });
