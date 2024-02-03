@@ -34,6 +34,7 @@ type Props = {
   element?: "p" | "h1" | "h2" | "h3";
   size?: "medium" | "small" | "large" | "xSmall";
   className?: string;
+  id?: string;
 };
 
 export const Typography: React.FC<Props> = ({
@@ -43,10 +44,12 @@ export const Typography: React.FC<Props> = ({
   size = "medium",
   align = "left",
   className = "",
+  id,
 }) => {
   const Element = element;
   return (
     <Element
+      id={id}
       className={`${typographyStyle({
         size,
         align,
