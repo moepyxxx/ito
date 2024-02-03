@@ -24,6 +24,7 @@ export const FormCheckBox = forwardRef<HTMLInputElement, Props>(
     const uniqueId = useId();
     return (
       <fieldset
+        className="my-4"
         aria-invalid={errorMessage ? true : false}
         area-describedby={`${uniqueId}-error`}>
         <legend className="flex items-center">
@@ -33,21 +34,25 @@ export const FormCheckBox = forwardRef<HTMLInputElement, Props>(
           )}
           {disabled && <Typography size="small">（選択できません）</Typography>}
         </legend>
-        {selections.map((selection) => (
-          <div key={selection.value}>
-            <input
-              {...restArgs}
-              ref={ref}
-              type="checkbox"
-              value={selection.value}
-              id={`${uniqueId}-${selection.value}`}
-              disabled={disabled || selection.disabled}
-            />
-            <label htmlFor={`${uniqueId}-${selection.value}`} className="ml-2">
-              {selection.label}
-            </label>
-          </div>
-        ))}
+        <div className="mt-2">
+          {selections.map((selection) => (
+            <div key={selection.value}>
+              <input
+                {...restArgs}
+                ref={ref}
+                type="checkbox"
+                value={selection.value}
+                id={`${uniqueId}-${selection.value}`}
+                disabled={disabled || selection.disabled}
+              />
+              <label
+                htmlFor={`${uniqueId}-${selection.value}`}
+                className="ml-2">
+                {selection.label}
+              </label>
+            </div>
+          ))}
+        </div>
         {errorMessage && (
           <Typography
             color="error"
