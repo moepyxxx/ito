@@ -1,7 +1,7 @@
 import { IconType } from "@/components/atoms/Icon";
 import { IconButton } from "@/components/molecules/IconButton";
 
-const navigationMenus: {
+export const navigationMenus: {
   icon: IconType;
   path: string;
   label: string;
