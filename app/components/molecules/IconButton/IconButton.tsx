@@ -3,7 +3,7 @@ import { Typography } from "@/components/atoms/Typography";
 import { tv } from "tailwind-variants";
 
 const IconButtonStyle = tv({
-  base: "flex flex-col items-center p-2",
+  base: "inline-flex flex-col items-center p-2",
 });
 
 type Props = {
@@ -38,7 +38,7 @@ export const IconButton: React.FC<Props> = ({
       aria-label={description}
       className={IconButtonStyle()}>
       {icon}
-      <Typography size="small" color="black">
+      <Typography size="xSmall" color="black">
         {label}
       </Typography>
     </a>
