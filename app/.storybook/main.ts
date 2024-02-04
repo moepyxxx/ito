@@ -32,8 +32,8 @@ const config: StorybookConfig = {
     return config;
   },
   typescript: {
-    check: true,
-    //   skipCompiler: false,
+    // check: true,
+    skipCompiler: false,
   },
 };
 export default config;
