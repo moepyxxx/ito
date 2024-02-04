@@ -4,7 +4,7 @@ import Meta, {
   Base as BaseStory,
   Required as RequiredStory,
   Disabled as DisabledStory,
-} from "./FormTextArea.stories";
+} from "./FormTextBox.stories";
 import userEvent from "@testing-library/user-event";
 
 const Base = composeStory(BaseStory, Meta);
@@ -12,21 +12,21 @@ const Required = composeStory(RequiredStory, Meta);
 const Disabled = composeStory(DisabledStory, Meta);
 const user = userEvent.setup();
 
-describe("FormTextArea", () => {
+describe("FormTextBox", () => {
   test("ラベルが存在すること", async () => {
     render(<Base />);
-    expect(screen.getByText(/気になることのメモ/)).toBeInTheDocument();
+    expect(screen.getByText(/今日の鳥さんの様子/)).toBeInTheDocument();
   });
   test("入力できること", async () => {
     render(<Base />);
-    const textbox = screen.getByRole("textbox", { name: "気になることのメモ" });
+    const textbox = screen.getByRole("textbox", { name: "今日の鳥さんの様子" });
     await user.type(textbox, "テスト");
     expect(textbox).toHaveValue("テスト");
   });
   test("必須の時入力がない場合はエラーメッセージが表示されること", async () => {
     render(<Required />);
     const textbox = screen.getByRole("textbox", {
-      name: "気になることのメモ （入力必須です）",
+      name: "今日の鳥さんの様子 （入力必須です）",
     });
     expect(textbox).toBeInTheDocument();
     act(() => {
@@ -38,7 +38,7 @@ describe("FormTextArea", () => {
   test("disabledの時入力できないこと", async () => {
     render(<Disabled />);
     const textbox = screen.getByRole("textbox", {
-      name: "気になることのメモ （入力できません）",
+      name: "今日の鳥さんの様子 （入力できません）",
     });
     expect(textbox).toBeInTheDocument();
     expect(textbox).toBeDisabled();

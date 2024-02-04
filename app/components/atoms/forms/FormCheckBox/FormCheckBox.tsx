@@ -29,9 +29,7 @@ export const FormCheckBox = forwardRef<HTMLInputElement, Props>(
         area-describedby={`${uniqueId}-error`}>
         <legend className="flex items-center">
           <Typography>{label}</Typography>
-          {required && (
-            <Typography size="small">（どれか1つを選択）</Typography>
-          )}
+          {required && <Typography size="small">（1つ以上選択）</Typography>}
           {disabled && <Typography size="small">（選択できません）</Typography>}
         </legend>
         <div className="mt-2">
