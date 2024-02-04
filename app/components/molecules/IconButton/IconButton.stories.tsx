@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import { IconButton } from "./IconButton";
 
 const meta = {
-  title: "atoms/IconButton",
+  title: "molecules/IconButton",
   component: IconButton,
 
   args: {

@@ -4,7 +4,7 @@ import sampleImage from "../../../public/sample/icon.png";
 import { ProfileCheckIcon } from "./ProfileCheckIcon";
 
 const meta = {
-  title: "atoms/ProfileCheckIcon",
+  title: "molecules/ProfileCheckIcon",
   component: ProfileCheckIcon,
 
   args: {
