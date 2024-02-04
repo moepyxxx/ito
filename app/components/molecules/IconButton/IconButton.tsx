@@ -1,6 +1,7 @@
 import { Element } from "@/components/atoms/Button";
 import { Typography } from "@/components/atoms/Typography";
 import { tv } from "tailwind-variants";
+import Link from "next/link";
 
 const IconButtonStyle = tv({
   base: "inline-flex flex-col items-center p-2",
@@ -35,7 +36,7 @@ export const IconButton: React.FC<Props> = ({
   }
 
   return (
-    <a
+    <Link
       href={element.href}
       aria-label={description}
       className={IconButtonStyle()}>
@@ -45,6 +46,6 @@ export const IconButton: React.FC<Props> = ({
           {label}
         </Typography>
       )}
-    </a>
+    </Link>
   );
 };

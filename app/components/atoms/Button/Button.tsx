@@ -1,5 +1,6 @@
 import { WithBaseElementProps } from "@/types";
 import { tv } from "tailwind-variants";
+import Link from "next/link";
 
 const buttonStyle = tv({
   base: "py-2 px-3 text-black rounded-xl border relative text-lg w-52",
@@ -76,7 +77,7 @@ export const Button: React.FC<WithBaseElementProps<Props>> = ({
   }
 
   return (
-    <a
+    <Link
       id={id}
       href={element.href}
       className={`${buttonStyle({
@@ -84,7 +85,7 @@ export const Button: React.FC<WithBaseElementProps<Props>> = ({
         disabled,
       })} ${className}`}>
       <Child counter={counter}>{children}</Child>
-    </a>
+    </Link>
   );
 };
 
