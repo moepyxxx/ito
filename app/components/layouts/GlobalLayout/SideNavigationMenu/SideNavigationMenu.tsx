@@ -1,24 +1,19 @@
 import { Paper } from "@/components/atoms/Paper";
 import { navigationMenus } from "../FixedNavigationMenu";
-import { TextLink } from "@/components/atoms/TextLink";
-import { Icon } from "@/components/atoms/Icon";
+import { IconTextLink } from "@/components/molecules/IconTextLink";
 
 export const SideNavigationMenu: React.FC = () => {
   return (
     <Paper className="max-w-[240px] w-full">
       <nav aria-label="メインメニュー" className="flex flex-col">
         {navigationMenus.map((menu, index) => (
-          <TextLink href={menu.path} key={index} color="black" className="py-2">
-            <>
-              <Icon
-                icon={menu.icon}
-                size={20}
-                color="black"
-                className="inline-block mr-1 items-center"
-              />
-              {menu.label}
-            </>
-          </TextLink>
+          <IconTextLink
+            href={menu.path}
+            key={index}
+            color="black"
+            icon={menu.icon}
+            label={menu.label}
+          />
         ))}
       </nav>
     </Paper>

@@ -1,7 +1,7 @@
-import { Icon, IconType } from "@/components/atoms/Icon";
+import { IconType } from "@/components/atoms/Icon";
 import { Logo } from "@/components/atoms/Logo";
-import { TextLink } from "@/components/atoms/TextLink";
 import { IconButton } from "@/components/molecules/IconButton";
+import { IconTextLink } from "@/components/molecules/IconTextLink";
 import { mediaQuery, useMediaQuery } from "@/hooks";
 
 const subMenus: {
@@ -32,17 +32,13 @@ export const HeaderMenu: React.FC = () => {
               labelHidden={true}
             />
           ) : (
-            <TextLink href={menu.path} key={index} color="black">
-              <>
-                <Icon
-                  icon={menu.icon}
-                  size={20}
-                  color="black"
-                  className="inline-block mr-1 items-center"
-                />
-                {menu.label}
-              </>
-            </TextLink>
+            <IconTextLink
+              href={menu.path}
+              key={index}
+              color="black"
+              icon={menu.icon}
+              label={menu.label}
+            />
           )
         )}
       </nav>
