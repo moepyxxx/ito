@@ -8,7 +8,7 @@ const meta = {
   args: {
     children: "保存して記録を終わる",
     color: "secondary",
-    href: "https://www.google.com/",
+    href: "https://www.google.com",
   },
   argTypes: {},
 } satisfies Meta<typeof TextLink>;
