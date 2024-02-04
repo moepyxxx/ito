@@ -9,7 +9,7 @@ const IconButtonStyle = tv({
 type Props = {
   icon: React.ReactNode;
   element: Element;
-  label: string;
+  label?: string;
   description?: string;
 };
 export const IconButton: React.FC<Props> = ({
@@ -25,9 +25,11 @@ export const IconButton: React.FC<Props> = ({
         aria-label={description}
         className={IconButtonStyle()}>
         {icon}
-        <Typography size="xSmall" color="black">
-          {label}
-        </Typography>
+        {label && (
+          <Typography size="xSmall" color="black">
+            {label}
+          </Typography>
+        )}
       </button>
     );
   }
@@ -38,9 +40,11 @@ export const IconButton: React.FC<Props> = ({
       aria-label={description}
       className={IconButtonStyle()}>
       {icon}
-      <Typography size="xSmall" color="black">
-        {label}
-      </Typography>
+      {label && (
+        <Typography size="xSmall" color="black">
+          {label}
+        </Typography>
+      )}
     </a>
   );
 };

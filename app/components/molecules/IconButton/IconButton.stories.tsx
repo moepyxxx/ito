@@ -32,3 +32,8 @@ export const Link: Story = {
     },
   },
 };
+export const NoLabel: Story = {
+  args: {
+    label: undefined,
+  },
+};
