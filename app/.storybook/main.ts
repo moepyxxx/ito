@@ -32,6 +32,8 @@ const config: StorybookConfig = {
     return config;
   },
   typescript: {
+    // strictなチェックになることによりCI上だけエラーが出てしまう…
+    // see: https://github.com/moepyxxx/ito/actions/runs/7770828224/job/21191455346
     // check: true,
     skipCompiler: false,
   },
