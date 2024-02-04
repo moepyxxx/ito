@@ -11,23 +11,24 @@ const iconButtonStyle = tv({
 type Props = {
   icon: IconType;
   element: Element;
-  label?: string;
-  description?: string;
+  label: string;
   notification?: boolean;
   strong?: boolean;
+  labelHidden?: boolean;
 };
 export const IconButton: React.FC<Props> = ({
   icon,
   element,
   label,
-  description = "",
   notification = false,
   strong = false,
+  labelHidden = false,
 }) => {
+  const ariaLabel = labelHidden ? label : undefined;
   const Child = () => (
     <>
       <Icon icon={icon} size={28} color="black" />
-      {label && (
+      {!labelHidden && (
         <Typography size="xSmall" color="black" bold={strong}>
           {label}
         </Typography>
@@ -41,8 +42,8 @@ export const IconButton: React.FC<Props> = ({
     return (
       <button
         onClick={element.onClick}
-        aria-label={description}
-        className={iconButtonStyle()}>
+        className={iconButtonStyle()}
+        aria-label={ariaLabel}>
         <Child />
       </button>
     );
@@ -51,8 +52,8 @@ export const IconButton: React.FC<Props> = ({
   return (
     <Link
       href={element.href}
-      aria-label={description}
-      className={iconButtonStyle()}>
+      className={iconButtonStyle()}
+      aria-label={ariaLabel}>
       <Child />
     </Link>
   );

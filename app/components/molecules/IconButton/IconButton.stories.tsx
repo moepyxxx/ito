@@ -10,7 +10,6 @@ const meta = {
   args: {
     icon: "home",
     label: "ホーム",
-    description: "ホームへ移動",
     element: {
       elementType: "button",
       onClick: () => action("clicked"),
@@ -32,9 +31,9 @@ export const Link: Story = {
   },
 };
 
-export const NoLabel: Story = {
+export const LabelHidden: Story = {
   args: {
-    label: undefined,
+    labelHidden: true,
   },
 };
 
