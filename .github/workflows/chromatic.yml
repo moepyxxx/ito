@@ -25,4 +25,3 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
           workingDir: app
-          debug: true
