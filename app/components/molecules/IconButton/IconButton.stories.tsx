@@ -2,14 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import { IconButton } from "./IconButton";
-import { HomeIcon } from "@/components/icons/Home";
 
 const meta = {
   title: "atoms/IconButton",
   component: IconButton,
 
   args: {
-    icon: <HomeIcon color="black" size={28} />,
+    icon: "home",
     label: "ホーム",
     description: "ホームへ移動",
     element: {
@@ -32,8 +31,21 @@ export const Link: Story = {
     },
   },
 };
+
 export const NoLabel: Story = {
   args: {
     label: undefined,
+  },
+};
+
+export const Notification: Story = {
+  args: {
+    notification: true,
+  },
+};
+
+export const Strong: Story = {
+  args: {
+    strong: true,
   },
 };
