@@ -16,7 +16,7 @@ const noto = Noto_Sans_JP({
 const notoWeight = Noto_Sans_JP({
   weight: "700",
   subsets: ["latin"],
-  variable: "--font-noto",
+  variable: "--font-noto-weight",
 });
 const caveat = Caveat({
   subsets: ["latin"],
