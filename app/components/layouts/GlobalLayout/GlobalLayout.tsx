@@ -1,7 +1,7 @@
 import { mediaQuery, useMediaQuery } from "@/hooks";
-import { HeaderMenu } from "../HeaderMenu/HeaderMenu";
-import { SideNavigationMenu } from "../SideNavigationMenu";
-import { FixedNavigationMenu } from "../FixedNavigationMenu";
+import { HeaderMenu } from "./HeaderMenu/HeaderMenu";
+import { SideNavigationMenu } from "./SideNavigationMenu";
+import { FixedNavigationMenu } from "./FixedNavigationMenu";
 
 type Props = {
   children: React.ReactNode;

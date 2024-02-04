@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { FixedNavigationMenu } from "./FixedNavigationMenu";
 
 const meta = {
-  title: "layout/FixedNavigationMenu",
+  title: "layout/globalLayout/FixedNavigationMenu",
   component: FixedNavigationMenu,
   argTypes: {},
 } satisfies Meta<typeof FixedNavigationMenu>;
