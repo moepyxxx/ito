@@ -19,13 +19,17 @@ export const HeaderMenu: React.FC = () => {
   return (
     <div className="w-full flex items-center justify-between">
       <Logo />
-      <div className={`flex gap-${isSp ? "1" : "4"}`}>
+      <nav
+        aria-label="サブメニュー"
+        className={`flex ${isSp ? "gap-x-1" : "gap-x-3"}`}>
         {subMenus.map((menu, index) =>
           isSp ? (
             <IconButton
               element={{ elementType: "a", href: menu.path }}
               icon={menu.icon}
+              label={menu.label}
               key={index}
+              labelHidden={true}
             />
           ) : (
             <TextLink href={menu.path} key={index} color="black">
@@ -41,7 +45,7 @@ export const HeaderMenu: React.FC = () => {
             </TextLink>
           )
         )}
-      </div>
+      </nav>
     </div>
   );
 };

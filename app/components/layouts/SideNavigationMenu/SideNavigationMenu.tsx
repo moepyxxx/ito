@@ -6,7 +6,7 @@ import { Icon } from "@/components/atoms/Icon";
 export const SideNavigationMenu: React.FC = () => {
   return (
     <Paper className="max-w-[240px] w-full">
-      <div className="flex flex-col">
+      <nav aria-label="メインメニュー" className="flex flex-col">
         {navigationMenus.map((menu, index) => (
           <TextLink href={menu.path} key={index} color="black" className="py-2">
             <>
@@ -20,7 +20,7 @@ export const SideNavigationMenu: React.FC = () => {
             </>
           </TextLink>
         ))}
-      </div>
+      </nav>
     </Paper>
   );
 };
