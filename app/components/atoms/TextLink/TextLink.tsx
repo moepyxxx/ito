@@ -3,7 +3,7 @@ import { typographyStyle } from "../Typography";
 import { WithBaseElementProps } from "@/types";
 
 type Props = {
-  color: "secondary" | "error" | "primary";
+  color: "secondary" | "error" | "primary" | "black";
   href: string;
   target?: "_blank";
 };
