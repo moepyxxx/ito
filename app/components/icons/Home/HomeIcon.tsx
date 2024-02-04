@@ -1,10 +1,15 @@
 import { getHtmlCodeFromColorKey } from "../../../utils/color";
 import { SvgProps } from "../props";
 
-export const HomeIcon: React.FC<SvgProps> = ({ color, size }) => {
+export const HomeIcon: React.FC<SvgProps> = ({
+  color,
+  size,
+  className = "",
+}) => {
   const htmlColor = getHtmlCodeFromColorKey(color);
   return (
     <svg
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 32 32"

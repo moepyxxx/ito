@@ -25,6 +25,9 @@ export const typographyStyle = tv({
       center: "text-center",
       right: "text-right",
     },
+    bold: {
+      true: "font-bold",
+    },
   },
 });
 
@@ -33,6 +36,7 @@ type Props = {
   align?: "left" | "center" | "right";
   element?: "p" | "h1" | "h2" | "h3";
   size?: "medium" | "small" | "large" | "xSmall";
+  bold?: boolean;
 };
 
 export const Typography: React.FC<WithBaseElementProps<Props>> = ({
@@ -43,6 +47,7 @@ export const Typography: React.FC<WithBaseElementProps<Props>> = ({
   align = "left",
   className = "",
   id,
+  bold = false,
 }) => {
   const Element = element;
   return (
@@ -51,6 +56,7 @@ export const Typography: React.FC<WithBaseElementProps<Props>> = ({
       className={`${typographyStyle({
         size,
         align,
+        bold,
       })} text-${color} ${className}`}>
       {children}
     </Element>

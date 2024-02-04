@@ -1,10 +1,15 @@
 import { getHtmlCodeFromColorKey } from "../../../utils/color";
 import { SvgProps } from "../props";
 
-export const TorisanIcon: React.FC<SvgProps> = ({ color, size }) => {
+export const TorisanIcon: React.FC<SvgProps> = ({
+  color,
+  size,
+  className = "",
+}) => {
   const htmlColor = getHtmlCodeFromColorKey(color);
   return (
     <svg
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 32 32"

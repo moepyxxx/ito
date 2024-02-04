@@ -1,0 +1,47 @@
+import { IconType } from "@/components/atoms/Icon";
+import { Logo } from "@/components/atoms/Logo";
+import { IconButton } from "@/components/molecules/IconButton";
+import { IconTextLink } from "@/components/molecules/IconTextLink";
+import { mediaQuery, useMediaQuery } from "@/hooks";
+
+const subMenus: {
+  path: string;
+  icon: IconType;
+  label: string;
+}[] = [
+  { path: "/faq", label: "よくある質問", icon: "faq" },
+  { path: "/account", label: "アカウント設定", icon: "account" },
+];
+
+export const HeaderMenu: React.FC = () => {
+  const isSp = useMediaQuery(mediaQuery.sp);
+
+  return (
+    <div className="w-full flex items-center justify-between">
+      <Logo />
+      <nav
+        aria-label="サブメニュー"
+        className={`flex ${isSp ? "gap-x-1" : "gap-x-3"}`}>
+        {subMenus.map((menu, index) =>
+          isSp ? (
+            <IconButton
+              element={{ elementType: "a", href: menu.path }}
+              icon={menu.icon}
+              label={menu.label}
+              key={index}
+              labelHidden={true}
+            />
+          ) : (
+            <IconTextLink
+              href={menu.path}
+              key={index}
+              color="black"
+              icon={menu.icon}
+              label={menu.label}
+            />
+          )
+        )}
+      </nav>
+    </div>
+  );
+};
