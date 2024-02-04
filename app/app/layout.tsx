@@ -12,6 +12,11 @@ const noto = Noto_Sans_JP({
   subsets: ["latin"],
   variable: "--font-noto",
 });
+const notoWeight = Noto_Sans_JP({
+  weight: "700",
+  subsets: ["latin"],
+  variable: "--font-noto",
+});
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
@@ -30,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${narrow.variable} ${noto.variable} ${caveat.variable} font-noto`}>
+        className={`${narrow.variable} ${noto.variable} ${notoWeight.variable} ${caveat.variable} font-noto`}>
         {children}
       </body>
     </html>
