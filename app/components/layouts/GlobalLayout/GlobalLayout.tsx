@@ -1,4 +1,4 @@
-import { mediaQuery, useMediaQuery } from "@/hooks";
+import { mediaQuery, useAuth, useMediaQuery } from "@/hooks";
 import { HeaderMenu } from "./HeaderMenu/HeaderMenu";
 import { SideNavigationMenu } from "./SideNavigationMenu";
 import { FixedNavigationMenu } from "./FixedNavigationMenu";
@@ -8,6 +8,7 @@ type Props = {
 };
 export const GlobalLayout: React.FC<Props> = ({ children }) => {
   const isSp = useMediaQuery(mediaQuery.sp);
+  const isAuth = useAuth();
   return (
     <div className="max-w-[800px] my-auto">
       <HeaderMenu />
@@ -15,9 +16,9 @@ export const GlobalLayout: React.FC<Props> = ({ children }) => {
         <div className={isSp ? "w-full" : "w-[calc(100%-240px)]"}>
           {children}
         </div>
-        {!isSp && <SideNavigationMenu />}
+        {!isSp && isAuth && <SideNavigationMenu />}
       </main>
-      {isSp && <FixedNavigationMenu />}
+      {isSp && isAuth && <FixedNavigationMenu />}
     </div>
   );
 };
