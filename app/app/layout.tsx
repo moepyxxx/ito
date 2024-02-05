@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PT_Sans_Narrow, Noto_Sans_JP, Caveat } from "next/font/google";
+import { GlobalLayout } from "@/components/layouts/GlobalLayout/GlobalLayout";
 
 const narrow = PT_Sans_Narrow({
   weight: "400",
@@ -36,7 +37,7 @@ export default function RootLayout({
     <html lang="ja">
       <body
         className={`${narrow.variable} ${noto.variable} ${notoWeight.variable} ${caveat.variable} font-noto`}>
-        {children}
+        <GlobalLayout>{children}</GlobalLayout>
       </body>
     </html>
   );

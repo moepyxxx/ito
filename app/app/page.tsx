@@ -1,6 +1,5 @@
-import { Typography } from "@/components/atoms/Typography";
-
-import type { Metadata } from "next";
+import { Introduction } from "@/components/pages/Introduction/Introduction";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "愛鳥さんの毎日の記録・観察のためのサイト - ito",
@@ -8,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <Typography>Hello!</Typography>;
+  return <Introduction />;
 }

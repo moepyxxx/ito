@@ -1,3 +1,5 @@
+"use client";
+
 import { mediaQuery, useAuth, useMediaQuery } from "@/hooks";
 import { HeaderMenu } from "./HeaderMenu/HeaderMenu";
 import { SideNavigationMenu } from "./SideNavigationMenu";
