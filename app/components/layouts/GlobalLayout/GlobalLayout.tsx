@@ -12,10 +12,10 @@ export const GlobalLayout: React.FC<Props> = ({ children }) => {
   const isSp = useMediaQuery(mediaQuery.sp);
   const isAuth = useAuth();
   return (
-    <div className="max-w-[800px] my-auto">
+    <div className="max-w-[800px] mx-auto">
       <HeaderMenu />
       <main className={isSp ? "w-full my-2" : "flex items-start my-8"}>
-        <div className={isSp ? "w-full" : "w-[calc(100%-240px)]"}>
+        <div className={isSp || !isAuth ? "w-full" : "w-[calc(100%-240px)]"}>
           {children}
         </div>
         {!isSp && isAuth && <SideNavigationMenu />}
