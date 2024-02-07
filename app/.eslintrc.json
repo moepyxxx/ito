@@ -5,7 +5,7 @@
     "plugin:storybook/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["@typescript-eslint", "jest"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-console": [
       "error",
