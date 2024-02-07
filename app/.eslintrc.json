@@ -5,7 +5,7 @@
     "plugin:storybook/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["@typescript-eslint", "jest"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-console": [
       "error",
@@ -16,7 +16,5 @@
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-explicit-any": "off"
   },
-  "env": {
-    "jest/globals": true
-  }
+  "env": {}
 }

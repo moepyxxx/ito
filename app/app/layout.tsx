@@ -1,26 +1,28 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import "./globals.css";
-import { PT_Sans_Narrow, Noto_Sans_JP, Caveat } from "next/font/google";
+import { GlobalLayout } from "@/components/layouts/GlobalLayout/GlobalLayout";
 
-const narrow = PT_Sans_Narrow({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-narrow",
-});
-const noto = Noto_Sans_JP({
-  weight: "300",
-  subsets: ["latin"],
-  variable: "--font-noto",
-});
-const notoWeight = Noto_Sans_JP({
-  weight: "700",
-  subsets: ["latin"],
-  variable: "--font-noto",
-});
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-});
+// NOTE: next/font/googleを利用したいが、現状では@storybook/react-webpack5では利用できないため、普通にimportして利用する
+// import { PT_Sans_Narrow, Noto_Sans_JP, Caveat } from "next/font/google";
+// const narrow = PT_Sans_Narrow({
+//   weight: "400",
+//   subsets: ["latin"],
+//   variable: "--font-narrow",
+// });
+// const noto = Noto_Sans_JP({
+//   weight: "400",
+//   subsets: ["latin"],
+//   variable: "--font-noto",
+// });
+// const notoWeight = Noto_Sans_JP({
+//   weight: "700",
+//   subsets: ["latin"],
+//   variable: "--font-noto-weight",
+// });
+// const caveat = Caveat({
+//   subsets: ["latin"],
+//   variable: "--font-caveat",
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,9 +36,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body
-        className={`${narrow.variable} ${noto.variable} ${notoWeight.variable} ${caveat.variable} font-noto`}>
-        {children}
+      <body className={`font-noto`}>
+        <GlobalLayout>{children}</GlobalLayout>
       </body>
     </html>
   );

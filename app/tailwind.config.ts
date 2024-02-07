@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import { Config } from "tailwindcss";
 import { getHtmlCodeFromColorKey } from "./utils/color";
 
 const config: Config = {
@@ -20,9 +20,9 @@ const config: Config = {
       white: getHtmlCodeFromColorKey("white"),
     },
     fontFamily: {
-      narrow: ["var(--font-narrow)", "sans-serif"],
-      noto: ["var(--font-noto)", "sans-serif"],
-      caveat: ["var(--font-caveat)", "sans-serif"],
+      narrow: ["PT Sans Narrow", "sans-serif"],
+      noto: ["Noto Sans JP", "sans-serif"],
+      caveat: ["Caveat", "sans-serif"],
     },
   },
   plugins: [],

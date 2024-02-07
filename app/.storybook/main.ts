@@ -1,22 +1,29 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+import { StorybookConfig } from "@storybook/react-webpack5";
 import path from "path";
 
 const config: StorybookConfig = {
   stories: [
     "../components/**/*.mdx",
     "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    // "../features/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-  ],
-  framework: {
-    name: "@storybook/nextjs",
-    options: {
-      // nextConfigPath: path.resolve(__dirname, "../next.config.js"),
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        postcssLoaderOptions: {
+          implementation: require("postcss"),
+        },
+      },
     },
+  ],
+  framework: "@storybook/react-webpack5",
+  core: {
+    builder: "@storybook/builder-webpack5",
   },
   docs: {
     autodocs: "tag",
