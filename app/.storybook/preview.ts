@@ -1,5 +1,6 @@
 import { Preview } from "@storybook/react";
 import "../app/globals.css";
+import Image from "next/image";
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +12,14 @@ const preview: Preview = {
       },
     },
   },
+};
+
+// see: https://qiita.com/RYA234/items/0b040132532ea71580f4#2-storybookpreviewjs-%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%A6jpg%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A7%E3%82%82%E8%AA%AD%E3%81%BF%E5%8F%96%E3%82%8C%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B
+Image.propTypes = {
+  unoptimized: undefined,
+};
+Image.defaultProps = {
+  unoptimized: true,
 };
 
 export default preview;
