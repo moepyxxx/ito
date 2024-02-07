@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react";
 import "../app/globals.css";
 import { BaseDecorator } from "./decorators";
 

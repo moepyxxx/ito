@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import { Config } from "tailwindcss";
 import { getHtmlCodeFromColorKey } from "./utils/color";
 
 const config: Config = {

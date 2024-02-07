@@ -1,5 +1,3 @@
-// see: https://zenn.dev/nabeliwo/articles/89099b39223eca
-
 import { useEffect, useState } from "react";
 
 export const mediaQuery = {
@@ -7,11 +5,17 @@ export const mediaQuery = {
   //   pc: "768px <= width",
 };
 
+// NOTE: build時にReferenceError: matchMedia is not definedが出る。
+// クライアントサイドでしか動かないためtypeof window !== "undefined"の条件分岐を入れる
 export const useMediaQuery = (query: string) => {
   const formattedQuery = `(${query})`;
-  const [match, setMatch] = useState(matchMedia(formattedQuery).matches);
+  const [match, setMatch] = useState(
+    typeof window !== "undefined" && matchMedia(formattedQuery).matches
+  );
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const mql = matchMedia(formattedQuery);
 
     if (mql.media === "not all" || mql.media === "invalid") {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import "./globals.css";
 import { PT_Sans_Narrow, Noto_Sans_JP, Caveat } from "next/font/google";
 import { GlobalLayout } from "@/components/layouts/GlobalLayout/GlobalLayout";

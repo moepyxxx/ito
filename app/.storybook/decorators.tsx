@@ -24,7 +24,7 @@ const caveat = Caveat({
 });
 export const BaseDecorator: Decorator = (Story) => (
   <div
-    className={`${narrow.variable} ${noto.variable} ${notoWeight.variable} ${caveat.variable} font-noto`}>
+    className={`${narrow.className} ${noto.className} ${notoWeight.className} ${caveat.className} font-noto`}>
     <Story />
   </div>
 );
