@@ -1,4 +1,3 @@
-import { Introduction } from "@/components/pages/Introduction/Introduction";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <Introduction />;
+  return "hello world";
 }
