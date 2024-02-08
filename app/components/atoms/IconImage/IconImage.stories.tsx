@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import sampleImage from "../../../public/sample/icon.png";
 
 import { IconImage } from "./IconImage";
 
@@ -7,7 +6,7 @@ const meta = {
   title: "atoms/IconImage",
   component: IconImage,
   args: {
-    src: sampleImage.src,
+    src: "/sample/icon.png",
     label: "いとちゃん",
   },
   argTypes: {},
