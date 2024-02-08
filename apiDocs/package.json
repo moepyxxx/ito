@@ -5,11 +5,13 @@
   "dependencies": {
     "@typespec/compiler": "latest",
     "@typespec/http": "latest",
-    "@typespec/rest": "latest",
-    "@typespec/openapi3": "latest"
+    "@typespec/openapi3": "latest",
+    "@typespec/rest": "latest"
   },
   "scripts": {
-    "compile": "tsp compile ."
+    "compile": "tsp compile .",
+    "format": "tsp format '**/*.tsp'",
+    "redoc": "redocly preview-docs tsp-output/@typespec/openapi3/openapi.yaml"
   },
   "private": true
 }
