@@ -5,6 +5,7 @@ import { Logo } from "@/components/atoms/Logo";
 import { TextLink } from "@/components/atoms/TextLink";
 import { Typography } from "@/components/atoms/Typography";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const sampleTorisans = [
   {
@@ -29,6 +30,15 @@ const hooterLinks = [
 ];
 
 export const Introduction: React.FC = () => {
+  useEffect(() => {
+    hoge();
+  }, []);
+
+  const hoge = async () => {
+    const mock = await (await fetch("/api/todos/1")).json();
+    console.warn(mock);
+  };
+
   return (
     <div className="text-center my-10">
       <DecoratedLeading size="large" color="secondary">
