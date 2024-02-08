@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   description: "一緒に暮らしている鳥さんの記録・観察を続けていくためのサイト",
 };
 
-export default function Home() {
+import { sampleGet } from "../api";
+
+export default async function Home() {
+  const res = await sampleGet();
+  console.warn(res);
+
   return "hello world";
 }

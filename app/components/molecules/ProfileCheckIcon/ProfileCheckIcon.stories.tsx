@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import sampleImage from "../../../public/sample/icon.png";
 
 import { ProfileCheckIcon } from "./ProfileCheckIcon";
 
@@ -10,7 +9,7 @@ const meta = {
   args: {
     isChecked: true,
     nickname: "いと",
-    src: sampleImage.src,
+    src: "/sample/icon.png",
   },
   argTypes: {},
 } satisfies Meta<typeof ProfileCheckIcon>;
