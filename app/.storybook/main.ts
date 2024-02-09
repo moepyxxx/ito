@@ -1,4 +1,4 @@
-import { StorybookConfig } from "@storybook/react-webpack5";
+import { StorybookConfig } from "@storybook/nextjs";
 import path from "path";
 
 const config: StorybookConfig = {
@@ -21,12 +21,16 @@ const config: StorybookConfig = {
       },
     },
   ],
-  framework: "@storybook/react-webpack5",
-  core: {
-    builder: "@storybook/builder-webpack5",
+  framework: {
+    name: "@storybook/nextjs",
+    options: {},
   },
+  core: {},
   docs: {
     autodocs: "tag",
+  },
+  features: {
+    experimentalRSC: true,
   },
   staticDirs: ["../public", "./public"],
   webpackFinal: async (config) => {
