@@ -1,5 +1,5 @@
 {
-  "name": "api-docs",
+  "name": "openapi",
   "version": "0.1.0",
   "type": "module",
   "dependencies": {
