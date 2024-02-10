@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { TorisanBoardButton } from "./TorisanBoardButton";
-import { Stage } from "@/features/torisan/types";
 
 const meta = {
   title: "molecules/TorisanBoardButton",
@@ -10,7 +9,7 @@ const meta = {
     isChecked: false,
     nickname: "いと",
     src: "/sample/icon.png",
-    stage: Stage.Observation,
+    chipText: "観察ステージ",
     onClick: () => {},
   },
   decorators: [(story) => <div className="w-96">{story()}</div>],
@@ -25,5 +24,11 @@ export const Base: Story = {};
 export const Checked: Story = {
   args: {
     isChecked: true,
+  },
+};
+
+export const WithDecoration: Story = {
+  args: {
+    decorationMessage: "Congratulation!",
   },
 };

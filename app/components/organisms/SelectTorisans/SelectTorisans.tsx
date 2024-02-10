@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/atoms/Button";
 import { TorisanBoardButton } from "@/components/molecules/TorisanBoardButton";
+import { StagLabel } from "@/features/torisan/constants";
 import { StageType } from "@/features/torisan/types";
 import { useState } from "react";
 
@@ -24,7 +25,7 @@ export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
         <div key={torisan.id} className="pt-3">
           <TorisanBoardButton
             isChecked={selectedTorisanId === torisan.id}
-            stage={torisan.stage}
+            chipText={StagLabel[torisan.stage]}
             src={torisan.src}
             nickname={torisan.nickname}
             onClick={() => setSelectedTorisanId(torisan.id)}
