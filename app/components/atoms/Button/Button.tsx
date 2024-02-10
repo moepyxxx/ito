@@ -6,7 +6,7 @@ const buttonStyle = tv({
   base: "py-2 px-3 text-black rounded-xl border relative text-lg w-52",
   variants: {
     variant: {
-      primary: "bg-thin-primary border-thin-primary",
+      primary: "bg-primary border-primary",
       secondary: "bg-secondary border-secondary text-white",
       default: "border-black text-sm w-28",
     },
