@@ -47,7 +47,7 @@ model UpdateTorisan {
 @doc("詳細用の鳥さん")
 model DetailTorisan {
   id: int64;
-  status: StageObservation | StageMedicalTreatment | StageHospitalization;
+  stage: StageObservation | StageMedicalTreatment | StageHospitalization;
   ...TorisanBasic;
   ...TorisanObjective;
   ...TorisanMeal;

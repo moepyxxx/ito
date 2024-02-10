@@ -91,7 +91,7 @@ components:
       type: object
       required:
         - id
-        - status
+        - stage
         - basic
         - objective
         - meal
@@ -99,7 +99,7 @@ components:
         id:
           type: integer
           format: int64
-        status:
+        stage:
           type: number
           enum:
             - 1
