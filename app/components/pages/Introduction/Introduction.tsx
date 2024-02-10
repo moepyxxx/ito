@@ -1,3 +1,4 @@
+import { sampleGet } from "@/api";
 import { Button } from "@/components/atoms/Button";
 import { DecoratedLeading } from "@/components/atoms/DecoratedLeading";
 import { IconImage } from "@/components/atoms/IconImage";
@@ -29,8 +30,8 @@ const hooterLinks = [
 ];
 
 export const Introduction: React.FC = async () => {
-  // const mock = await (await fetch(`http://localhost:3000/api/todos/1`)).json();
-  // console.warn(mock);
+  const mock = await sampleGet();
+  console.warn(mock);
 
   return (
     <div className="text-center my-10">

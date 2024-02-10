@@ -1,11 +1,9 @@
 import * as restc from "typed-rest-client/RestClient";
 
 export async function sampleGet() {
-  const client = new restc.RestClient("vsts-node-api");
+  const client = new restc.RestClient("vsts-node-api", "http://localhost:3000");
 
-  const response = await client.get<any>(
-    "https://jsonplaceholder.typicode.com/todos/1"
-  );
+  const response = await client.get<any>("/api/todos/1");
 
   return response.result;
 }

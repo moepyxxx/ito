@@ -13,6 +13,6 @@ type SummaryTorisan = {
 };
 
 export async function getSummaryTorisans() {
-  const client = new restc.RestClient("vsts-node-api");
+  const client = new restc.RestClient("vsts-node-api", "http://localhost:3000");
   return (await client.get<SummaryTorisan[]>("/a/torisans")).result;
 }

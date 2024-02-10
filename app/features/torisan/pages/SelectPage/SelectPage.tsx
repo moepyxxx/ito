@@ -2,7 +2,7 @@ import { Title } from "@/components/molecules/Title";
 import { getSummaryTorisans } from "../../api";
 import { SelectTorisans } from "@/components/organisms/SelectTorisans/SelectTorisans";
 
-export const SelectPage = async () => {
+export const SelectPage: React.FC = async () => {
   const torisans = await getSummaryTorisans();
   return (
     <>

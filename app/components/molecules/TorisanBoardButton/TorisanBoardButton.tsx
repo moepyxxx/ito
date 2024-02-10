@@ -31,7 +31,7 @@ export const TorisanBoardButton: React.FC<Props> = ({
   return (
     <button className={`${style({ isChecked })}`} onClick={onClick}>
       <IconImage src={src} label={`${nickname}のアイコン画像`} />
-      <div className="pl-3">
+      <div className="pl-3 text-left">
         <Chip color="black">{StagLabel[stage]}</Chip>
         <Typography bold className="mt-2">
           {nickname}

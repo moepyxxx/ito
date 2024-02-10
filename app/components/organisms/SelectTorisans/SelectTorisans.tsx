@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/atoms/Button";
 import { TorisanBoardButton } from "@/components/molecules/TorisanBoardButton";
 import { StageType } from "@/features/torisan/types";

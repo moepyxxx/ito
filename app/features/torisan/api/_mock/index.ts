@@ -1,19 +1,39 @@
 import { rest } from "msw";
-import { Stage } from "../../types";
+import { Gender, Stage } from "../../types";
 
 export const mockHandlers = [
-  rest.get("/a/summary", (req, res, ctx) => {
+  rest.get("/a/torisans", (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
         {
           id: 1,
-          status: Stage.Observation,
+          stage: Stage.Observation,
           basic: {
-            nickname: "string",
+            nickname: "いと",
             birth_date: "string",
-            species_id: 0,
-            gender_type: 1,
+            species_id: 1,
+            gender_type: Gender.Man,
+          },
+        },
+        {
+          id: 2,
+          stage: Stage.Observation,
+          basic: {
+            nickname: "たまじろう",
+            birth_date: "string",
+            species_id: 1,
+            gender_type: Gender.Man,
+          },
+        },
+        {
+          id: 3,
+          stage: Stage.Observation,
+          basic: {
+            nickname: "うにちゃん",
+            birth_date: "string",
+            species_id: 1,
+            gender_type: Gender.Woman,
           },
         },
       ])
