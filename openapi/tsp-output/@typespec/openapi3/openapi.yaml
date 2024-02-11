@@ -40,6 +40,22 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TorisanModel.RegisterTorisan'
+  /a/torisans/species:
+    get:
+      tags:
+        - Torisan
+      operationId: Torisan_getTypes
+      summary: 鳥さんの種類一覧を見る
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TorisanModel.TorisanSpecie'
   /a/torisans/{id}:
     put:
       tags:
@@ -99,22 +115,27 @@ components:
         id:
           type: integer
           format: int64
+          description: ID
         stage:
           type: number
           enum:
             - 1
             - 2
             - 3
+          description: ステージ
         basic:
           type: object
           properties:
-            nickname:
+            name:
               type: string
+              description: 本名
             birth_date:
               type: string
+              description: 誕生日
             species_id:
               type: integer
               format: int32
+              description: 種類ID
             gender_type:
               type: number
               enum:
@@ -123,8 +144,9 @@ components:
                 - 3
                 - 2
                 - 3
+              description: 性別
           required:
-            - nickname
+            - name
             - birth_date
             - species_id
             - gender_type
@@ -134,9 +156,11 @@ components:
             body_weight:
               type: number
               format: float
+              description: 体重
             amount_of_water:
               type: number
               format: float
+              description: 水の量
           required:
             - body_weight
             - amount_of_water
@@ -146,11 +170,13 @@ components:
             staple_food_id:
               type: integer
               format: int32
+              description: 主食ID
             additional_food_ids:
               type: array
               items:
                 type: integer
                 format: int32
+              description: 副食IDリスト
           required:
             - staple_food_id
             - additional_food_ids
@@ -165,13 +191,16 @@ components:
         basic:
           type: object
           properties:
-            nickname:
+            name:
               type: string
+              description: 本名
             birth_date:
               type: string
+              description: 誕生日
             species_id:
               type: integer
               format: int32
+              description: 種類ID
             gender_type:
               type: number
               enum:
@@ -180,8 +209,9 @@ components:
                 - 3
                 - 2
                 - 3
+              description: 性別
           required:
-            - nickname
+            - name
             - birth_date
             - species_id
             - gender_type
@@ -191,9 +221,11 @@ components:
             body_weight:
               type: number
               format: float
+              description: 体重
             amount_of_water:
               type: number
               format: float
+              description: 水の量
           required:
             - body_weight
             - amount_of_water
@@ -203,11 +235,13 @@ components:
             staple_food_id:
               type: integer
               format: int32
+              description: 主食ID
             additional_food_ids:
               type: array
               items:
                 type: integer
                 format: int32
+              description: 副食IDリスト
           required:
             - staple_food_id
             - additional_food_ids
@@ -216,13 +250,18 @@ components:
       type: object
       required:
         - id
-        - status
+        - nickname
+        - stage
         - basic
       properties:
         id:
           type: integer
           format: int64
-        status:
+          description: ID
+        nickname:
+          type: string
+          description: ニックネーム（システムの呼び名）
+        stage:
           type: number
           enum:
             - 1
@@ -230,16 +269,20 @@ components:
             - 3
             - 2
             - 3
+          description: ステージ
         basic:
           type: object
           properties:
-            nickname:
+            name:
               type: string
+              description: 本名
             birth_date:
               type: string
+              description: 誕生日
             species_id:
               type: integer
               format: int32
+              description: 種類ID
             gender_type:
               type: number
               enum:
@@ -248,12 +291,26 @@ components:
                 - 3
                 - 2
                 - 3
+              description: 性別
           required:
-            - nickname
+            - name
             - birth_date
             - species_id
             - gender_type
       description: サマリ用の鳥さん
+    TorisanModel.TorisanSpecie:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID
+        name:
+          type: string
+          description: 種類名
     TorisanModel.UpdateTorisan:
       type: object
       required:
@@ -266,9 +323,11 @@ components:
             body_weight:
               type: number
               format: float
+              description: 体重
             amount_of_water:
               type: number
               format: float
+              description: 水の量
           required:
             - body_weight
             - amount_of_water
@@ -278,11 +337,13 @@ components:
             staple_food_id:
               type: integer
               format: int32
+              description: 主食ID
             additional_food_ids:
               type: array
               items:
                 type: integer
                 format: int32
+              description: 副食IDリスト
           required:
             - staple_food_id
             - additional_food_ids

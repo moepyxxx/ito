@@ -79,5 +79,16 @@ namespace Auth {
       @body
       torisan: TorisanModel.DetailTorisan;
     };
+
+    @summary("鳥さんの種類一覧を見る")
+    @route("/species")
+    @get
+    getTypes(): {
+      @statusCode
+      statuscode: 200;
+
+      @body
+      types: TorisanModel.TorisanSpecie[];
+    };
   }
 }
