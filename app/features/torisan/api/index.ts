@@ -3,6 +3,8 @@
 import * as restc from "typed-rest-client/RestClient";
 import { GenderType, StageType } from "../types";
 
+const client = new restc.RestClient("vsts-node-api", "http://localhost:3000");
+
 export type SummaryTorisan = {
   id: number;
   stage: StageType;
@@ -15,6 +17,14 @@ export type SummaryTorisan = {
 };
 
 export async function getSummaryTorisans() {
-  const client = new restc.RestClient("vsts-node-api", "http://localhost:3000");
   return (await client.get<SummaryTorisan[]>("/a/torisans")).result;
+}
+
+export type TorisanSpecie = {
+  id: number;
+  name: string;
+};
+
+export async function getTorisanSpecies() {
+  return (await client.get<TorisanSpecie[]>("/a/torisans/species")).result;
 }
