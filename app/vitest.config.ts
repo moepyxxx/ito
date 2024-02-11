@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: ["./setupTests.ts"],
+    setupFiles: ["./vitest.setup.ts"],
   },
   resolve: {
     // see: https://qiita.com/Garyo99/items/efacbacd5d8d3cf1848a

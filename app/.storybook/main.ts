@@ -41,6 +41,8 @@ const config: StorybookConfig = {
         fs: false,
         net: false,
         tls: false,
+        // see: https://www.npmjs.com/package/next-router-mock
+        "next/navigation": "next-router-mock",
       };
     }
     return config;
