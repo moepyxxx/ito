@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { SelectPage } from "./SelectPage";
-import { mockHandlers } from "../../api/_mock";
+import { torisanMockHandlers } from "../../api/_mock";
 
 const meta = {
   title: "page/SelectPage",
@@ -10,7 +10,7 @@ const meta = {
   argTypes: {},
   parameters: {
     msw: {
-      handlers: mockHandlers,
+      handlers: torisanMockHandlers,
     },
   },
 } satisfies Meta<typeof SelectPage>;

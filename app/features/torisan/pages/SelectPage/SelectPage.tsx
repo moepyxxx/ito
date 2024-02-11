@@ -1,6 +1,6 @@
 import { Title } from "@/components/molecules/Title";
 import { getSummaryTorisans } from "../../api";
-import { SelectTorisans } from "@/components/organisms/SelectTorisans/SelectTorisans";
+import { SwitchTorisanDetail } from "../../components/SwitchTorisanDetail";
 
 export const SelectPage: React.FC = async () => {
   const torisans = await getSummaryTorisans();
@@ -10,17 +10,7 @@ export const SelectPage: React.FC = async () => {
         title="鳥さん"
         description="鳥さん基本情報の確認・編集を行います"
       />
-      {torisans && (
-        <SelectTorisans
-          onSubmit={() => {}}
-          torisans={torisans.map((torisan) => ({
-            id: torisan.id,
-            nickname: torisan.basic.nickname,
-            stage: torisan.stage,
-            src: "/mascot/ito.png",
-          }))}
-        />
-      )}
+      {torisans && <SwitchTorisanDetail torisans={torisans} />}
     </>
   );
 };

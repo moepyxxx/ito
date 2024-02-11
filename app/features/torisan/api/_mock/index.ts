@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { Gender, Stage } from "../../types";
 
-export const mockHandlers = [
+export const torisanMockHandlers = [
   rest.get("/a/torisans", (req, res, ctx) => {
     return res(
       ctx.status(200),

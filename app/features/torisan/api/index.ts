@@ -1,14 +1,16 @@
-import * as restc from "typed-rest-client/RestClient";
-import { GenderKey, StageType } from "../types";
+"use server";
 
-type SummaryTorisan = {
+import * as restc from "typed-rest-client/RestClient";
+import { GenderType, StageType } from "../types";
+
+export type SummaryTorisan = {
   id: number;
   stage: StageType;
   basic: {
     nickname: string;
     birth_date: string;
     species_id: number;
-    gender_type: GenderKey;
+    gender_type: GenderType;
   };
 };
 
