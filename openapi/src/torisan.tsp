@@ -46,8 +46,10 @@ model TorisanMeal {
   };
 }
 
-@doc("鳥さん")
+@doc("登録用の鳥さん")
 model RegisterTorisan {
+  @doc("ニックネーム（システムの呼び名）")
+  nickname: string;
   ...TorisanBasic;
   ...TorisanObjective;
   ...TorisanMeal;
@@ -63,6 +65,8 @@ model UpdateTorisan {
 model DetailTorisan {
   @doc("ID")
   id: int64;
+  @doc("ニックネーム（システムの呼び名）")
+  nickname: string;
   @doc("ステージ")
   stage: StageObservation | StageMedicalTreatment | StageHospitalization;
   ...TorisanBasic;

@@ -107,6 +107,7 @@ components:
       type: object
       required:
         - id
+        - nickname
         - stage
         - basic
         - objective
@@ -116,6 +117,9 @@ components:
           type: integer
           format: int64
           description: ID
+        nickname:
+          type: string
+          description: ニックネーム（システムの呼び名）
         stage:
           type: number
           enum:
@@ -184,10 +188,14 @@ components:
     TorisanModel.RegisterTorisan:
       type: object
       required:
+        - nickname
         - basic
         - objective
         - meal
       properties:
+        nickname:
+          type: string
+          description: ニックネーム（システムの呼び名）
         basic:
           type: object
           properties:
@@ -245,7 +253,7 @@ components:
           required:
             - staple_food_id
             - additional_food_ids
-      description: 鳥さん
+      description: 登録用の鳥さん
     TorisanModel.SummaryTorisan:
       type: object
       required:

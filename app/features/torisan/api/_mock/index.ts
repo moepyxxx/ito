@@ -58,4 +58,7 @@ export const torisanMockHandlers = [
       ])
     );
   }),
+  rest.post("/a/torisans", (_, res, ctx) => {
+    return res(ctx.status(201));
+  }),
 ];

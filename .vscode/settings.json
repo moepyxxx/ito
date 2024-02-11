@@ -14,10 +14,18 @@
     "autodocs",
     "chromaui",
     "hookform",
+    "loadmap",
     "nextjs",
     "noto",
+    "restc",
+    "signup",
     "tailwindcss",
+    "tamajiro",
     "Torisan",
-    "torisans"
+    "torisans",
+    "unichan",
+    "unmocked",
+    "unoptimized",
+    "vsts"
   ]
 }
