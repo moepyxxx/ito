@@ -1,4 +1,3 @@
-import { sampleGet } from "@/api";
 import { Button } from "@/components/atoms/Button";
 import { DecoratedLeading } from "@/components/atoms/DecoratedLeading";
 import { IconImage } from "@/components/atoms/IconImage";
@@ -30,9 +29,6 @@ const hooterLinks = [
 ];
 
 export const Introduction: React.FC = async () => {
-  const mock = await sampleGet();
-  console.warn(mock);
-
   return (
     <div className="text-center my-10">
       <DecoratedLeading size="large" color="secondary">
