@@ -50,6 +50,7 @@
     "autoprefixer": "^10.0.1",
     "babel": "^6.23.0",
     "chromatic": "^10.7.1",
+    "css-loader": "^6.10.0",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.0.4",
     "eslint-plugin-storybook": "^0.6.15",
