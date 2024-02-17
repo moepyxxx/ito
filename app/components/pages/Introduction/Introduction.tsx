@@ -29,9 +29,6 @@ const hooterLinks = [
 ];
 
 export const Introduction: React.FC = async () => {
-  // const mock = await (await fetch(`http://localhost:3000/api/todos/1`)).json();
-  // console.warn(mock);
-
   return (
     <div className="text-center my-10">
       <DecoratedLeading size="large" color="secondary">

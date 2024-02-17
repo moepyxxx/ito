@@ -1,6 +1,6 @@
 export const ColorVariants = {
   primary: "#F3E04B",
-  thin_primary: "#FAEE89",
+  thin_primary: "#F9F8EB",
   secondary: "#087D4C",
   black: "#000000",
   deep_gray: "#D9D9D9",

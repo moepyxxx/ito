@@ -5,7 +5,7 @@ const config: StorybookConfig = {
   stories: [
     "../components/**/*.mdx",
     "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    // "../features/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../features/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-a11y",
@@ -38,6 +38,11 @@ const config: StorybookConfig = {
       config.resolve.alias = {
         ...config.resolve.alias,
         "@": path.resolve(__dirname, "../"),
+        fs: false,
+        net: false,
+        tls: false,
+        // see: https://www.npmjs.com/package/next-router-mock
+        "next/navigation": "next-router-mock",
       };
     }
     return config;

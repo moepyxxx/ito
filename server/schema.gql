@@ -1,0 +1,13 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""鳥さん"""
+type Torisan {
+  id: Int!
+  nickname: String!
+}
+
+type Query {
+  torisans: [Torisan!]!
+}

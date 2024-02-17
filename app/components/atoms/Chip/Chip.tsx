@@ -7,6 +7,7 @@ const chipStyle = tv({
     color: {
       secondary: "border-secondary text-secondary",
       error: "border-error text-error",
+      black: "border-black text-black",
     },
     disabled: {
       true: "bg-gray border-gray text-deep-gray",
@@ -15,7 +16,7 @@ const chipStyle = tv({
 });
 
 type Props = {
-  color: "secondary" | "error";
+  color: "secondary" | "error" | "black";
   disabled?: boolean;
 };
 

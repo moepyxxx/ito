@@ -3,7 +3,7 @@ import { ColorVariantKeys } from "@/utils/color";
 import { tv } from "tailwind-variants";
 
 export const typographyStyle = tv({
-  base: "leading-7 text-black",
+  base: "leading-7 text-black whitespace-pre-wrap	",
   variants: {
     size: {
       small: "text-sm",

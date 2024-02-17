@@ -1,15 +1,3 @@
-import { rest } from "msw";
+import { torisanMockHandlers } from "@/features/torisan/api/_mock";
 
-export const mockHandlers = [
-  rest.get("/api/todos/1", (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        userId: 1,
-        id: 1,
-        title: "ほげちゃん",
-        completed: false,
-      })
-    );
-  }),
-];
+export const mockHandlers = [...torisanMockHandlers];
