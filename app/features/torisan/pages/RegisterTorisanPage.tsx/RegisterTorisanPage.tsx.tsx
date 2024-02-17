@@ -6,10 +6,7 @@ export const RegisterTorisanPage: React.FC = async () => {
   const species = await getTorisanSpecies();
   return (
     <>
-      <Title
-        title="鳥さんの登録"
-        description={`新しい鳥さんですね、嬉しいです\nitoに鳥さんを登録しましょう！`}
-      />
+      <Title title="鳥さんの登録" />
       {species && (
         <RegisterTorisanForm species={species} onSubmit={() => alert("warn")} />
       )}
