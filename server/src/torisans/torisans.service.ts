@@ -3,7 +3,7 @@ import { Torisan } from './models/torisan.model';
 
 @Injectable()
 export class TorisansService {
-  async findAll(): Promise<Torisan[]> {
+  async findSummary(): Promise<Torisan[]> {
     return [{ id: 1, nickname: 'unichan' }];
   }
 }

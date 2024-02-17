@@ -8,6 +8,6 @@ export class TorisansResolver {
 
   @Query(() => [Torisan])
   torisans(): Promise<Torisan[]> {
-    return this.torisansService.findAll();
+    return this.torisansService.findSummary();
   }
 }
