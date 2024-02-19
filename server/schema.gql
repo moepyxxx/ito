@@ -2,12 +2,48 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-"""鳥さん"""
+"""鳥さん詳細"""
 type Torisan {
   id: Int!
   nickname: String!
+  stage_type: Int!
+  specie_id: Int!
+  name: String!
+  birth_date: DateTime!
+  gender_type: Int!
+  objective_body_weight: Int
+  objective_amount_of_water: Int
+  staple_food_id: Int
+  additional_food_ids: [Int!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""鳥さん"""
+type SummaryTorisan {
+  id: Int!
+  nickname: String!
+  stage_type: Int!
+  specie_id: Int!
 }
 
 type Query {
-  torisans: [Torisan!]!
+  summaryTorisans: [SummaryTorisan!]!
+  torisan(id: Float!): Torisan!
+}
+
+type Mutation {
+  createTorisan(torisan: CreateTorisan!): Torisan!
+}
+
+input CreateTorisan {
+  nickname: String!
+  stage_type: Int!
+  specie_id: Int!
+  name: String!
+  birth_date: DateTime!
+  gender_type: Int!
 }
