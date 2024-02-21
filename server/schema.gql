@@ -24,7 +24,7 @@ scalar DateTime
 
 """鳥さん"""
 type SummaryTorisan {
-  id: Int!
+  id: ID!
   nickname: String!
   stage_type: Int!
   specie_id: Int!

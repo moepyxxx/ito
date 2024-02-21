@@ -2,19 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { CreateTorisan, Torisan } from './models/torisan.model';
 import { Gender, Specie, Stage } from '../../common';
 import { SummaryTorisan } from './models/summaryTorisan.model';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class TorisansService {
+  constructor(private prisma: PrismaService) {}
+
   async findSummaryAll(): Promise<SummaryTorisan[]> {
-    return [
-      {
-        id: 1,
-        nickname: 'unichan',
-        specie_id: Specie.SekiseiInko,
-        stage_type: Stage.Observation,
-      },
-    ];
+    const summaries = await this.prisma.torisan.findMany({});
+    return summaries.map((summary) => {
+      return new SummaryTorisan(summary);
+    });
   }
+
   async findDetailById(id: number): Promise<Torisan> {
     return {
       id,

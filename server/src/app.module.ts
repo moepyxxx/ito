@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TorisanModule } from './torisans/torisans.module';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { TorisanModule } from './torisans/torisans.module';
     }),
   ],
   // controllers: [AppController],
-  // providers: [AppService],
+  // providers: [PrismaService],
 })
 export class AppModule {}
