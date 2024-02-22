@@ -18,7 +18,9 @@ export class TorisansResolver {
   }
 
   @Mutation(() => Torisan)
-  createTorisan(@Args('torisan') torisan: CreateTorisan): Promise<Torisan> {
+  createTorisan(
+    @Args('torisan') torisan: CreateTorisan,
+  ): Promise<Pick<Torisan, 'nickname' | 'id'>> {
     return this.torisansService.create(torisan);
   }
 }

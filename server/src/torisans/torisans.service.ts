@@ -31,7 +31,22 @@ export class TorisansService {
     };
   }
 
-  async create(torisan: CreateTorisan): Promise<Torisan> {
-    return torisan as Torisan;
+  async create(
+    torisan: CreateTorisan,
+  ): Promise<Pick<Torisan, 'nickname' | 'id'>> {
+    const result = await this.prisma.torisan.create({
+      data: {
+        nickname: torisan.nickname,
+        name: torisan.name,
+        birth_date: torisan.birth_date,
+        specie_id: torisan.specie_id,
+        stage_type: torisan.stage_type,
+        gender_type: torisan.gender_type,
+      },
+    });
+    return {
+      id: Number(result.id),
+      nickname: result.nickname,
+    };
   }
 }

@@ -41,9 +41,9 @@ type Mutation {
 
 input CreateTorisan {
   nickname: String!
+  name: String!
   stage_type: Int!
   specie_id: Int!
-  name: String!
   birth_date: DateTime!
   gender_type: Int!
 }
