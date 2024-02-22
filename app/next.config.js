@@ -5,6 +5,14 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true,
   },
+  rewrites: async () => {
+    return [
+      {
+        source: "/graphql",
+        destination: "http://localhost:3001/graphql",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

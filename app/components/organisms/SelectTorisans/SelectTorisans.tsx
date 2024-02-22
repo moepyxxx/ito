@@ -7,15 +7,15 @@ import { useState } from "react";
 
 type Props = {
   torisans: {
-    id: number;
+    id: string;
     nickname: string;
     stage: StageType;
     src: string;
   }[];
-  onSubmit: (torisanId: number) => void;
+  onSubmit: (torisanId: string) => void;
 };
 export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
-  const [selectedTorisanId, setSelectedTorisanId] = useState<number | null>(
+  const [selectedTorisanId, setSelectedTorisanId] = useState<string | null>(
     null
   );
   return (
@@ -38,7 +38,7 @@ export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
           element={{
             elementType: "button",
             buttonType: "button",
-            onClick: () => onSubmit(selectedTorisanId as number),
+            onClick: () => onSubmit(selectedTorisanId as string),
           }}>
           記録・観察をはじめる
         </Button>

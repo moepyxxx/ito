@@ -39,8 +39,8 @@ export type MutationCreateTorisanArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  summaryTorisans: Array<Torisan>;
   torisan: Torisan;
+  torisans: Array<Torisan>;
 };
 
 
@@ -166,8 +166,8 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  summaryTorisans?: Resolver<Array<ResolversTypes['Torisan']>, ParentType, ContextType>;
   torisan?: Resolver<ResolversTypes['Torisan'], ParentType, ContextType, RequireFields<QueryTorisanArgs, 'id'>>;
+  torisans?: Resolver<Array<ResolversTypes['Torisan']>, ParentType, ContextType>;
 };
 
 export type TorisanResolvers<ContextType = any, ParentType extends ResolversParentTypes['Torisan'] = ResolversParentTypes['Torisan']> = {

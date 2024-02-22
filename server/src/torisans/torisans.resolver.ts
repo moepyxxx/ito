@@ -7,7 +7,7 @@ export class TorisansResolver {
   constructor(private readonly torisansService: TorisansService) {}
 
   @Query(() => [Torisan])
-  summaryTorisans(): Promise<Torisan[]> {
+  torisans(): Promise<Torisan[]> {
     return this.torisansService.findAll();
   }
 

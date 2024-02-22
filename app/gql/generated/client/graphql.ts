@@ -38,8 +38,8 @@ export type MutationCreateTorisanArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  summaryTorisans: Array<Torisan>;
   torisan: Torisan;
+  torisans: Array<Torisan>;
 };
 
 
