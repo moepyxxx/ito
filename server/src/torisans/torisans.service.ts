@@ -1,52 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTorisan, Torisan } from './models/torisan.model';
-import { Gender, Specie, Stage } from '../../common';
-import { SummaryTorisan } from './models/summaryTorisan.model';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class TorisansService {
   constructor(private prisma: PrismaService) {}
 
-  async findSummaryAll(): Promise<SummaryTorisan[]> {
+  async findAll(): Promise<Torisan[]> {
     const summaries = await this.prisma.torisan.findMany({});
     return summaries.map((summary) => {
-      return new SummaryTorisan(summary);
+      return new Torisan(summary);
     });
   }
 
   async findDetailById(id: number): Promise<Torisan> {
-    return {
-      id,
-      nickname: 'unichan',
-      name: 'uni',
-      birth_date: new Date('2020-04-22'),
-      specie_id: Specie.SekiseiInko,
-      stage_type: Stage.Observation,
-      gender_type: Gender.Woman,
-      objective_body_weight: 35.5,
-      objective_amount_of_water: 5.4,
-      staple_food_id: 1,
-      additional_food_ids: [1, 2],
-    };
+    // return {
+    //   id,
+    //   nickname: 'unichan',
+    //   name: 'uni',
+    //   birth_date: new Date('2020-04-22'),
+    //   specie_type: Specie.SekiseiInko,
+    //   stage_type: Stage.Observation,
+    //   gender_type: Gender.Woman,
+    // };
+    const torisan = await this.prisma.torisan.findUnique({
+      where: {
+        id,
+      },
+    });
+    return new Torisan(torisan);
   }
 
   async create(
     torisan: CreateTorisan,
   ): Promise<Pick<Torisan, 'nickname' | 'id'>> {
-    const result = await this.prisma.torisan.create({
+    const { id, nickname } = await this.prisma.torisan.create({
       data: {
         nickname: torisan.nickname,
         name: torisan.name,
         birth_date: torisan.birth_date,
-        specie_id: torisan.specie_id,
+        specie_type: torisan.specie_type,
         stage_type: torisan.stage_type,
         gender_type: torisan.gender_type,
       },
     });
     return {
-      id: Number(result.id),
-      nickname: result.nickname,
+      id,
+      nickname,
     };
   }
 }

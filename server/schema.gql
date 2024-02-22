@@ -4,17 +4,13 @@
 
 """鳥さん詳細"""
 type Torisan {
-  id: Int!
+  id: ID!
   nickname: String!
   stage_type: Int!
-  specie_id: Int!
+  specie_type: Int!
   name: String!
   birth_date: DateTime!
   gender_type: Int!
-  objective_body_weight: Int
-  objective_amount_of_water: Int
-  staple_food_id: Int
-  additional_food_ids: [Int!]
 }
 
 """
@@ -22,16 +18,8 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-"""鳥さん"""
-type SummaryTorisan {
-  id: ID!
-  nickname: String!
-  stage_type: Int!
-  specie_id: Int!
-}
-
 type Query {
-  summaryTorisans: [SummaryTorisan!]!
+  summaryTorisans: [Torisan!]!
   torisan(id: Float!): Torisan!
 }
 
@@ -43,7 +31,7 @@ input CreateTorisan {
   nickname: String!
   name: String!
   stage_type: Int!
-  specie_id: Int!
+  specie_type: Int!
   birth_date: DateTime!
   gender_type: Int!
 }
