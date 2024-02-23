@@ -1,0 +1,9 @@
+{
+  "name": "@ito/root",
+  "private": true,
+  "workspaces": [
+    "app",
+    "server",
+    "common"
+  ]
+}

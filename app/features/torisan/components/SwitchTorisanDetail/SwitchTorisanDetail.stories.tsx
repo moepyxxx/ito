@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { SwitchTorisanDetail } from "./SwitchTorisanDetail";
-import { Gender, Stage } from "@/features/torisan/types";
+import { Specie, Stage } from "@ito/common";
 
 const meta = {
   title: "organisms/SwitchTorisanDetail",
@@ -9,34 +9,22 @@ const meta = {
   args: {
     torisans: [
       {
-        id: 1,
-        basic: {
-          nickname: "いと",
-          birth_date: "string",
-          species_id: 1,
-          gender_type: Gender.Man,
-        },
-        stage: Stage.Observation,
+        id: "1",
+        nickname: "いと",
+        specie_type: 1,
+        stage_type: Stage.Observation,
       },
       {
-        id: 2,
-        basic: {
-          nickname: "たまじろう",
-          birth_date: "string",
-          species_id: 1,
-          gender_type: Gender.Man,
-        },
-        stage: Stage.Observation,
+        id: "2",
+        nickname: "たまじろう",
+        specie_type: Specie.SekiseiInko,
+        stage_type: Stage.Observation,
       },
       {
-        id: 3,
-        basic: {
-          nickname: "うにちゃん",
-          birth_date: "string",
-          species_id: 1,
-          gender_type: Gender.Woman,
-        },
-        stage: Stage.Observation,
+        id: "3",
+        nickname: "うにちゃん",
+        specie_type: Specie.SekiseiInko,
+        stage_type: Stage.Observation,
       },
     ],
   },

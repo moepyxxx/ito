@@ -23,7 +23,9 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/nextjs",
-    options: {},
+    options: {
+      nextConfigPath: path.resolve(__dirname, "../next.config.js"),
+    },
   },
   core: {},
   docs: {
@@ -38,6 +40,7 @@ const config: StorybookConfig = {
       config.resolve.alias = {
         ...config.resolve.alias,
         "@": path.resolve(__dirname, "../"),
+        "@ito/common": path.resolve(__dirname, "../../common"),
         fs: false,
         net: false,
         tls: false,

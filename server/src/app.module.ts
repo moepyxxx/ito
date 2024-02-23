@@ -11,7 +11,5 @@ import { TorisanModule } from './torisans/torisans.module';
       autoSchemaFile: 'schema.gql',
     }),
   ],
-  // controllers: [AppController],
-  // providers: [AppService],
 })
 export class AppModule {}

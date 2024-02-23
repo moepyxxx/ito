@@ -1,0 +1,21 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model torisan {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(50)
+  nickname    String   @db.VarChar(50)
+  birth_date  DateTime @db.Date
+  specie_type Int
+  stage_type  Int
+  gender_type Int
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @default(now()) @db.Timestamptz(6)
+}

@@ -2,21 +2,20 @@
 
 import { Button } from "@/components/atoms/Button";
 import { TorisanBoardButton } from "@/components/molecules/TorisanBoardButton";
-import { StagLabel } from "@/features/torisan/constants";
-import { StageType } from "@/features/torisan/types";
+import { StageLabel, StageType } from "@ito/common";
 import { useState } from "react";
 
 type Props = {
   torisans: {
-    id: number;
+    id: string;
     nickname: string;
     stage: StageType;
     src: string;
   }[];
-  onSubmit: (torisanId: number) => void;
+  onSubmit: (torisanId: string) => void;
 };
 export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
-  const [selectedTorisanId, setSelectedTorisanId] = useState<number | null>(
+  const [selectedTorisanId, setSelectedTorisanId] = useState<string | null>(
     null
   );
   return (
@@ -25,7 +24,7 @@ export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
         <div key={torisan.id} className="pt-3">
           <TorisanBoardButton
             isChecked={selectedTorisanId === torisan.id}
-            chipText={StagLabel[torisan.stage]}
+            chipText={StageLabel[torisan.stage]}
             src={torisan.src}
             nickname={torisan.nickname}
             onClick={() => setSelectedTorisanId(torisan.id)}
@@ -39,7 +38,7 @@ export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
           element={{
             elementType: "button",
             buttonType: "button",
-            onClick: () => onSubmit(selectedTorisanId as number),
+            onClick: () => onSubmit(selectedTorisanId as string),
           }}>
           記録・観察をはじめる
         </Button>

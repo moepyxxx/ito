@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { SelectPage } from "./SelectPage";
-import { torisanMockHandlers } from "../../api/_mock";
+import { torisanMockHandlers } from "@/gql/mock";
 
 const meta = {
   title: "page/SelectPage",
