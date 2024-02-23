@@ -39,7 +39,8 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        "@": path.resolve(__dirname, "../"),
+        "@": path.resolve(__dirname, "../../"),
+        "@/": path.resolve(__dirname, "../"),
         fs: false,
         net: false,
         tls: false,
