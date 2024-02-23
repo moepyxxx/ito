@@ -1,5 +1,3 @@
-"use client";
-
 import { SelectTorisans } from "@/components/organisms/SelectTorisans";
 import { SUMMARY_TORISAN } from "@/gql/query";
 import { StageType } from "@ito/common";

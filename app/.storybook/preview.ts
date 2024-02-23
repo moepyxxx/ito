@@ -2,11 +2,11 @@ import { Preview } from "@storybook/react";
 import "../app/globals.css";
 import Image from "next/image";
 import { initialize, mswLoader } from "msw-storybook-addon";
-import { mockHandlers } from "../api/_mock";
+import { ApolloProviderDecorator } from "./decorators";
 
 initialize({
   onUnhandledRequest: ({ method, url }) => {
-    if (url.pathname.startsWith("/a")) {
+    if (url.pathname.startsWith("/graphql")) {
       console.error(`Unhandled ${method} request to ${url}.
       This exception has been only logged in the console, however, it's strongly recommended to resolve this error as you don't want unmocked data in Storybook stories.
       If you wish to mock an error response, please refer to this guide: https://mswjs.io/docs/recipes/mocking-error-responses
@@ -24,10 +24,8 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    msw: {
-      handlers: mockHandlers,
-    },
   },
+  decorators: [ApolloProviderDecorator],
   loaders: [mswLoader],
 };
 

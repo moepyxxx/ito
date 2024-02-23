@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { SelectTorisans } from "./SelectTorisans";
-import { Stage } from "@/features/torisan/types";
+import { Stage } from "@ito/common";
 
 const meta = {
   title: "organisms/SelectTorisans",
@@ -9,19 +9,19 @@ const meta = {
   args: {
     torisans: [
       {
-        id: 1,
+        id: "1",
         nickname: "いと",
         src: "/mascot/ito.png",
         stage: Stage.Observation,
       },
       {
-        id: 3,
+        id: "3",
         nickname: "たまじろう",
         src: "/mascot/tamajiro.png",
         stage: Stage.Observation,
       },
       {
-        id: 2,
+        id: "2",
         nickname: "うにちゃん",
         src: "/mascot/unichan.png",
         stage: Stage.Observation,

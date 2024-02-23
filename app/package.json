@@ -9,7 +9,7 @@
     "lint": "next lint",
     "compile": "graphql-codegen",
     "watch": "graphql-codegen -w",
-    "storybook": "storybook dev -p 3000",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}",
     "vitest": "vitest"
