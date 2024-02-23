@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CreateTorisan, Torisan } from './models/torisan.model';
 import { TorisansService } from './torisans.service';
 
+// NOTE: resolverは基本的にserviceを呼び出すだけなのでservice以下をmockするテスト手法は意味がなさそう。今後はかかない
 @Resolver(() => Torisan)
 export class TorisansResolver {
   constructor(private readonly torisansService: TorisansService) {}

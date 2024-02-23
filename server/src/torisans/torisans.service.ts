@@ -14,15 +14,6 @@ export class TorisansService {
   }
 
   async findDetailById(id: number): Promise<Torisan> {
-    // return {
-    //   id,
-    //   nickname: 'unichan',
-    //   name: 'uni',
-    //   birth_date: new Date('2020-04-22'),
-    //   specie_type: Specie.SekiseiInko,
-    //   stage_type: Stage.Observation,
-    //   gender_type: Gender.Woman,
-    // };
     const torisan = await this.prisma.torisan.findUnique({
       where: {
         id,
