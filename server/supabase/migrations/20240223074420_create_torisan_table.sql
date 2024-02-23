@@ -1,6 +1,3 @@
-CREATE DATABASE ito;
-\c ito;
-
 CREATE SEQUENCE torisans_id_seq AS integer;
 
 CREATE TABLE torisan (

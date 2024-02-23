@@ -5,4 +5,10 @@ db-generate:
 	npx prisma generate
 
 local-psql:
-	psql -h localhost -U postgres -p 5432
+	psql -h localhost -U postgres -p 54325
+
+local-dev-start:
+	supabase start
+
+local-db-restart:
+	supabase db reset
