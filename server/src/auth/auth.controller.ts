@@ -28,7 +28,6 @@ export class AuthController {
 
   @Post('signin')
   async signin(@Body('user') user: InputAuthUser): Promise<AuthUser> {
-    console.log(user, 'user!');
     const { email, password } = user;
     const { data } =
       await this.supabaseService.supabase.auth.signInWithPassword({

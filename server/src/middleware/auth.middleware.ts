@@ -17,12 +17,11 @@ export class AuthMiddleware implements NestMiddleware {
       req.headers['authorization'].length,
     );
 
-    console.log(auth);
-
-    this.supabaseService.supabase.auth.getUser(auth).then(({ error }) => {
+    this.supabaseService.supabase.auth.getUser(auth).then(({ error, data }) => {
       if (error) {
         res.status(401).send({ message: 'Unauthorized' });
       } else {
+        req.app['user_id'] = data.user.id;
         next();
       }
     });
