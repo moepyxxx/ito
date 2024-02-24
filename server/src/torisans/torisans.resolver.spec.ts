@@ -41,7 +41,14 @@ describe('TorisansResolver', () => {
         .spyOn(torisansService, 'findAll')
         .mockImplementation(() => Promise.resolve(want));
 
-      const result = await torisansResolver.torisans();
+      const mockContext: any = {
+        req: {
+          app: {
+            user_id: 'testUserId', // テスト用のユーザーIDを指定
+          },
+        },
+      };
+      const result = await torisansResolver.torisans(mockContext);
       expect(result).toBe(want);
     });
   });

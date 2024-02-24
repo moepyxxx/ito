@@ -40,6 +40,7 @@ describe('TorisansService', () => {
         {
           id: 1,
           nickname: 'うにちゃん',
+          user_id: '1',
           stage_type: Stage.Observation,
           specie_type: Specie.SekiseiInko,
           gender_type: Gender.Woman,
@@ -48,7 +49,7 @@ describe('TorisansService', () => {
         },
       ]);
 
-      const result = await torisansService.findAll();
+      const result = await torisansService.findAll('1');
       expect(result).toMatchObject(want);
     });
   });

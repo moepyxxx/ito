@@ -24,6 +24,7 @@ type Query {
 }
 
 type Mutation {
+  signout: Boolean!
   createTorisan(torisan: CreateTorisan!): Torisan!
 }
 
