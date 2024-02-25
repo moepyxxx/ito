@@ -4,7 +4,7 @@ import { RegisterTorisanForm } from "./RegisterTorisanForm";
 import { RegisterTorisan } from "../../api";
 
 const meta = {
-  title: "organisms/RegisterTorisanForm",
+  title: "torisan/RegisterTorisanForm",
   component: RegisterTorisanForm,
   args: {
     species: [

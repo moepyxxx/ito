@@ -4,7 +4,7 @@ import { SwitchTorisanDetail } from "./SwitchTorisanDetail";
 import { Specie, Stage } from "@ito/common";
 
 const meta = {
-  title: "organisms/SwitchTorisanDetail",
+  title: "torisan/SwitchTorisanDetail",
   component: SwitchTorisanDetail,
   args: {
     torisans: [

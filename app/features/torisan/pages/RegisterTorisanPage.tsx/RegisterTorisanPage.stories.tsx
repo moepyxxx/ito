@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { RegisterTorisanPage } from "./RegisterTorisanPage.tsx";
 
 const meta = {
-  title: "page/RegisterTorisanPage",
+  title: "torisan/RegisterTorisanPage",
   component: RegisterTorisanPage,
   args: {},
   argTypes: {},
