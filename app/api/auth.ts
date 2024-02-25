@@ -1,3 +1,5 @@
+"use server";
+
 import { client } from ".";
 
 export type AuthReqBody = {
