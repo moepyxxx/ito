@@ -10,9 +10,11 @@ import { SupabaseService } from 'src/supabase.service';
 import { AuthUser } from './models/AuthUser.model';
 import { InputAuthUser } from './models/InputAuthUser.model';
 import { AuthApiError } from '@supabase/supabase-js';
-
-const UNAUTHORIZED_MESSAGE = 'ユーザーIDまたはパスワードが違います';
-const USER_DUPLICATED_MESSAGE = 'ユーザーは既に登録されています';
+import {
+  CAN_NOT_AUTHORIZE_MESSAGE,
+  INTERNAL_SERVER_ERROR_MESSAGE,
+  USER_DUPLICATED_MESSAGE,
+} from 'constants/errorMessage';
 
 @Controller('api/auth')
 export class AuthController {
@@ -38,7 +40,7 @@ export class AuthController {
         );
       }
       throw new HttpException(
-        'サーバーエラーが発生しました',
+        INTERNAL_SERVER_ERROR_MESSAGE,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
@@ -63,10 +65,13 @@ export class AuthController {
     if (error && data.user == null) {
       if (error instanceof AuthApiError) {
         console.log('api error dayo');
-        throw new HttpException(UNAUTHORIZED_MESSAGE, HttpStatus.UNAUTHORIZED);
+        throw new HttpException(
+          CAN_NOT_AUTHORIZE_MESSAGE,
+          HttpStatus.UNAUTHORIZED,
+        );
       } else {
         throw new HttpException(
-          'サーバーエラーが発生しました',
+          INTERNAL_SERVER_ERROR_MESSAGE,
           HttpStatus.INTERNAL_SERVER_ERROR,
         );
       }
