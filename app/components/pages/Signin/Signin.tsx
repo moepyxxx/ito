@@ -8,13 +8,15 @@ import React from "react";
 
 export const Signin: React.FC = () => {
   const router = useRouter();
+
   const handleSubmit = async (data: AuthForm) => {
     const res = await signin({ user: data });
-    console.warn(res);
-    if (res) {
+    if (res.error == null) {
       // TODO: refresh token
       router.push("/p");
+      return;
     }
+    alert(res.error.message);
   };
   return (
     <>

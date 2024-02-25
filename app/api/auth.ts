@@ -1,6 +1,5 @@
 "use server";
-
-import { client } from ".";
+import { client, restRequest, Response } from ".";
 
 export type AuthReqBody = {
   user: {
@@ -18,20 +17,16 @@ export type AuthResUser = {
 
 export async function signup(
   request: AuthReqBody
-): Promise<AuthResUser | null> {
-  const response = await client.create<AuthResUser>(
-    "/api/auth/signup",
-    request
+): Promise<Response<AuthResUser>> {
+  return restRequest(() =>
+    client.create<AuthResUser>("/api/auth/signup", request)
   );
-  return response.result;
 }
 
 export async function signin(
   request: AuthReqBody
-): Promise<AuthResUser | null> {
-  const response = await client.create<AuthResUser>(
-    "/api/auth/signin",
-    request
+): Promise<Response<AuthResUser>> {
+  return restRequest(() =>
+    client.create<AuthResUser>("/api/auth/signin", request)
   );
-  return response.result;
 }
