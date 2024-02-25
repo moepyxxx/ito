@@ -1,15 +1,14 @@
 import { useForm } from "react-hook-form";
-import { RegisterTorisan, TorisanSpecie } from "../../api";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { Button } from "@/components/atoms/Button";
 
 type Props = {
-  species: TorisanSpecie[];
-  onSubmit: (torisan: RegisterTorisan) => void;
+  // TODO: 型を入れる
+  onSubmit: (torisan: any) => void;
 };
-export const RegisterTorisanForm: React.FC<Props> = ({ species }) => {
+export const RegisterTorisanForm: React.FC<Props> = () => {
   const schema = z.object({
     name: z.string().min(1),
     nickname: z.string().min(1),
