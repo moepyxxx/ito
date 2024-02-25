@@ -7,6 +7,7 @@ export const ColorVariants = {
   gray: "#F0F0ED",
   thin_gray: "#F4F4F1",
   error: "#E83737",
+  thin_error: "#FADBDB",
   white: "#FFFFFF",
 } as const;
 

@@ -1,6 +1,7 @@
 import { Button } from "@/components/atoms/Button";
 import { TextLink } from "@/components/atoms/TextLink";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
+import { ErrorMessage } from "@/components/molecules/ErrorMessage/ErrorMessage";
 import { useErrorMessage } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -18,6 +19,7 @@ type Props = {
     label: string;
     href: string;
   };
+  errorMessage: null | string;
 };
 
 const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*()_+\-=<>?,./:;'"[\]{}~\\]+$/;
@@ -25,19 +27,20 @@ export const AuthForm: React.FC<Props> = ({
   onSubmit,
   submitLabel,
   otherLink,
+  errorMessage,
 }) => {
-  const errorMessage = useErrorMessage();
+  const getErrorMessage = useErrorMessage();
   const schema = z.object({
     email: z
       .string()
-      .min(1, errorMessage({ type: "required" }))
-      .email(errorMessage({ type: "email" })),
+      .min(1, getErrorMessage({ type: "required" }))
+      .email(getErrorMessage({ type: "email" })),
     password: z
       .string()
-      .min(1, errorMessage({ type: "required" }))
+      .min(1, getErrorMessage({ type: "required" }))
       .regex(
         PASSWORD_PATTERN,
-        errorMessage({ type: "regex", enableRegex: "半角英数字記号" })
+        getErrorMessage({ type: "regex", enableRegex: "半角英数字記号" })
       ),
   });
 
@@ -58,6 +61,7 @@ export const AuthForm: React.FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-96 mx-auto">
+      {errorMessage && <ErrorMessage message={errorMessage} />}
       <FormTextBox
         label="ユーザーID（メールアドレス）"
         inputType="text"
