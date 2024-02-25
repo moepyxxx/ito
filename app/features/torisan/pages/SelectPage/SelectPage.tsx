@@ -3,7 +3,7 @@
 import { Title } from "@/components/molecules/Title";
 import { SwitchTorisanDetail } from "../../components/SwitchTorisanDetail";
 import { TORISANS, TORISANS_TYPE } from "@/gql/queries";
-import { useQuery } from "@/gql/hooks/useQuery";
+import { useQuery } from "@/gql/hooks";
 
 export const SelectPage: React.FC = () => {
   const { loading, data } = useQuery<TORISANS_TYPE>(TORISANS);
