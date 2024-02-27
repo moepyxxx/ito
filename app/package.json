@@ -22,6 +22,7 @@
     "graphql": "^16.8.1",
     "next": "14.0.4",
     "react": "^18",
+    "react-cookie": "^7.1.0",
     "react-dom": "^18",
     "react-hook-form": "^7.50.0",
     "tailwind-variants": "^0.1.20",

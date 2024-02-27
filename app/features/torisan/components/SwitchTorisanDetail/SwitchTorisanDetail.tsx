@@ -1,5 +1,5 @@
 import { SelectTorisans } from "@/components/organisms/SelectTorisans";
-import { SUMMARY_TORISAN } from "@/gql/query";
+import { SUMMARY_TORISAN } from "@/gql/queries";
 import { StageType } from "@ito/common";
 import { useRouter } from "next/navigation";
 
