@@ -5,17 +5,19 @@ import { Title } from "@/components/molecules/Title";
 import { AuthForm } from "@/components/organisms/AuthForm/AuthForm";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 
 export const Signup: React.FC = () => {
   const router = useRouter();
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [_, setCookie] = useCookies(["access_token"]);
 
   const handleSubmit = async (data: AuthForm) => {
     const res = await signup({ user: data });
     if (res.error == null) {
-      // TODO: refresh token
       setErrorMessage(null);
+      setCookie("access_token", res.result?.accessToken);
       router.push("/p");
       return;
     }

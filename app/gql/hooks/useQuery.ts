@@ -8,6 +8,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useQuery as apolloUseQuery } from "@apollo/client";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 
 export const useQuery = <
   TData = any,
@@ -18,11 +19,16 @@ export const useQuery = <
 ) => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [cookies] = useCookies(["access_token"]);
 
-  const { loading, data, error } = apolloUseQuery<TData, TVariables>(
-    query,
-    options
-  );
+  const { loading, data, error } = apolloUseQuery<TData, TVariables>(query, {
+    ...options,
+    context: {
+      headers: {
+        Authorization: `Bearer ${cookies.access_token}`,
+      },
+    },
+  });
 
   if (error?.networkError) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
