@@ -1,3 +1,9 @@
-export * from "./gender";
-export * from "./stage";
-export * from "./specie";
+const gender = require("./gender");
+const stage = require("./stage");
+const specie = require("./specie");
+
+module.exports = {
+  gender,
+  stage,
+  specie,
+};

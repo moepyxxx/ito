@@ -2,8 +2,13 @@
   "name": "@ito/common",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "type": "commonjs",
+  "main": "./index.cjs",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "exports": {
+    "import": "./index.mts",
+    "require": "./index.cjs"
+  }
 }

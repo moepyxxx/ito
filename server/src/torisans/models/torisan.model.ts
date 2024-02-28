@@ -1,5 +1,5 @@
 import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql';
-import { GenderType, SpecieType, StageType } from '../../../common';
+import { GenderType, SpecieType, StageType } from '@ito/common';
 
 @ObjectType({ description: '鳥さん詳細' })
 export class Torisan {
