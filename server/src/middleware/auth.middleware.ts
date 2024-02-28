@@ -2,11 +2,15 @@ import { HttpStatus, Injectable, NestMiddleware } from '@nestjs/common';
 import { UNAUTHORIZED_MESSAGE } from 'constants/errorMessage';
 import { UNAUTHORIZED_ERROR_TYPE } from 'constants/errorType';
 import { Request, Response, NextFunction } from 'express';
+import { PrismaService } from 'src/prisma.service';
 import { SupabaseService } from 'src/supabase.service';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(
+    private supabaseService: SupabaseService,
+    private prismaService: PrismaService,
+  ) {}
 
   use(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers['authorization'];
@@ -34,6 +38,7 @@ export class AuthMiddleware implements NestMiddleware {
         });
       } else {
         req.app['user_id'] = data.user.id;
+        // TODO: ここでprisma clientにRLSのコンテキスト渡せると最高だよね…
         next();
       }
     });

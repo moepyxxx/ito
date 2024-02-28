@@ -1,0 +1,3 @@
+CREATE ROLE application_user WITH LOGIN PASSWORD 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO application_user;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO application_user;

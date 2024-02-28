@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthMiddleware } from './middleware/auth.middleware';
 import { SupabaseService } from './supabase.service';
 import { UserModule } from './user/user.module';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
   ],
-  providers: [SupabaseService],
+  providers: [SupabaseService, PrismaService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
