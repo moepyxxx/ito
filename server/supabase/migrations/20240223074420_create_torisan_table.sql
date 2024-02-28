@@ -18,11 +18,6 @@ ON torisan
 USING btree (user_id);
 
 ALTER TABLE torisan ENABLE ROW LEVEL SECURITY;
+ALTER TABLE torisan FORCE ROW LEVEL SECURITY;
 
-CREATE POLICY "User can see their own torisan only."
-ON torisan FOR SELECT
-USING ( auth.uid() = user_id );
-
-CREATE POLICY "User can update their own torisan only."
-ON torisan FOR UPDATE
-USING ( auth.uid() = user_id );
+CREATE POLICY user_isolation_policy ON torisan USING  ((user_id = (current_setting('app.user_id'::text))::uuid));
