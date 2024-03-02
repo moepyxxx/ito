@@ -64,7 +64,6 @@ export class AuthController {
 
     if (error && data.user == null) {
       if (error instanceof AuthApiError) {
-        console.log('api error dayo');
         throw new HttpException(
           CAN_NOT_AUTHORIZE_MESSAGE,
           HttpStatus.UNAUTHORIZED,
