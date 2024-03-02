@@ -1,5 +1,6 @@
 import { SyntheticEvent, forwardRef, useId } from "react";
 import { Typography } from "../../Typography";
+import { Selection } from "../FormRadioGroup";
 
 export type InputProps = {
   onChange: (e: SyntheticEvent) => void;
@@ -12,7 +13,7 @@ export type InputProps = {
 };
 
 type Props = InputProps & {
-  selections: { value: string; label: string; disabled?: boolean }[];
+  selections: Selection[];
 };
 
 // eslint-disable-next-line react/display-name
@@ -39,7 +40,7 @@ export const FormCheckBox = forwardRef<HTMLInputElement, Props>(
                 {...restArgs}
                 ref={ref}
                 type="checkbox"
-                value={selection.value}
+                value={selection.value.toString()}
                 id={`${uniqueId}-${selection.value}`}
                 disabled={disabled || selection.disabled}
               />

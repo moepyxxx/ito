@@ -13,9 +13,9 @@ const meta = {
   component: FormRadioGroup,
   args: {
     selections: [
-      { value: "1", label: "より良くなった" },
-      { value: "2", label: "より悪くなった" },
-      { value: "3", label: "変わらない（いつもと異なる）" },
+      { value: 1, label: "より良くなった" },
+      { value: 2, label: "より悪くなった" },
+      { value: 3, label: "変わらない（いつもと異なる）" },
     ],
     label: "体調の変化",
   },
@@ -25,7 +25,12 @@ export default meta;
 
 const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    condition: z.string(),
+    condition: z
+      .string({
+        invalid_type_error: "数値を入力してください",
+      })
+      .transform((value) => parseInt(value, 10))
+      .nullable(),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -35,9 +40,9 @@ const BaseTemplate: Story["render"] = (args: any) => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FormSchemaType>({
+  } = useForm<{ condition: number | null }, any, FormSchemaType>({
     defaultValues: {
-      condition: "",
+      condition: null,
     },
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -49,7 +54,7 @@ const BaseTemplate: Story["render"] = (args: any) => {
         {...args}
         {...register("condition")}
         errorMessage={errors.condition && errors.condition.message}
-        reset={() => setValue("condition", "")}
+        reset={() => setValue("condition", null)}
       />
       <Button
         className="mt-2"
@@ -68,7 +73,11 @@ export const Base: Story = {
 
 const RequiredTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    condition: z.string().min(1, { message: "選択必須です" }),
+    condition: z
+      .string({
+        invalid_type_error: "選択必須です",
+      })
+      .transform((value) => parseInt(value, 10)),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -77,9 +86,9 @@ const RequiredTemplate: Story["render"] = (args: any) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormSchemaType>({
+  } = useForm<{ condition: number | null }, any, FormSchemaType>({
     defaultValues: {
-      condition: "",
+      condition: null,
     },
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -108,44 +117,48 @@ export const Required: Story = {
   render: RequiredTemplate,
 };
 
-const DisabledTemplate: Story["render"] = (args: any) => {
-  const schema = z.object({
-    condition: z.string(),
-  });
+// 初期値がzodでtransformされないのでうまく表示されない。原因不明
+// const DisabledTemplate: Story["render"] = (args: any) => {
+//   const schema = z.object({
+//     condition: z
+//       .string()
+//       .transform((value) => parseInt(value, 10))
+//       .nullable(),
+//   });
 
-  type FormSchemaType = z.infer<typeof schema>;
+//   type FormSchemaType = z.infer<typeof schema>;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchemaType>({
-    defaultValues: {
-      condition: "1",
-    },
-    mode: "onChange",
-    resolver: zodResolver(schema),
-  });
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm<{ condition: number | null }, any, FormSchemaType>({
+//     defaultValues: {
+//       condition: 1,
+//     },
+//     mode: "onChange",
+//     resolver: zodResolver(schema),
+//   });
 
-  return (
-    <form onSubmit={handleSubmit(console.warn)}>
-      <FormRadioGroup
-        {...args}
-        {...register("condition")}
-        errorMessage={errors.condition && errors.condition.message}
-        disabled
-      />
-      <Button
-        className="mt-2"
-        element={{
-          elementType: "button",
-          buttonType: "submit",
-        }}>
-        データ確認
-      </Button>
-    </form>
-  );
-};
-export const Disabled: Story = {
-  render: DisabledTemplate,
-};
+//   return (
+//     <form onSubmit={handleSubmit(console.warn)}>
+//       <FormRadioGroup
+//         {...args}
+//         {...register("condition")}
+//         errorMessage={errors.condition && errors.condition.message}
+//         disabled
+//       />
+//       <Button
+//         className="mt-2"
+//         element={{
+//           elementType: "button",
+//           buttonType: "submit",
+//         }}>
+//         データ確認
+//       </Button>
+//     </form>
+//   );
+// };
+// export const Disabled: Story = {
+//   render: DisabledTemplate,
+// };

@@ -12,10 +12,10 @@ const meta = {
   component: FormCheckBox,
   args: {
     selections: [
-      { value: "1", label: "塩土" },
-      { value: "2", label: "ナッツ類" },
-      { value: "3", label: "果物" },
-      { value: "4", label: "野菜" },
+      { value: 1, label: "塩土" },
+      { value: 2, label: "ナッツ類" },
+      { value: 3, label: "果物" },
+      { value: 4, label: "野菜" },
     ],
     label: "お気に入りのおやつ",
   },
@@ -25,7 +25,9 @@ export default meta;
 
 const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    favoriteFoods: z.array(z.string()),
+    favoriteFoods: z.array(
+      z.string().transform((value) => parseInt(value, 10))
+    ),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -67,7 +69,7 @@ export const Base: Story = {
 const RequiredTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
     favoriteFoods: z
-      .array(z.string())
+      .array(z.string().transform((value) => parseInt(value, 10)))
       .min(1, { message: "1つ以上選択してください" }),
   });
 
@@ -108,44 +110,47 @@ export const Required: Story = {
   render: RequiredTemplate,
 };
 
-const DisabledTemplate: Story["render"] = (args: any) => {
-  const schema = z.object({
-    favoriteFoods: z.array(z.string()),
-  });
+// 初期値がzodでtransformされないのでうまく表示されない。原因不明
+// const DisabledTemplate: Story["render"] = (args: any) => {
+//   const schema = z.object({
+//     favoriteFoods: z.array(
+//       z.string().transform((value) => parseInt(value, 10))
+//     ),
+//   });
 
-  type FormSchemaType = z.infer<typeof schema>;
+//   type FormSchemaType = z.infer<typeof schema>;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchemaType>({
-    defaultValues: {
-      favoriteFoods: ["1", "3"],
-    },
-    mode: "onChange",
-    resolver: zodResolver(schema),
-  });
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm<FormSchemaType>({
+//     defaultValues: {
+//       favoriteFoods: [1, 3],
+//     },
+//     mode: "onChange",
+//     resolver: zodResolver(schema),
+//   });
 
-  return (
-    <form onSubmit={handleSubmit(console.warn)}>
-      <FormCheckBox
-        {...args}
-        {...register("favoriteFoods")}
-        errorMessage={errors.favoriteFoods && errors.favoriteFoods.message}
-        disabled
-      />
-      <Button
-        className="mt-2"
-        element={{
-          elementType: "button",
-          buttonType: "submit",
-        }}>
-        データ確認
-      </Button>
-    </form>
-  );
-};
-export const Disabled: Story = {
-  render: DisabledTemplate,
-};
+//   return (
+//     <form onSubmit={handleSubmit(console.warn)}>
+//       <FormCheckBox
+//         {...args}
+//         {...register("favoriteFoods")}
+//         errorMessage={errors.favoriteFoods && errors.favoriteFoods.message}
+//         disabled
+//       />
+//       <Button
+//         className="mt-2"
+//         element={{
+//           elementType: "button",
+//           buttonType: "submit",
+//         }}>
+//         データ確認
+//       </Button>
+//     </form>
+//   );
+// };
+// export const Disabled: Story = {
+//   render: DisabledTemplate,
+// };

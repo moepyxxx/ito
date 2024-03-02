@@ -12,8 +12,10 @@ export type InputProps = {
   errorMessage?: string;
 };
 
+export type Selection = { value: number; label: string; disabled?: boolean };
+
 type Props = InputProps & {
-  selections: { value: string; label: string; disabled?: boolean }[];
+  selections: Selection[];
   reset?: () => void;
 };
 
@@ -44,7 +46,7 @@ export const FormRadioGroup = forwardRef<HTMLInputElement, Props>(
                 {...restArgs}
                 ref={ref}
                 type="radio"
-                value={selection.value}
+                value={selection.value.toString()}
                 id={`${uniqueId}-${selection.value}`}
                 disabled={disabled || selection.disabled}
               />
