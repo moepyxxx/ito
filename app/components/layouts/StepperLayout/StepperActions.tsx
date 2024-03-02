@@ -36,7 +36,7 @@ export const StepperActions = ({
       </Button>
       {
         <Button
-          disabled={!enableNext}
+          disabled={!enableNext && !isLastStep}
           variant={{
             type: "default",
           }}
