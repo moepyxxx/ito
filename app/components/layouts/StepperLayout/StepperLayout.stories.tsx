@@ -1,8 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { StepperLayout } from "./StepperLayout";
 import { useStepper } from "./useStepper";
+import { StepperLabels } from "./StepperLabels";
+import { StepperContent } from "./StepperContent";
+import { StepperActions } from "./StepperActions";
 
-type Story = StoryObj<typeof StepperLayout>;
+type Story = StoryObj;
 
 const StepLabelPairs = [
   { step: "step1", label: "体重" },
@@ -34,30 +36,37 @@ const Template: Story["render"] = ({ ...restArgs }) => {
   };
 
   return (
-    <StepperLayout
-      {...restArgs}
-      currentStepIndex={currentStepIndex}
-      enableNext={isLastStep ? true : isExistNextStep}
-      enablePrev={isExistPrevStep}
-      isLastStep={isLastStep}
-      onClickNextStep={onNextStep}
-      onClickPrevStep={onPrevStep}
-      onClickSpecificStep={onSpecificStep}>
-      {contents()}
-    </StepperLayout>
+    <>
+      <StepperLabels
+        stepLabelPairs={StepLabelPairs}
+        currentStepIndex={currentStepIndex}
+        onClickSpecificStep={onSpecificStep}
+      />
+      <StepperContent>{contents()}</StepperContent>
+      <StepperActions
+        {...restArgs}
+        submitLabel="送信する"
+        currentStepIndex={currentStepIndex}
+        enableNext={isLastStep ? true : isExistNextStep}
+        enablePrev={isExistPrevStep}
+        isLastStep={isLastStep}
+        onClickNextStep={onNextStep}
+        onClickPrevStep={onPrevStep}
+        onClickSubmit={() => console.warn("action")}
+      />
+    </>
   );
 };
 
 const meta = {
   title: "layout/StepperLayout",
-  component: StepperLayout,
   render: Template,
   args: {
     stepLabelPairs: StepLabelPairs,
     submitLabel: "確認する",
   },
   argTypes: {},
-} satisfies Meta<typeof StepperLayout>;
+} satisfies Meta;
 
 export default meta;
 

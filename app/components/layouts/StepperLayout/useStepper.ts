@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { StepLabelPair } from "./StepperLayout";
+
+export type StepLabelPair<T extends string> = { step: T; label: string };
 
 export const useStepper = <Step extends string>(
   stepLabels: StepLabelPair<Step>[],
