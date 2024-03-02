@@ -3,13 +3,13 @@ import { ColorVariantKeys } from "@/utils/color";
 import { tv } from "tailwind-variants";
 
 export const typographyStyle = tv({
-  base: "leading-7 text-black whitespace-pre-wrap	",
+  base: "text-black whitespace-pre-wrap",
   variants: {
     size: {
-      small: "text-sm",
-      medium: "text-base",
-      large: "text-lg",
-      xSmall: "text-xs",
+      small: "text-sm leading-loose",
+      medium: "text-base leading-loose",
+      large: "text-lg leading-relaxed",
+      xSmall: "text-xs leading-relaxed",
     },
     underLine: {
       true: "underline",
