@@ -28,8 +28,8 @@ export const FormSelect = forwardRef<HTMLSelectElement, Props>(
       <>
         <label htmlFor={uniqueId} className="flex items-center">
           <Typography>{label}</Typography>
-          {required && <Typography size="small">（入力必須です）</Typography>}
-          {disabled && <Typography size="small">（入力できません）</Typography>}
+          {required && <Typography size="small">（選択必須です）</Typography>}
+          {disabled && <Typography size="small">（選択できません）</Typography>}
         </label>
         <select
           ref={ref}

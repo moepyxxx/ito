@@ -13,30 +13,33 @@ const Required = composeStory(RequiredStory, Meta);
 // const Disabled = composeStory(DisabledStory, Meta);
 const user = userEvent.setup();
 
-describe("FormRadioGroup", () => {
+describe("FormSelect", () => {
   test("ラベルが存在すること", async () => {
     render(<Base />);
-    expect(screen.getByText(/体調の変化/)).toBeInTheDocument();
+    expect(screen.getByText(/種類/)).toBeInTheDocument();
   });
-  test("チェクできること", async () => {
+  test("チェックできること", async () => {
     render(<Base />);
-    const radio = screen.getByRole("radio", { name: "より良くなった" });
-    await user.click(radio);
-    expect(radio).toBeChecked();
+    const select = screen.getByRole("combobox", {
+      name: "種類",
+    });
+    // const option = screen.getByRole("option", { name: "セキセイインコ" });
+    await user.selectOptions(select, "セキセイインコ");
+    expect(select).toHaveValue("1");
   });
   test("必須の時入力がない場合はエラーメッセージが表示されること", async () => {
     render(<Required />);
-    const radioGroup = screen.getByRole("radiogroup", {
-      name: "体調の変化 （どれか1つを選択）",
+    const select = screen.getByRole("combobox", {
+      name: "種類 （選択必須です）",
     });
-    expect(radioGroup).toBeInTheDocument();
+    expect(select).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "データ確認" }));
     expect(screen.getByText(/選択必須です/)).toBeInTheDocument();
   });
   // test("disabledの時入力できないこと", async () => {
   //   render(<Disabled />);
   //   const radioGroup = screen.getByRole("radiogroup", {
-  //     name: "体調の変化 （選択できません）",
+  //     name: "種類 （選択できません）",
   //   });
   //   expect(radioGroup).toBeInTheDocument();
   //   expect(
