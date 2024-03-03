@@ -5,6 +5,8 @@ import { FormRadioGroup } from "./FormRadioGroup";
 import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { createRadioGroupSchema } from "./createRadioGroupSchema";
+import { useErrorMessage } from "@/hooks";
 
 type Story = StoryObj<typeof FormRadioGroup>;
 
@@ -25,12 +27,7 @@ export default meta;
 
 const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    condition: z
-      .string({
-        invalid_type_error: "数値を入力してください",
-      })
-      .transform((value) => parseInt(value, 10))
-      .nullable(),
+    condition: createRadioGroupSchema({ required: false }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -72,12 +69,12 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
+  const errorMessage = useErrorMessage();
   const schema = z.object({
-    condition: z
-      .string({
-        invalid_type_error: "選択必須です",
-      })
-      .transform((value) => parseInt(value, 10)),
+    condition: createRadioGroupSchema({
+      required: true,
+      requiredMessage: errorMessage({ type: "required" }),
+    }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;

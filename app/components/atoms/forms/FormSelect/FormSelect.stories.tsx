@@ -5,6 +5,8 @@ import { FormSelect } from "./FormSelect";
 import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { createSelectSchema } from "./createSelectSchema";
+import { useErrorMessage } from "@/hooks";
 
 type Story = StoryObj<typeof FormSelect>;
 
@@ -25,10 +27,7 @@ export default meta;
 
 const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    specie_id: z
-      .string()
-      .transform((value) => parseInt(value, 10))
-      .nullable(),
+    specie_id: createSelectSchema({ required: false }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -68,12 +67,14 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
+  const errorMessage = useErrorMessage();
   const schema = z.object({
-    specie_id: z
-      .string({
-        invalid_type_error: "選択必須です",
-      })
-      .transform((value) => parseInt(value, 10)),
+    specie_id: createSelectSchema({
+      required: true,
+      requiredMessage: errorMessage({
+        type: "required",
+      }),
+    }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;

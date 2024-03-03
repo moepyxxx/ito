@@ -4,6 +4,8 @@ import { FormCheckBox } from "./FormCheckBox";
 import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { createCheckboxSchema } from "./createCheckboxSchema";
+import { useErrorMessage } from "@/hooks";
 
 type Story = StoryObj<typeof FormCheckBox>;
 
@@ -25,9 +27,9 @@ export default meta;
 
 const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    favoriteFoods: z.array(
-      z.string().transform((value) => parseInt(value, 10))
-    ),
+    favoriteFoods: createCheckboxSchema({
+      required: false,
+    }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -67,12 +69,13 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
+  const errorMessage = useErrorMessage();
   const schema = z.object({
-    favoriteFoods: z
-      .array(z.string().transform((value) => parseInt(value, 10)))
-      .min(1, { message: "1つ以上選択してください" }),
+    favoriteFoods: createCheckboxSchema({
+      required: true,
+      requiredMessage: errorMessage({ type: "required" }),
+    }),
   });
-
   type FormSchemaType = z.infer<typeof schema>;
 
   const {
