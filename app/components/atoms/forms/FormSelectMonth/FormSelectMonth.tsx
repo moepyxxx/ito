@@ -35,9 +35,10 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
     }, [year, month, onChange]);
 
     const uniqueId = useId();
+    const errorId = errorMessage ? `${uniqueId}-error` : undefined;
 
     return (
-      <fieldset aria-describedby={`${uniqueId}-error`}>
+      <fieldset aria-describedby={errorId}>
         <legend className="flex items-center">
           <Typography>{label}</Typography>
           {required && <Typography size="small">（選択必須です）</Typography>}
@@ -45,6 +46,7 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
         </legend>
         <div className="flex items-center">
           <select
+            aria-required={required}
             aria-label={`${label}（年）`}
             className="mt-2 block mt-2 p-1 border border-solid border-deep-gray rounded w-32 px-3 py-2"
             disabled={disabled}
@@ -60,6 +62,7 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
           </select>
           <span className="mx-2">年</span>
           <select
+            aria-required={required}
             aria-label={`${label}（月）`}
             className="mt-2 block mt-2 p-1 border border-solid border-deep-gray rounded w-24 px-3 py-2"
             disabled={disabled}
@@ -80,7 +83,8 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
             color="error"
             size="small"
             className="mt-2"
-            id={`${uniqueId}-error`}>
+            aria-live="assertive"
+            id={errorId}>
             {errorMessage}
           </Typography>
         )}
