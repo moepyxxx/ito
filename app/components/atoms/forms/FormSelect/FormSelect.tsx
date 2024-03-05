@@ -16,7 +16,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, Props>(
   ) => {
     const uniqueId = useId();
     return (
-      <>
+      <div className="my-4">
         <label htmlFor={uniqueId} className="flex items-center">
           <Typography>{label}</Typography>
           {required && <Typography size="small">（選択必須です）</Typography>}
@@ -44,7 +44,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, Props>(
             {errorMessage}
           </Typography>
         )}
-      </>
+      </div>
     );
   }
 );
