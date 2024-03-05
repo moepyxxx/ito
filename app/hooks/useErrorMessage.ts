@@ -11,6 +11,9 @@ type ErrorMessageInput =
       type: "required";
     }
   | {
+      type: "number";
+    }
+  | {
       type: "email";
     }
   | {
@@ -27,6 +30,8 @@ export const useErrorMessage = () => {
         return "最大" + input.value + "文字以下で入力してください";
       case "required":
         return "必須項目です";
+      case "number":
+        return "数値で入力してください";
       case "email":
         return "メールアドレスの形式で入力してください";
       case "regex":
