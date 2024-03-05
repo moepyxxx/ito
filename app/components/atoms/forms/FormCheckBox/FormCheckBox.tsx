@@ -1,10 +1,11 @@
-import { SyntheticEvent, forwardRef, useId } from "react";
+import { forwardRef, useId } from "react";
 import { Typography } from "../../Typography";
 import { Selection } from "../FormRadioGroup";
+import { ChangeHandler } from "react-hook-form";
 
 export type InputProps = {
-  onChange: (e: SyntheticEvent) => void;
-  onBlur: (e: SyntheticEvent) => void;
+  onChange: ChangeHandler;
+  onBlur: ChangeHandler;
   name: string;
   label: string;
   required?: boolean;

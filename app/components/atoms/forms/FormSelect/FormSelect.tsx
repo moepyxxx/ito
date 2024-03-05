@@ -1,15 +1,6 @@
-import { SyntheticEvent, forwardRef, useId } from "react";
+import { forwardRef, useId } from "react";
 import { Typography } from "../../Typography";
-
-export type InputProps = {
-  onChange: (e: SyntheticEvent) => void;
-  onBlur: (e: SyntheticEvent) => void;
-  name: string;
-  label: string;
-  required?: boolean;
-  disabled?: boolean;
-  errorMessage?: string;
-};
+import { InputProps } from "../FormCheckBox";
 
 export type Selection = { value: number; label: string; disabled?: boolean };
 
