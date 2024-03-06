@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { StepperFormBasic } from "./StepperFormBasic";
 import { Button } from "@/components/atoms/Button";
 
-const SampleAction = (
+export const SampleAction = (
   enableNext: boolean,
   currentStepIndex: number,
   isLastStep: boolean
