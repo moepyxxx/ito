@@ -4,11 +4,23 @@ import { InputProps } from "../FormCheckBox";
 
 type Props = Omit<InputProps, "onChange"> & {
   onChange: (e: Date | null) => void;
+  initialValue: Date | null;
 };
 
 // eslint-disable-next-line react/display-name
 export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
-  ({ label, required, disabled, errorMessage, onChange, ...restArgs }, _) => {
+  (
+    {
+      label,
+      required,
+      disabled,
+      errorMessage,
+      onChange,
+      initialValue,
+      ...restArgs
+    },
+    _
+  ) => {
     const months = useMemo(() => {
       return Array.from({ length: 12 }, (_, index) => index + 1);
     }, []);
@@ -22,8 +34,12 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
       );
     }, []);
 
-    const [year, setYear] = useState<number | null>(null);
-    const [month, setMonth] = useState<number | null>(null);
+    const [year, setYear] = useState<number | null>(
+      initialValue ? initialValue.getFullYear() : null
+    );
+    const [month, setMonth] = useState<number | null>(
+      initialValue ? initialValue.getMonth() + 1 : null
+    );
 
     useEffect(() => {
       if (year && month) {
