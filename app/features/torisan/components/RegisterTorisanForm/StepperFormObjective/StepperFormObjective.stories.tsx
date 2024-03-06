@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { StepperFormObjective } from "./StepperFormObjective";
-import { SampleAction } from "../StepperFormBasic/StepperFormBasic.stories";
+import { SampleAction } from "../stories/sampleAction";
 
 const meta = {
   title: "torisan/RegisterTorisanForm/StepperFormObjective",
