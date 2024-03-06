@@ -6,7 +6,7 @@ import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createRadioGroupSchema } from "./createRadioGroupSchema";
-import { useErrorMessage } from "@/hooks";
+import { getErrorMessage } from "@/utils";
 
 type Story = StoryObj<typeof FormRadioGroup>;
 
@@ -69,11 +69,10 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
-  const errorMessage = useErrorMessage();
   const schema = z.object({
     condition: createRadioGroupSchema({
       required: true,
-      requiredMessage: errorMessage({ type: "required" }),
+      requiredMessage: getErrorMessage({ type: "required" }),
     }),
   });
 

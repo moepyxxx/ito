@@ -6,7 +6,7 @@ import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createSelectMonthSchema } from "./createSelectMonthSchema";
-import { useErrorMessage } from "@/hooks";
+import { getErrorMessage } from "@/utils";
 
 type Story = StoryObj<typeof FormSelectMonth>;
 
@@ -68,11 +68,10 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
-  const errorMessage = useErrorMessage();
   const schema = z.object({
     birth_date: createSelectMonthSchema({
       required: true,
-      requiredMessage: errorMessage({
+      requiredMessage: getErrorMessage({
         type: "required",
       }),
     }),

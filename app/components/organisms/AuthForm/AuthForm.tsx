@@ -2,7 +2,7 @@ import { Button } from "@/components/atoms/Button";
 import { TextLink } from "@/components/atoms/TextLink";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { ErrorMessage } from "@/components/molecules/ErrorMessage/ErrorMessage";
-import { useErrorMessage } from "@/hooks";
+import { getErrorMessage } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -29,7 +29,6 @@ export const AuthForm: React.FC<Props> = ({
   otherLink,
   errorMessage,
 }) => {
-  const getErrorMessage = useErrorMessage();
   const schema = z.object({
     email: z
       .string()

@@ -5,7 +5,7 @@ import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createCheckboxSchema } from "./createCheckboxSchema";
-import { useErrorMessage } from "@/hooks";
+import { getErrorMessage } from "@/utils";
 
 type Story = StoryObj<typeof FormCheckBox>;
 
@@ -69,11 +69,10 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
-  const errorMessage = useErrorMessage();
   const schema = z.object({
     favoriteFoods: createCheckboxSchema({
       required: true,
-      requiredMessage: errorMessage({ type: "required" }),
+      requiredMessage: getErrorMessage({ type: "required" }),
     }),
   });
   type FormSchemaType = z.infer<typeof schema>;

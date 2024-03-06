@@ -9,7 +9,7 @@ import {
   createTextBoxNumberSchema,
   createTextBoxSchema,
 } from "./createTextBoxSchema";
-import { useErrorMessage } from "@/hooks";
+import { getErrorMessage } from "@/utils";
 
 type Story = StoryObj<typeof FormTextBox>;
 
@@ -68,11 +68,10 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
-  const errorMessage = useErrorMessage();
   const schema = z.object({
     condition: createTextBoxSchema({
       required: true,
-      requiredMessage: errorMessage({ type: "required" }),
+      requiredMessage: getErrorMessage({ type: "required" }),
     }),
   });
 
