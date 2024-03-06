@@ -68,6 +68,7 @@ export const StepperFormBasic: React.FC<Props> = ({
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = useForm<FormEditType, any, FormSubmitType>({
     defaultValues: {
       name: "",
@@ -116,6 +117,7 @@ export const StepperFormBasic: React.FC<Props> = ({
         onChange={(value: Date | null) => {
           setValue("birth_date", value);
         }}
+        initialValue={getValues("birth_date")}
         required
         errorMessage={errors.birth_date && errors.birth_date.message}
       />
