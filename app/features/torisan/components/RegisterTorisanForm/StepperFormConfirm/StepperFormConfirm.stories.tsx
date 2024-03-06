@@ -20,7 +20,7 @@ const meta = {
       objective: {
         body_weight: 35.3,
         amount_of_staple_food: 30,
-        amount_of_water: 15,
+        amount_of_water: null,
       },
       food: {
         staple_food: 1,

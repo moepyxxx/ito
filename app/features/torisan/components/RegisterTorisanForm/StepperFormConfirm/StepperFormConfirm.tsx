@@ -68,15 +68,19 @@ export const StepperFormConfirm: React.FC<Props> = ({
     return [
       {
         label: "体重",
-        content: objective.body_weight + "g",
+        content: objective.body_weight ? objective.body_weight + "g" : "-",
       },
       {
         label: "目標の摂取量",
-        content: objective.amount_of_staple_food + "g",
+        content: objective.amount_of_staple_food
+          ? objective.amount_of_staple_food + "g"
+          : "-",
       },
       {
         label: "目標の水分量",
-        content: objective.amount_of_water + "g",
+        content: objective.amount_of_water
+          ? objective.amount_of_water + "g"
+          : "-",
       },
     ];
   }, [objective]);
@@ -88,7 +92,6 @@ export const StepperFormConfirm: React.FC<Props> = ({
         content: StapleFoodSelections.find(
           (selection) => selection.value === food.staple_food
         )!.label,
-        // content: "",
       },
       {
         label: "主食（その他）",
