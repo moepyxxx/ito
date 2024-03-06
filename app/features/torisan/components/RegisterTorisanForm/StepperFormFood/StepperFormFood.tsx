@@ -106,9 +106,7 @@ export const StepperFormFood: React.FC<Props> = ({
   });
 
   return (
-    <form
-      onSubmit={handleSubmit(console.warn)}
-      className="flex flex-col space-y-10">
+    <div className="flex flex-col space-y-10">
       <FormRadioGroup
         label="主食"
         selections={StapleFoodSelections}
@@ -155,6 +153,6 @@ export const StepperFormFood: React.FC<Props> = ({
           onClickPrev: (onPrev: () => void) => onPrev(),
         })}
       </div>
-    </form>
+    </div>
   );
 };
