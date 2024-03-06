@@ -10,12 +10,15 @@ export const createRadioGroupSchema = (options: {
         ? options.requiredMessage
         : undefined,
     })
-    .transform((value) => parseInt(value, 10));
+    .transform((value) => parseInt(value, 10))
+    .nullable();
 
-  if (!options.required) {
+  if (options.required) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore nullableのエラー出るが無視
-    schema = schema.nullable();
+    schema = schema.refine((data) => data !== null, {
+      message: options.requiredMessage,
+    });
   }
   return schema;
 };
