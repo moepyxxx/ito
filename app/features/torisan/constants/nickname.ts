@@ -7,3 +7,4 @@ export const NicknameSelections: Selection[] = [
 ];
 
 export const NicknameDefaultSelect = 1;
+export const NicknameNothingSelect = 3;
