@@ -4,7 +4,7 @@ import { InputProps } from "../FormCheckBox";
 import { tv } from "tailwind-variants";
 
 const textBoxStyle = tv({
-  base: "mt-1 p-1 border border-solid border-deep-gray rounded w-full px-3 py-2",
+  base: "mt-1 p-1 border border-solid border-deep-gray rounded max-w-96 w-full px-3 py-2",
   variants: {
     disabled: {
       true: "text-deep-gray",
