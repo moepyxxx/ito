@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useForm } from "react-hook-form";
 
 import { FormSelect } from "./FormSelect";
-import { Button } from "../../Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { createSelectSchema } from "./createSelectSchema";
-import { getErrorMessage } from "@/utils";
+import {
+  BaseTemplate,
+  DisabledTemplate,
+  EditTemplate,
+  RequiredTemplate,
+} from "./StoryTemplate";
 
-type Story = StoryObj<typeof FormSelect>;
+export type Story = StoryObj<typeof FormSelect>;
 
 const meta = {
   title: "forms/FormSelect",
@@ -25,132 +25,18 @@ const meta = {
 
 export default meta;
 
-const BaseTemplate: Story["render"] = (args: any) => {
-  const schema = z.object({
-    specie_id: createSelectSchema({ required: false }),
-  });
-
-  type FormSchemaType = z.infer<typeof schema>;
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<{ specie_id: null | number }, any, FormSchemaType>({
-    defaultValues: {
-      specie_id: null,
-    },
-    mode: "onBlur",
-    resolver: zodResolver(schema),
-  });
-
-  return (
-    <form onSubmit={handleSubmit(console.warn)}>
-      <FormSelect
-        {...args}
-        {...register("specie_id")}
-        errorMessage={errors.specie_id && errors.specie_id.message}
-      />
-      <Button
-        className="mt-2"
-        element={{
-          elementType: "button",
-          buttonType: "submit",
-        }}>
-        データ確認
-      </Button>
-    </form>
-  );
-};
 export const Base: Story = {
   render: BaseTemplate,
 };
 
-const RequiredTemplate: Story["render"] = (args: any) => {
-  const schema = z.object({
-    specie_id: createSelectSchema({
-      required: true,
-      requiredMessage: getErrorMessage({
-        type: "required",
-      }),
-    }),
-  });
-
-  type FormSchemaType = z.infer<typeof schema>;
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<{ specie_id: null | number }, any, FormSchemaType>({
-    defaultValues: {
-      specie_id: null,
-    },
-    mode: "onChange",
-    resolver: zodResolver(schema),
-  });
-
-  return (
-    <form onSubmit={handleSubmit(console.warn)}>
-      <FormSelect
-        {...args}
-        {...register("specie_id")}
-        errorMessage={errors.specie_id && errors.specie_id.message}
-        required
-      />
-      <Button
-        className="mt-2"
-        element={{
-          elementType: "button",
-          buttonType: "submit",
-        }}>
-        データ確認
-      </Button>
-    </form>
-  );
-};
 export const Required: Story = {
   render: RequiredTemplate,
 };
 
-const DisabledTemplate: Story["render"] = (args: any) => {
-  const schema = z.object({
-    condition: z.string().transform((value) => parseInt(value, 10)),
-  });
-
-  type FormSchemaType = z.infer<typeof schema>;
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<{ specie_id: null | number }, any, FormSchemaType>({
-    defaultValues: {
-      specie_id: 1,
-    },
-    mode: "onChange",
-    resolver: zodResolver(schema),
-  });
-
-  return (
-    <form onSubmit={handleSubmit(console.warn)}>
-      <FormSelect
-        {...args}
-        {...register("specie_id")}
-        errorMessage={errors.specie_id && errors.specie_id.message}
-        disabled
-      />
-      <Button
-        className="mt-2"
-        element={{
-          elementType: "button",
-          buttonType: "submit",
-        }}>
-        データ確認
-      </Button>
-    </form>
-  );
-};
 export const Disabled: Story = {
   render: DisabledTemplate,
+};
+
+export const Edit: Story = {
+  render: EditTemplate,
 };
