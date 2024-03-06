@@ -5,6 +5,11 @@ import { FormTextBox } from "./FormTextBox";
 import { Button } from "../../Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import {
+  createTextBoxNumberSchema,
+  createTextBoxSchema,
+} from "./createTextBoxSchema";
+import { useErrorMessage } from "@/hooks";
 
 type Story = StoryObj<typeof FormTextBox>;
 
@@ -21,7 +26,9 @@ export default meta;
 
 const BaseTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    condition: z.string(),
+    condition: createTextBoxSchema({
+      required: false,
+    }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -61,8 +68,12 @@ export const Base: Story = {
 };
 
 const RequiredTemplate: Story["render"] = (args: any) => {
+  const errorMessage = useErrorMessage();
   const schema = z.object({
-    condition: z.string().min(1, "必須項目です"),
+    condition: createTextBoxSchema({
+      required: true,
+      requiredMessage: errorMessage({ type: "required" }),
+    }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -104,7 +115,9 @@ export const Required: Story = {
 
 const DisabledTemplate: Story["render"] = (args: any) => {
   const schema = z.object({
-    condition: z.string().min(1, "必須項目です"),
+    condition: createTextBoxSchema({
+      required: false,
+    }),
   });
 
   type FormSchemaType = z.infer<typeof schema>;
@@ -142,4 +155,51 @@ const DisabledTemplate: Story["render"] = (args: any) => {
 };
 export const Disabled: Story = {
   render: DisabledTemplate,
+};
+
+const NumberTemplate: Story["render"] = (args: any) => {
+  const schema = z.object({
+    body_weight: createTextBoxNumberSchema({
+      required: false,
+    }),
+  });
+
+  type FormSchemaType = z.infer<typeof schema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ body_weight: number | null }, any, FormSchemaType>({
+    defaultValues: {
+      body_weight: null,
+    },
+    mode: "onChange",
+    resolver: zodResolver(schema),
+  });
+
+  return (
+    <form onSubmit={handleSubmit(console.warn)} className="max-w-96">
+      <FormTextBox
+        {...args}
+        {...register("body_weight")}
+        errorMessage={errors.body_weight && errors.body_weight.message}
+      />
+      <Button
+        className="mt-2"
+        element={{
+          elementType: "button",
+          buttonType: "submit",
+        }}>
+        データ確認
+      </Button>
+    </form>
+  );
+};
+export const Number: Story = {
+  render: NumberTemplate,
+  args: {
+    label: "体重（g）",
+    inputType: "number",
+  },
 };
