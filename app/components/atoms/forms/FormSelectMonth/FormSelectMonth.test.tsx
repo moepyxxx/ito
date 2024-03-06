@@ -16,6 +16,7 @@ describe("FormSelectMonth", () => {
     render(<Base />);
     expect(screen.getByText(/誕生日/)).toBeInTheDocument();
   });
+
   test("チェックできること", async () => {
     render(<Base />);
     const group = screen.getByRole("group", {
@@ -26,7 +27,6 @@ describe("FormSelectMonth", () => {
     const selectYear = screen.getByRole("combobox", {
       name: "誕生日（年）",
     });
-    // const option = screen.getByRole("option", { name: "セキセイインコ" });
     await user.selectOptions(selectYear, "2000");
     expect(selectYear).toHaveValue("2000");
 
@@ -36,6 +36,7 @@ describe("FormSelectMonth", () => {
     await user.selectOptions(selectMonth, "12");
     expect(selectMonth).toHaveValue("12");
   });
+
   test("必須の時入力がない場合はエラーメッセージが表示されること", async () => {
     render(<Required />);
     const select = screen.getByRole("group", {

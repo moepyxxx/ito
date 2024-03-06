@@ -18,12 +18,14 @@ describe("FormCheckBox", () => {
     render(<Base />);
     expect(screen.getByText(/お気に入りのおやつ/)).toBeInTheDocument();
   });
+
   test("チェクできること", async () => {
     render(<Base />);
     const checkbox = screen.getByRole("checkbox", { name: "塩土" });
     await user.click(checkbox);
     expect(checkbox).toBeChecked();
   });
+
   test("必須の時入力がない場合はエラーメッセージが表示されること", async () => {
     render(<Required />);
     const checkGroup = screen.getByRole("group", {
@@ -33,6 +35,7 @@ describe("FormCheckBox", () => {
     await user.click(screen.getByRole("button", { name: "データ確認" }));
     expect(screen.getByText(/1つ以上選択してください/)).toBeInTheDocument();
   });
+
   // test("disabledの時入力できないこと", async () => {
   //   render(<Disabled />);
   //   const checkGroup = screen.getByRole("group", {
