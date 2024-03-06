@@ -7,7 +7,6 @@ import {
   FormRadioGroup,
   createRadioGroupSchema,
 } from "@/components/atoms/forms/FormRadioGroup";
-import { useErrorMessage } from "@/hooks";
 import { createTextBoxSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
 import {
   FormCheckBox,
@@ -19,71 +18,74 @@ import {
   StapleFoodAnySelect,
   StapleFoodSelections,
 } from "@/features/torisan/constants";
+import { getErrorMessage } from "@/utils";
+
+const schema = z
+  .object({
+    staple_food: createRadioGroupSchema({
+      required: true,
+      requiredMessage: getErrorMessage({ type: "required" }),
+    }),
+    any_staple_food: createTextBoxSchema({
+      required: false,
+    }),
+    other_foods: createCheckboxSchema({
+      required: false,
+    }),
+    any_other_foods: createTextBoxSchema({
+      required: false,
+      requiredMessage: getErrorMessage({ type: "required" }),
+    }),
+  })
+  .superRefine((data, ctx) => {
+    if (
+      data.staple_food === Number(StapleFoodAnySelect) &&
+      !data.any_staple_food
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["any_staple_food"],
+        message: "その他を選択している場合は記入してください",
+      });
+    }
+    return true;
+  })
+  .superRefine((data, ctx) => {
+    if (
+      data.other_foods.includes(Number(OtherFoodsAnySelect)) &&
+      !data.any_other_foods
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["any_other_foods"],
+        message: "その他を選択している場合は記入してください",
+      });
+    }
+    return true;
+  });
+
+export type FormSubmitType = z.infer<typeof schema>;
+type FormEditType = {
+  staple_food: null | number;
+  any_staple_food: string;
+  other_foods: number[];
+  any_other_foods: string;
+};
 
 type Props = {
   renderStepperActions: RenderStepActions;
+  onSubmit: (data: FormSubmitType) => void;
 };
-export const StepperFormFood: React.FC<Props> = ({ renderStepperActions }) => {
-  const getErrorMessage = useErrorMessage();
-
-  const schema = z
-    .object({
-      staple_food: createRadioGroupSchema({
-        required: true,
-        requiredMessage: getErrorMessage({ type: "required" }),
-      }),
-      any_staple_food: createTextBoxSchema({
-        required: false,
-      }),
-      other_foods: createCheckboxSchema({
-        required: false,
-      }),
-      any_other_foods: createTextBoxSchema({
-        required: false,
-        requiredMessage: getErrorMessage({ type: "required" }),
-      }),
-    })
-    .superRefine((data, ctx) => {
-      if (
-        data.staple_food === Number(StapleFoodAnySelect) &&
-        !data.any_staple_food
-      ) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["any_staple_food"],
-          message: "その他を選択している場合は記入してください",
-        });
-      }
-      return true;
-    })
-    .superRefine((data, ctx) => {
-      if (
-        data.other_foods.includes(Number(OtherFoodsAnySelect)) &&
-        !data.any_other_foods
-      ) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["any_other_foods"],
-          message: "その他を選択している場合は記入してください",
-        });
-      }
-      return true;
-    });
-
-  type FormSchemaType = z.infer<typeof schema>;
-  type FormEditType = {
-    staple_food: null | number;
-    any_staple_food: string;
-    other_foods: number[];
-    any_other_foods: string;
-  };
-
+export const StepperFormFood: React.FC<Props> = ({
+  renderStepperActions,
+  onSubmit,
+}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     control,
-  } = useForm<FormEditType, any, FormSchemaType>({
+  } = useForm<FormEditType, any, FormSubmitType>({
     defaultValues: {
       staple_food: null,
       any_staple_food: "",
@@ -106,7 +108,7 @@ export const StepperFormFood: React.FC<Props> = ({ renderStepperActions }) => {
   return (
     <form
       onSubmit={handleSubmit(console.warn)}
-      className="max-w-96 flex flex-col space-y-10">
+      className="flex flex-col space-y-10">
       <FormRadioGroup
         label="主食"
         selections={StapleFoodSelections}
@@ -143,11 +145,14 @@ export const StepperFormFood: React.FC<Props> = ({ renderStepperActions }) => {
         />
       )}
       <div className="pt-2">
-        {renderStepperActions(!isValid, {
+        {renderStepperActions(true, {
           onClickNext: (onNext: () => void) => {
-            handleSubmit(console.warn);
-            onNext();
+            handleSubmit((data) => {
+              onSubmit(data);
+              onNext();
+            })();
           },
+          onClickPrev: (onPrev: () => void) => onPrev(),
         })}
       </div>
     </form>

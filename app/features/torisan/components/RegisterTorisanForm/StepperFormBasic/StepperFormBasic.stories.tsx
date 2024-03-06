@@ -7,6 +7,7 @@ const meta = {
   component: StepperFormBasic,
   args: {
     renderStepperActions: (enableNext) => SampleAction(enableNext, 0, false),
+    onSubmit: (data) => console.warn(data),
   },
 } satisfies Meta<typeof StepperFormBasic>;
 

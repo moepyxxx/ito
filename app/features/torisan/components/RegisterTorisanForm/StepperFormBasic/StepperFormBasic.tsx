@@ -11,7 +11,6 @@ import {
   NicknameDefaultSelect,
   NicknameSelections,
 } from "@/features/torisan/constants/nickname";
-import { useErrorMessage } from "@/hooks";
 import {
   FormSelect,
   createSelectSchema,
@@ -22,51 +21,54 @@ import {
   createSelectMonthSchema,
 } from "@/components/atoms/forms/FormSelectMonth";
 import { createTextBoxSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
+import { getErrorMessage } from "@/utils";
+
+const schema = z.object({
+  name: createTextBoxSchema({
+    required: true,
+    requiredMessage: getErrorMessage({ type: "required" }),
+  }),
+  nickname: createRadioGroupSchema({
+    required: true,
+    requiredMessage: getErrorMessage({ type: "required" }),
+  }),
+  specie_id: createSelectSchema({
+    required: true,
+    requiredMessage: getErrorMessage({ type: "required" }),
+  }),
+  gender: createRadioGroupSchema({
+    required: true,
+    requiredMessage: getErrorMessage({ type: "required" }),
+  }),
+  birth_date: createSelectMonthSchema({
+    required: true,
+    requiredMessage: getErrorMessage({ type: "required" }),
+  }),
+});
+
+export type FormSubmitType = z.infer<typeof schema>;
+export type FormEditType = {
+  name: string;
+  nickname: number;
+  specie_id: number | null;
+  gender: number | null;
+  birth_date: Date | null;
+};
 
 type Props = {
   renderStepperActions: RenderStepActions;
+  onSubmit: (data: FormSubmitType) => void;
 };
-export const StepperFormBasic: React.FC<Props> = ({ renderStepperActions }) => {
-  const getErrorMessage = useErrorMessage();
-
-  const schema = z.object({
-    name: createTextBoxSchema({
-      required: true,
-      requiredMessage: getErrorMessage({ type: "required" }),
-    }),
-    nickname: createRadioGroupSchema({
-      required: true,
-      requiredMessage: getErrorMessage({ type: "required" }),
-    }),
-    specie_id: createSelectSchema({
-      required: true,
-      requiredMessage: getErrorMessage({ type: "required" }),
-    }),
-    gender: createRadioGroupSchema({
-      required: true,
-      requiredMessage: getErrorMessage({ type: "required" }),
-    }),
-    birth_date: createSelectMonthSchema({
-      required: true,
-      requiredMessage: getErrorMessage({ type: "required" }),
-    }),
-  });
-
-  type FormSchemaType = z.infer<typeof schema>;
-  type FormEditType = {
-    name: string;
-    nickname: number;
-    specie_id: number | null;
-    gender: number | null;
-    birth_date: Date | null;
-  };
-
+export const StepperFormBasic: React.FC<Props> = ({
+  renderStepperActions,
+  onSubmit,
+}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     setValue,
-  } = useForm<FormEditType, any, FormSchemaType>({
+  } = useForm<FormEditType, any, FormSubmitType>({
     defaultValues: {
       name: "",
       nickname: NicknameDefaultSelect,
@@ -79,9 +81,7 @@ export const StepperFormBasic: React.FC<Props> = ({ renderStepperActions }) => {
   });
 
   return (
-    <form
-      onSubmit={handleSubmit(console.warn)}
-      className="max-w-96 flex flex-col space-y-10">
+    <div className="flex flex-col space-y-10">
       <FormTextBox
         label="名前"
         inputType="text"
@@ -120,13 +120,16 @@ export const StepperFormBasic: React.FC<Props> = ({ renderStepperActions }) => {
         errorMessage={errors.birth_date && errors.birth_date.message}
       />
       <div className="pt-2">
-        {renderStepperActions(!isValid, {
+        {/** 第一引数にはisValidを利用したいが、FormSelectMonthのonChange/triggerがうまくいかないため一旦断念 */}
+        {renderStepperActions(true, {
           onClickNext: (onNext: () => void) => {
-            handleSubmit(console.warn);
-            onNext();
+            handleSubmit((data) => {
+              onSubmit(data);
+              onNext();
+            })();
           },
         })}
       </div>
-    </form>
+    </div>
   );
 };
