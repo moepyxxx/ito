@@ -26,8 +26,7 @@ const StepLabelPairs = [
 ];
 
 type Props = {
-  // TODO: 型を入れる
-  onSubmit: (torisan: any) => void;
+  onSubmit: (torisan: TorisanBasic & TorisanObjective & TorisanFood) => void;
 };
 export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
   const {
@@ -35,7 +34,17 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
     currentStepIndex,
     onSpecificStep,
     renderStepperActions,
-  } = useStepper(StepLabelPairs, 0, "送信する", () => onSubmit("todo"));
+  } = useStepper(StepLabelPairs, 0, "送信する", () => {
+    if (!torisanBasic || !torisanObjective || !torisanFood) {
+      console.warn("torisanBasic, torisanObjective, torisanFood is null");
+      return;
+    }
+    onSubmit({
+      ...torisanBasic,
+      ...torisanObjective,
+      ...torisanFood,
+    });
+  });
 
   const [torisanBasic, setTorisanBasic] = useState<TorisanBasic | null>(null);
   const [torisanObjective, setTorisanObjective] =
