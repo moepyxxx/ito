@@ -121,7 +121,7 @@ export const StepperFormBasic: React.FC<Props> = ({ renderStepperActions }) => {
       />
       <div className="pt-2">
         {renderStepperActions(!isValid, {
-          onClickPrev: (onNext: () => void) => {
+          onClickNext: (onNext: () => void) => {
             handleSubmit(console.warn);
             onNext();
           },
