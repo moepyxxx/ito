@@ -35,7 +35,7 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
     currentStepIndex,
     onSpecificStep,
     renderStepperActions,
-  } = useStepper(StepLabelPairs, 0, "送信する", () => onSubmit("hoge"));
+  } = useStepper(StepLabelPairs, 0, "送信する", () => onSubmit("todo"));
 
   const [torisanBasic, setTorisanBasic] = useState<TorisanBasic | null>(null);
   const [torisanObjective, setTorisanObjective] =
@@ -67,7 +67,19 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
         );
       case "confirm":
         return (
-          <StepperFormConfirm renderStepperActions={renderStepperActions} />
+          torisanBasic &&
+          torisanObjective &&
+          torisanFood && (
+            <StepperFormConfirm
+              onSpecificStep={onSpecificStep}
+              renderStepperActions={renderStepperActions}
+              torisan={{
+                basic: torisanBasic,
+                objective: torisanObjective,
+                food: torisanFood,
+              }}
+            />
+          )
         );
     }
   };
