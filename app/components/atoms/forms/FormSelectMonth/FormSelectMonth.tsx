@@ -38,7 +38,7 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
     const errorId = errorMessage ? `${uniqueId}-error` : undefined;
 
     return (
-      <fieldset aria-describedby={errorId} className="my-4">
+      <fieldset aria-describedby={errorId} className="my-4 relative">
         <legend className="flex items-center">
           <Typography>{label}</Typography>
           {required && <Typography size="small">（選択必須です）</Typography>}
@@ -82,7 +82,7 @@ export const FormSelectMonth = forwardRef<HTMLSelectElement, Props>(
           <Typography
             color="error"
             size="small"
-            className="mt-2"
+            className="mt-2 absolute bottom-[-28px] left-0"
             aria-live="assertive"
             id={errorId}>
             {errorMessage}

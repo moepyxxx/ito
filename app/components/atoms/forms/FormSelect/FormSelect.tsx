@@ -1,8 +1,7 @@
 import { forwardRef, useId } from "react";
 import { Typography } from "../../Typography";
 import { InputProps } from "../FormCheckBox";
-
-export type Selection = { value: number; label: string; disabled?: boolean };
+import { Selection } from "../FormRadioGroup";
 
 type Props = InputProps & {
   selections: Selection[];
@@ -16,7 +15,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, Props>(
   ) => {
     const uniqueId = useId();
     return (
-      <div className="my-4">
+      <div className="my-4 relative">
         <label htmlFor={uniqueId} className="flex items-center">
           <Typography>{label}</Typography>
           {required && <Typography size="small">（選択必須です）</Typography>}
@@ -25,7 +24,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, Props>(
         <select
           ref={ref}
           id={uniqueId}
-          className="mt-2 block mt-2 p-1 border border-solid border-deep-gray rounded w-96 px-3 py-2"
+          className="block mt-1 p-1 border border-solid border-deep-gray rounded w-96 px-3 py-2"
           disabled={disabled}
           {...restArgs}>
           <option value="">選択してください</option>
@@ -39,7 +38,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, Props>(
           <Typography
             color="error"
             size="small"
-            className="mt-2"
+            className="mt-2 absolute bottom-[-28px] left-0"
             id={`${uniqueId}-error`}>
             {errorMessage}
           </Typography>
