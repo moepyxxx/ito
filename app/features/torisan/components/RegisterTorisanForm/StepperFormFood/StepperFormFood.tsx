@@ -66,19 +66,21 @@ const schema = z
 
 export type FormSubmitType = z.infer<typeof schema>;
 type FormEditType = {
-  staple_food: null | number;
+  staple_food: null | number | string;
   any_staple_food: string;
-  other_foods: number[];
+  other_foods: (number | string)[];
   any_other_foods: string;
 };
 
 type Props = {
   renderStepperActions: RenderStepActions;
   onSubmit: (data: FormSubmitType) => void;
+  initialValue: FormSubmitType | null;
 };
 export const StepperFormFood: React.FC<Props> = ({
   renderStepperActions,
   onSubmit,
+  initialValue,
 }) => {
   const {
     register,
@@ -86,12 +88,24 @@ export const StepperFormFood: React.FC<Props> = ({
     formState: { errors },
     control,
   } = useForm<FormEditType, any, FormSubmitType>({
-    defaultValues: {
-      staple_food: null,
-      any_staple_food: "",
-      other_foods: [],
-      any_other_foods: "",
-    },
+    defaultValues: initialValue
+      ? {
+          staple_food: initialValue.staple_food
+            ? initialValue.staple_food.toString()
+            : null,
+          any_staple_food: initialValue.any_staple_food,
+          other_foods:
+            initialValue.other_foods.length > 0
+              ? initialValue.other_foods.map((food) => food.toString())
+              : [],
+          any_other_foods: initialValue.any_other_foods,
+        }
+      : {
+          staple_food: null,
+          any_staple_food: "",
+          other_foods: [],
+          any_other_foods: "",
+        },
     mode: "onChange",
     resolver: zodResolver(schema),
   });
@@ -114,7 +128,6 @@ export const StepperFormFood: React.FC<Props> = ({
         required
         errorMessage={errors.staple_food && errors.staple_food.message}
       />
-      {/** @ts-expect-error 実態はzodのtransformのタイミングが異なるためstring同士で比較している… */}
       {currentStapleFood === StapleFoodAnySelect && (
         <FormTextBox
           label="主食（その他）"
@@ -131,7 +144,6 @@ export const StepperFormFood: React.FC<Props> = ({
         {...register("other_foods")}
         errorMessage={errors.other_foods && errors.other_foods.message}
       />
-      {/** @ts-expect-error 実態はzodのtransformのタイミングが異なるためstring同士で比較している… */}
       {currentOtherFoods.includes(OtherFoodsAnySelect) && (
         <FormTextBox
           label="副食・おやつ・栄養剤（その他）"

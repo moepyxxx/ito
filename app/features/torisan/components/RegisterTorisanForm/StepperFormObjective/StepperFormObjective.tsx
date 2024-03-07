@@ -28,21 +28,30 @@ type FormEditType = {
 type Props = {
   renderStepperActions: RenderStepActions;
   onSubmit: (data: FormSubmitType) => void;
+  initialValue: FormSubmitType | null;
 };
 export const StepperFormObjective: React.FC<Props> = ({
   renderStepperActions,
   onSubmit,
+  initialValue,
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormEditType, any, FormSubmitType>({
-    defaultValues: {
-      body_weight: null,
-      amount_of_staple_food: null,
-      amount_of_water: null,
-    },
+    defaultValues:
+      initialValue != null
+        ? {
+            body_weight: initialValue.body_weight,
+            amount_of_staple_food: initialValue.amount_of_staple_food,
+            amount_of_water: initialValue.amount_of_water,
+          }
+        : {
+            body_weight: null,
+            amount_of_staple_food: null,
+            amount_of_water: null,
+          },
     mode: "onChange",
     resolver: zodResolver(schema),
   });

@@ -58,6 +58,7 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
           <StepperFormBasic
             renderStepperActions={renderStepperActions}
             onSubmit={(data) => setTorisanBasic(data)}
+            initialValue={torisanBasic}
           />
         );
       case "objective":
@@ -65,6 +66,7 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
           <StepperFormObjective
             renderStepperActions={renderStepperActions}
             onSubmit={(data) => setTorisanObjective(data)}
+            initialValue={torisanObjective}
           />
         );
       case "food":
@@ -72,6 +74,7 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
           <StepperFormFood
             renderStepperActions={renderStepperActions}
             onSubmit={(data) => setTorisanFood(data)}
+            initialValue={torisanFood}
           />
         );
       case "confirm":
