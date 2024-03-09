@@ -164,7 +164,7 @@ export const StepperFormConfirm: React.FC<Props> = ({
         </Paper>
       </div>
 
-      <div className="pt-2">
+      <div className="mt-4">
         {renderStepperActions(true, {
           onClickPrev: (onPrev: () => void) => onPrev(),
         })}

@@ -20,6 +20,23 @@ export const StepperActions = ({
   onClickPrevStep,
   onClickSubmit,
 }: Props) => {
+  if (isLastStep) {
+    return (
+      <div className="text-center">
+        <Button
+          disabled={!enableNext && !isLastStep}
+          variant={{
+            type: "primary",
+          }}
+          element={{
+            onClick: onClickSubmit,
+            elementType: "button",
+          }}>
+          {submitLabel}
+        </Button>
+      </div>
+    );
+  }
   return (
     <div className="mt-4 flex flex-row flex-nowrap justify-between">
       <Button
@@ -41,7 +58,7 @@ export const StepperActions = ({
             type: "default",
           }}
           element={{
-            onClick: isLastStep ? onClickSubmit : onClickNextStep,
+            onClick: onClickNextStep,
             elementType: "button",
           }}>
           {isLastStep ? submitLabel : "次へ"}
