@@ -9,6 +9,9 @@ const stepperLabelStyles = tv({
       done: "border-deep-gray text-deep-gray",
       todo: "border-deep-gray text-deep-gray",
     },
+    disabled: {
+      true: "cursor-default",
+    },
   },
 });
 
@@ -18,10 +21,21 @@ type Props = {
   label: string;
   status: StepperStatus;
   onClick: () => void;
+  disabled?: boolean;
 };
-export const StepperLabel: React.FC<Props> = ({ label, status, onClick }) => {
+export const StepperLabel: React.FC<Props> = ({
+  label,
+  status,
+  onClick,
+  disabled = false,
+}) => {
   return (
-    <button onClick={onClick} className={stepperLabelStyles({ status })}>
+    <button
+      onClick={() => {
+        if (disabled) return;
+        onClick();
+      }}
+      className={stepperLabelStyles({ status, disabled })}>
       {label}
       {status === "done" && (
         <Icon

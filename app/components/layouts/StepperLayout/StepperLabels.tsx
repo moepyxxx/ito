@@ -30,6 +30,9 @@ export const StepperLabels = <Step extends string>({
                         ? "done"
                         : "todo"
                   }
+                  disabled={
+                    stepLabelPairs.indexOf(stepLabelPair) > currentStepIndex
+                  }
                   onClick={() => onClickSpecificStep(stepLabelPair.step)}
                 />
               </div>
