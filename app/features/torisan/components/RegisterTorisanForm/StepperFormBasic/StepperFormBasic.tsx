@@ -22,6 +22,7 @@ import {
 } from "@/components/atoms/forms/FormSelectMonth";
 import { createTextBoxSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
 import { getErrorMessage } from "@/utils";
+import { Alert } from "@/components/molecules/Alert";
 
 const schema = z.object({
   name: createTextBoxSchema({
@@ -97,6 +98,10 @@ export const StepperFormBasic: React.FC<Props> = ({
 
   return (
     <div className="flex flex-col space-y-10">
+      <Alert
+        message="基本情報は後から変更することはできません"
+        type="warning"
+      />
       <FormTextBox
         label="名前"
         inputType="text"
