@@ -9,6 +9,8 @@ export const ColorVariants = {
   error: "#E83737",
   thin_error: "#FADBDB",
   white: "#FFFFFF",
+  warning: "#EB721B",
+  thin_warning: "#FFDBC1",
 } as const;
 
 export type ColorVariantKeys = keyof typeof ColorVariants;

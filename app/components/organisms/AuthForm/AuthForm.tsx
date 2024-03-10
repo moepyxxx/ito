@@ -1,7 +1,7 @@
 import { Button } from "@/components/atoms/Button";
 import { TextLink } from "@/components/atoms/TextLink";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
-import { ErrorMessage } from "@/components/molecules/ErrorMessage/ErrorMessage";
+import { Alert } from "@/components/molecules/Alert/Alert";
 import { getErrorMessage } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -60,7 +60,7 @@ export const AuthForm: React.FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-96 mx-auto">
-      {errorMessage && <ErrorMessage message={errorMessage} />}
+      {errorMessage && <Alert message={errorMessage} type="error" />}
       <FormTextBox
         label="ユーザーID（メールアドレス）"
         inputType="text"
