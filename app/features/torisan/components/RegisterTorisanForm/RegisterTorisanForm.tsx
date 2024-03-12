@@ -25,8 +25,10 @@ const StepLabelPairs = [
   { step: "confirm", label: "確認" },
 ];
 
+export type RegisterTorisan = TorisanBasic & TorisanObjective & TorisanFood;
+
 type Props = {
-  onSubmit: (torisan: TorisanBasic & TorisanObjective & TorisanFood) => void;
+  onSubmit: (torisan: RegisterTorisan) => void;
 };
 export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
   const {
