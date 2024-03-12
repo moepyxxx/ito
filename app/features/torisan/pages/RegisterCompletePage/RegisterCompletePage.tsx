@@ -39,7 +39,7 @@ export const RegisterCompletePage: React.FC = () => {
         <Button
           element={{
             elementType: "a",
-            href: `/p/works/${torisanId}`,
+            href: `/p/work/${torisanId}`,
           }}
           variant={{
             type: "primary",
@@ -49,7 +49,7 @@ export const RegisterCompletePage: React.FC = () => {
         <Button
           element={{
             elementType: "a",
-            href: `/p/torisans/${torisanId}`,
+            href: `/p/torisan/${torisanId}`,
           }}
           variant={{
             type: "secondary-border",
