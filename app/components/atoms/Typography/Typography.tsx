@@ -44,7 +44,7 @@ export const Typography: React.FC<WithBaseElementProps<Props>> = ({
   color = "black",
   element = "p",
   size = "medium",
-  align = "left",
+  align,
   className = "",
   id,
   bold = false,
