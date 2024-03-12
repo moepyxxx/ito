@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import { IconButton } from "./IconButton";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "molecules/IconButton",
@@ -12,7 +12,7 @@ const meta = {
     label: "ホーム",
     element: {
       elementType: "button",
-      onClick: () => action("clicked"),
+      onClick: fn(),
     },
   },
   argTypes: {},

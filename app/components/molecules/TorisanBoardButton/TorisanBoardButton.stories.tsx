@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { TorisanBoardButton } from "./TorisanBoardButton";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "molecules/TorisanBoardButton",
@@ -10,7 +11,7 @@ const meta = {
     nickname: "いと",
     src: "/sample/icon.png",
     chipText: "観察ステージ",
-    onClick: () => {},
+    onClick: fn(),
   },
   decorators: [(story) => <div className="w-96">{story()}</div>],
   argTypes: {},

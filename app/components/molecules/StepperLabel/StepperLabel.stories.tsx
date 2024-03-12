@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { StepperLabel } from "./StepperLabel";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "molecules/StepperLabel",
@@ -7,7 +8,7 @@ const meta = {
   args: {
     label: "ごはん",
     status: "current",
-    onClick: () => {},
+    onClick: fn(),
   },
   argTypes: {},
 } satisfies Meta<typeof StepperLabel>;
