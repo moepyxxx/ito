@@ -4,7 +4,7 @@ import { SelectPage } from "./SelectPage";
 import { torisanMockHandlers } from "@/gql/mock";
 
 const meta = {
-  title: "torisan/SelectPage",
+  title: "torisan/page/SelectPage",
   component: SelectPage,
   args: {},
   argTypes: {},
