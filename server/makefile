@@ -5,7 +5,7 @@ db-generate:
 	npx prisma generate
 
 local-psql:
-	psql -h localhost -U postgres -p 54325
+	pgcli -h localhost -U postgres -p 54322
 
 local-dev-start:
 	supabase start

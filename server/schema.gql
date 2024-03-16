@@ -2,6 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""鳥さんの目標"""
+type TorisanObjectiveObject {
+  body_weight: Float
+  amount_of_water: Float
+  amount_of_staple_food: Float
+}
+
+"""鳥さんのごはん"""
+type TorisanFoodObject {
+  staple_food_type: Int
+  any_staple_food: String
+  other_food_types: [Int!]!
+  any_other_foods: String
+}
+
 """鳥さん詳細"""
 type Torisan {
   id: ID!
@@ -11,6 +26,8 @@ type Torisan {
   name: String!
   birth_date: DateTime!
   gender_type: Int!
+  objective: TorisanObjectiveObject!
+  food: TorisanFoodObject!
 }
 
 """
@@ -19,8 +36,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  torisans: [Torisan!]!
-  torisan(id: Float!): Torisan!
+  torisans: [Int!]!
 }
 
 type Mutation {
@@ -35,4 +51,21 @@ input CreateTorisan {
   specie_type: Int!
   birth_date: DateTime!
   gender_type: Int!
+  objective: TorisanObjective!
+  food: TorisanFood!
+}
+
+"""鳥さんの目標"""
+input TorisanObjective {
+  body_weight: Float
+  amount_of_water: Float
+  amount_of_staple_food: Float
+}
+
+"""鳥さんのごはん"""
+input TorisanFood {
+  staple_food_type: Int
+  any_staple_food: String
+  other_food_types: [Int!]!
+  any_other_foods: String
 }
