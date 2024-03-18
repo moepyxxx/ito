@@ -1,8 +1,10 @@
 import { Resolver, Mutation, Args, Context, Query, Int } from '@nestjs/graphql';
 import { CreateTorisan } from './models/createTorisan.model';
 import { TorisansService } from './torisans.service';
-import { Request } from 'express';
 import { Torisan } from './models/torisan.model';
+import { ZodValidationPipe } from 'src/pipe/ZodValidationPipe';
+import { CreateTorisanZodInput } from './models/torisan.schema';
+import { Request } from 'express';
 
 // NOTE: resolverは基本的にserviceを呼び出すだけなのでservice以下をmockするテスト手法は意味がなさそう。今後はかかない
 @Resolver(() => Torisan)
@@ -28,7 +30,11 @@ export class TorisansResolver {
 
   @Mutation(() => Torisan)
   createTorisan(
-    @Args('torisan') torisan: CreateTorisan,
+    @Args(
+      'torisan',
+      new ZodValidationPipe<CreateTorisanZodInput, CreateTorisan>(),
+    )
+    torisan: CreateTorisan,
     @Context() context: { req: Request },
   ): Promise<Torisan> {
     const userId = context.req.app['user_id'];
