@@ -33,7 +33,7 @@ const schema = z.object({
     required: true,
     requiredMessage: getErrorMessage({ type: "required" }),
   }),
-  specie_id: createSelectSchema({
+  specie_type: createSelectSchema({
     required: true,
     requiredMessage: getErrorMessage({ type: "required" }),
   }),
@@ -51,7 +51,7 @@ export type FormSubmitType = z.infer<typeof schema>;
 export type FormEditType = {
   name: string;
   nickname: number | string | null;
-  specie_id: number | null | string;
+  specie_type: number | null | string;
   gender: number | null | string;
   birth_date: Date | null;
 };
@@ -81,14 +81,14 @@ export const StepperFormBasic: React.FC<Props> = ({
               initialValue.nickname == null
                 ? undefined
                 : initialValue.nickname.toString(),
-            specie_id: initialValue.specie_id.toString(),
+            specie_type: initialValue.specie_type.toString(),
             gender: initialValue.gender ? initialValue.gender.toString() : null,
             birth_date: initialValue.birth_date,
           }
         : {
             name: "",
             nickname: NicknameDefaultSelect,
-            specie_id: null,
+            specie_type: null,
             gender: null,
             birth_date: null,
           },
@@ -119,9 +119,9 @@ export const StepperFormBasic: React.FC<Props> = ({
       <FormSelect
         label="種類"
         selections={SpecieSelections}
-        {...register("specie_id")}
+        {...register("specie_type")}
         required
-        errorMessage={errors.specie_id && errors.specie_id.message}
+        errorMessage={errors.specie_type && errors.specie_type.message}
       />
       <FormRadioGroup
         label="種類"

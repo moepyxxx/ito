@@ -48,7 +48,7 @@ export const StepperFormConfirm: React.FC<Props> = ({
       {
         label: "種類",
         content: SpecieSelections.find(
-          (specie) => specie.value === basic.specie_id
+          (specie) => specie.value === basic.specie_type
         )!.label,
       },
       {
@@ -90,7 +90,7 @@ export const StepperFormConfirm: React.FC<Props> = ({
       {
         label: "主食",
         content: StapleFoodSelections.find(
-          (selection) => selection.value === food.staple_food
+          (selection) => selection.value === food.staple_food_type
         )!.label,
       },
       {
@@ -99,7 +99,7 @@ export const StepperFormConfirm: React.FC<Props> = ({
       },
       {
         label: "副食・おやつ・栄養剤",
-        content: food.other_foods
+        content: food.other_food_types
           .map(
             (otherFood) =>
               OtherFoodsSelections.find(

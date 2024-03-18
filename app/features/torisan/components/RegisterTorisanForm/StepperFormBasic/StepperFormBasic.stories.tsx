@@ -24,7 +24,7 @@ export const InitialValue: Story = {
       name: "いと",
       nickname: 1,
       gender: Gender.Man,
-      specie_id: Specie.SekiseiInko,
+      specie_type: Specie.SekiseiInko,
       birth_date: new Date("2021-01-01"),
     },
   },

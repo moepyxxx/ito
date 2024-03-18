@@ -22,14 +22,14 @@ import { getErrorMessage } from "@/utils";
 
 const schema = z
   .object({
-    staple_food: createRadioGroupSchema({
+    staple_food_type: createRadioGroupSchema({
       required: true,
       requiredMessage: getErrorMessage({ type: "required" }),
     }),
     any_staple_food: createTextBoxSchema({
       required: false,
     }),
-    other_foods: createCheckboxSchema({
+    other_food_types: createCheckboxSchema({
       required: false,
     }),
     any_other_foods: createTextBoxSchema({
@@ -39,7 +39,7 @@ const schema = z
   })
   .superRefine((data, ctx) => {
     if (
-      data.staple_food === Number(StapleFoodAnySelect) &&
+      data.staple_food_type === Number(StapleFoodAnySelect) &&
       !data.any_staple_food
     ) {
       ctx.addIssue({
@@ -52,7 +52,7 @@ const schema = z
   })
   .superRefine((data, ctx) => {
     if (
-      data.other_foods.includes(Number(OtherFoodsAnySelect)) &&
+      data.other_food_types.includes(Number(OtherFoodsAnySelect)) &&
       !data.any_other_foods
     ) {
       ctx.addIssue({
@@ -66,9 +66,9 @@ const schema = z
 
 export type FormSubmitType = z.infer<typeof schema>;
 type FormEditType = {
-  staple_food: null | number | string;
+  staple_food_type: null | number | string;
   any_staple_food: string;
-  other_foods: (number | string)[];
+  other_food_types: (number | string)[];
   any_other_foods: string;
 };
 
@@ -90,20 +90,20 @@ export const StepperFormFood: React.FC<Props> = ({
   } = useForm<FormEditType, any, FormSubmitType>({
     defaultValues: initialValue
       ? {
-          staple_food: initialValue.staple_food
-            ? initialValue.staple_food.toString()
+          staple_food_type: initialValue.staple_food_type
+            ? initialValue.staple_food_type.toString()
             : null,
           any_staple_food: initialValue.any_staple_food,
-          other_foods:
-            initialValue.other_foods.length > 0
-              ? initialValue.other_foods.map((food) => food.toString())
+          other_food_types:
+            initialValue.other_food_types.length > 0
+              ? initialValue.other_food_types.map((food) => food.toString())
               : [],
           any_other_foods: initialValue.any_other_foods,
         }
       : {
-          staple_food: null,
+          staple_food_type: null,
           any_staple_food: "",
-          other_foods: [],
+          other_food_types: [],
           any_other_foods: "",
         },
     mode: "onChange",
@@ -112,11 +112,11 @@ export const StepperFormFood: React.FC<Props> = ({
 
   const currentStapleFood = useWatch({
     control,
-    name: "staple_food",
+    name: "staple_food_type",
   });
   const currentOtherFoods = useWatch({
     control,
-    name: "other_foods",
+    name: "other_food_types",
   });
 
   return (
@@ -124,9 +124,11 @@ export const StepperFormFood: React.FC<Props> = ({
       <FormRadioGroup
         label="主食"
         selections={StapleFoodSelections}
-        {...register("staple_food")}
+        {...register("staple_food_type")}
         required
-        errorMessage={errors.staple_food && errors.staple_food.message}
+        errorMessage={
+          errors.staple_food_type && errors.staple_food_type.message
+        }
       />
       {currentStapleFood === StapleFoodAnySelect && (
         <FormTextBox
@@ -141,8 +143,10 @@ export const StepperFormFood: React.FC<Props> = ({
       <FormCheckBox
         label="副食・おやつ・栄養剤"
         selections={OtherFoodsSelections}
-        {...register("other_foods")}
-        errorMessage={errors.other_foods && errors.other_foods.message}
+        {...register("other_food_types")}
+        errorMessage={
+          errors.other_food_types && errors.other_food_types.message
+        }
       />
       {currentOtherFoods.includes(OtherFoodsAnySelect) && (
         <FormTextBox

@@ -15,7 +15,7 @@ const meta = {
         nickname: 1,
         birth_date: new Date("2021-01-01"),
         gender: Gender.Man,
-        specie_id: Specie.SekiseiInko,
+        specie_type: Specie.SekiseiInko,
       },
       objective: {
         body_weight: 35.3,
@@ -23,9 +23,9 @@ const meta = {
         amount_of_water: null,
       },
       food: {
-        staple_food: 1,
+        staple_food_type: 1,
         any_staple_food: "",
-        other_foods: [2, 3, 4, 5, 6, 7, 0],
+        other_food_types: [2, 3, 4, 5, 6, 7, 0],
         any_other_foods: "ハコベ, 豆苗",
       },
     },

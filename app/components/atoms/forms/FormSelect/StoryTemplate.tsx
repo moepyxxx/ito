@@ -17,7 +17,7 @@ export const useStoryTemplate = (
 ) => {
   const { defaultValue, required, disabled } = options;
   const schema = z.object({
-    specie_id: createSelectSchema({
+    specie_type: createSelectSchema({
       required,
       requiredMessage: getErrorMessage({
         type: "required",
@@ -31,9 +31,9 @@ export const useStoryTemplate = (
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<{ specie_id: null | number | string }, any, FormSchemaType>({
+  } = useForm<{ specie_type: null | number | string }, any, FormSchemaType>({
     defaultValues: {
-      specie_id: defaultValue,
+      specie_type: defaultValue,
     },
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -43,8 +43,8 @@ export const useStoryTemplate = (
     <form onSubmit={handleSubmit(console.warn)}>
       <FormSelect
         {...args}
-        {...register("specie_id")}
-        errorMessage={errors.specie_id && errors.specie_id.message}
+        {...register("specie_type")}
+        errorMessage={errors.specie_type && errors.specie_type.message}
         required={required}
         disabled={disabled}
       />
