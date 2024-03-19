@@ -2,6 +2,7 @@ generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["clientExtensions", "multiSchema"]
   engineType      = "binary"
+  output          = "generated"
 }
 
 datasource db {
