@@ -3,7 +3,6 @@ import type {
   torisan as TorisanType,
   torisan_objective as TorisanObjectiveType,
   torisan_staple_food as TorisanStapleFoodType,
-  Prisma,
 } from '../../prisma/generated';
 import { PrismaService } from 'src/prisma.service';
 
@@ -11,8 +10,9 @@ import { PrismaService } from 'src/prisma.service';
 export class TorisansRepository {
   constructor(private prisma: PrismaService) {}
 
-  async createTorisan(
-    tx: Prisma.TransactionClient,
+  // NOTE: https://github.com/prisma/prisma/issues/22354 Prisma.TransactionClientは使えない
+  async createTorisanWithTx(
+    tx: any,
     userId: string,
     torisan: Omit<TorisanType, 'id' | 'created_at' | 'updated_at' | 'user_id'>,
   ): Promise<TorisanType> {
@@ -29,8 +29,8 @@ export class TorisansRepository {
     });
   }
 
-  async createTorisanObjective(
-    tx: Prisma.TransactionClient,
+  async createTorisanObjectiveWithTx(
+    tx: any,
     userId: string,
     torisanId: number,
     torisan: Omit<
@@ -49,8 +49,8 @@ export class TorisansRepository {
     });
   }
 
-  async createTorisanFood(
-    tx: Prisma.TransactionClient,
+  async createTorisanFoodWithTx(
+    tx: any,
     userId: string,
     torisanId: number,
     torisan: Omit<
@@ -69,8 +69,8 @@ export class TorisansRepository {
     });
   }
 
-  async batchCreateTorisanFoodOtherFoodType(
-    tx: Prisma.TransactionClient,
+  async batchCreateTorisanFoodOtherFoodTypeWithTx(
+    tx: any,
     userId: string,
     torisanId: number,
     torisanStapleFoodId: number,

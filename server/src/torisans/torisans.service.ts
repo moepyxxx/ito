@@ -33,27 +33,32 @@ export class TorisansService {
     const { objective, food } = torisan;
 
     return await this.prisma.getRlsClient(userId).$transaction(async (tx) => {
-      const createdBase = await this.repository.createTorisan(tx, userId, {
-        name: torisan.name,
-        nickname: torisan.nickname,
-        specie_type: torisan.specie_type,
-        birth_date: torisan.birth_date,
-        gender_type: torisan.gender_type,
-        stage_type: torisan.stage_type,
-      });
-
-      const createdObjective = await this.repository.createTorisanObjective(
+      const createdBase = await this.repository.createTorisanWithTx(
         tx,
         userId,
-        createdBase.id,
         {
-          body_weight: objective.body_weight,
-          amount_of_water: objective.amount_of_water,
-          amount_of_staple_food: objective.amount_of_staple_food,
+          name: torisan.name,
+          nickname: torisan.nickname,
+          specie_type: torisan.specie_type,
+          birth_date: torisan.birth_date,
+          gender_type: torisan.gender_type,
+          stage_type: torisan.stage_type,
         },
       );
 
-      const createdFood = await this.repository.createTorisanFood(
+      const createdObjective =
+        await this.repository.createTorisanObjectiveWithTx(
+          tx,
+          userId,
+          createdBase.id,
+          {
+            body_weight: objective.body_weight,
+            amount_of_water: objective.amount_of_water,
+            amount_of_staple_food: objective.amount_of_staple_food,
+          },
+        );
+
+      const createdFood = await this.repository.createTorisanFoodWithTx(
         tx,
         userId,
         createdBase.id,
@@ -65,7 +70,7 @@ export class TorisansService {
       );
 
       if (food.other_food_types.length > 0) {
-        await this.repository.batchCreateTorisanFoodOtherFoodType(
+        await this.repository.batchCreateTorisanFoodOtherFoodTypeWithTx(
           tx,
           userId,
           createdBase.id,
