@@ -10,13 +10,11 @@ import { PrismaService } from 'src/prisma.service';
 export class TorisansRepository {
   constructor(private prisma: PrismaService) {}
 
-  // NOTE: https://github.com/prisma/prisma/issues/22354 Prisma.TransactionClientは使えない
-  async createTorisanWithTx(
-    tx: any,
+  async createTorisan(
     userId: string,
     torisan: Omit<TorisanType, 'id' | 'created_at' | 'updated_at' | 'user_id'>,
   ): Promise<TorisanType> {
-    return await tx.torisan.create({
+    return await this.prisma.getRlsClient(userId).torisan.create({
       data: {
         name: torisan.name,
         nickname: torisan.nickname,
@@ -29,8 +27,7 @@ export class TorisansRepository {
     });
   }
 
-  async createTorisanObjectiveWithTx(
-    tx: any,
+  async createTorisanObjective(
     userId: string,
     torisanId: number,
     torisan: Omit<
@@ -38,7 +35,7 @@ export class TorisansRepository {
       'id' | 'created_at' | 'updated_at' | 'user_id' | 'torisan_id'
     >,
   ): Promise<TorisanObjectiveType> {
-    return await tx.torisan_objective.create({
+    return await this.prisma.getRlsClient(userId).torisan_objective.create({
       data: {
         torisan_id: torisanId,
         body_weight: torisan.body_weight,
@@ -49,8 +46,7 @@ export class TorisansRepository {
     });
   }
 
-  async createTorisanFoodWithTx(
-    tx: any,
+  async createTorisanFood(
     userId: string,
     torisanId: number,
     torisan: Omit<
@@ -58,7 +54,7 @@ export class TorisansRepository {
       'id' | 'created_at' | 'updated_at' | 'user_id' | 'torisan_id'
     >,
   ): Promise<TorisanStapleFoodType> {
-    return await tx.torisan_staple_food.create({
+    return await this.prisma.getRlsClient(userId).torisan_staple_food.create({
       data: {
         torisan_id: torisanId,
         staple_food_type: torisan.staple_food_type,
@@ -69,21 +65,22 @@ export class TorisansRepository {
     });
   }
 
-  async batchCreateTorisanFoodOtherFoodTypeWithTx(
-    tx: any,
+  async batchCreateTorisanFoodOtherFoodType(
     userId: string,
     torisanStapleFoodId: number,
     otherFoodTypes: number[],
   ): Promise<number> {
-    const result = await tx.torisan_staple_food_other_food_type.createMany({
-      data: otherFoodTypes.map((otherFoodType) => {
-        return {
-          torisan_staple_food_id: torisanStapleFoodId,
-          other_food_type: otherFoodType,
-          user_id: userId,
-        };
-      }),
-    });
+    const result = await this.prisma
+      .getRlsClient(userId)
+      .torisan_staple_food_other_food_type.createMany({
+        data: otherFoodTypes.map((otherFoodType) => {
+          return {
+            torisan_staple_food_id: torisanStapleFoodId,
+            other_food_type: otherFoodType,
+            user_id: userId,
+          };
+        }),
+      });
     return result.count;
   }
 }
