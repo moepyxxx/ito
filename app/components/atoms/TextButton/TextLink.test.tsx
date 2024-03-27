@@ -1,7 +1,7 @@
 import { describe, test } from "vitest";
 import { composeStory } from "@storybook/react";
 import { render, screen } from "@testing-library/react";
-import Meta, { Base as BaseStory } from "./TextLink.stories";
+import Meta, { Base as BaseStory } from "./TextButton.stories";
 
 const Base = composeStory(BaseStory, Meta);
 
