@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Args, Context, Query, Int } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Context, Query } from '@nestjs/graphql';
 import { CreateTorisan } from './models/createTorisan.model';
 import { TorisansService } from './torisans.service';
 import { Torisan, TorisanBase } from './models/torisan.model';
@@ -24,7 +24,7 @@ export class TorisansResolver {
         gender_type: 1,
       }),
       new TorisanBase({
-        id: 1,
+        id: 2,
         name: 'いと',
         nickname: 'いとちゃん',
         specie_type: 1,
@@ -33,7 +33,7 @@ export class TorisansResolver {
         gender_type: 1,
       }),
       new TorisanBase({
-        id: 1,
+        id: 3,
         name: 'たま',
         nickname: 'たまちゃん',
         specie_type: 1,
