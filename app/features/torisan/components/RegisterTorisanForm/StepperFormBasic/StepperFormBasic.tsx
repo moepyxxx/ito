@@ -28,6 +28,8 @@ const schema = z.object({
   name: createTextBoxSchema({
     required: true,
     requiredMessage: getErrorMessage({ type: "required" }),
+    max: 20,
+    requiredMaxMessage: getErrorMessage({ type: "max", value: 20 }),
   }),
   nickname: createRadioGroupSchema({
     required: true,

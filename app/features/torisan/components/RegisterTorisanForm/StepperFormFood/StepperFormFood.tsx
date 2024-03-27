@@ -28,6 +28,8 @@ const schema = z
     }),
     any_staple_food: createTextBoxSchema({
       required: false,
+      max: 50,
+      requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
     }),
     other_food_types: createCheckboxSchema({
       required: false,
@@ -35,6 +37,8 @@ const schema = z
     any_other_foods: createTextBoxSchema({
       required: false,
       requiredMessage: getErrorMessage({ type: "required" }),
+      max: 50,
+      requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
     }),
   })
   .superRefine((data, ctx) => {

@@ -5,16 +5,26 @@ import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper";
 import { createTextBoxNumberSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
 import { Note } from "@/components/molecules/Note";
+import { getErrorMessage } from "@/utils";
 
 const schema = z.object({
   body_weight: createTextBoxNumberSchema({
     required: false,
+    requiredMessage: getErrorMessage({ type: "required" }),
+    max: 50,
+    requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
   }),
   amount_of_staple_food: createTextBoxNumberSchema({
     required: false,
+    requiredMessage: getErrorMessage({ type: "required" }),
+    max: 50,
+    requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
   }),
   amount_of_water: createTextBoxNumberSchema({
     required: false,
+    requiredMessage: getErrorMessage({ type: "required" }),
+    max: 50,
+    requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
   }),
 });
 
