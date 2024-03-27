@@ -35,8 +35,20 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""鳥さんベーシック"""
+type TorisanBase {
+  id: ID!
+  nickname: String!
+  stage_type: Int!
+  specie_type: Int!
+  name: String!
+  birth_date: DateTime!
+  gender_type: Int!
+}
+
 type Query {
-  torisans: [Int!]!
+  torisans: [TorisanBase!]!
+  torisan(id: Float!): Torisan!
 }
 
 type Mutation {
