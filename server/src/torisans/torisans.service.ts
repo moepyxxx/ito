@@ -73,7 +73,6 @@ export class TorisansService {
         await this.repository.batchCreateTorisanFoodOtherFoodTypeWithTx(
           tx,
           userId,
-          createdBase.id,
           createdFood.id,
           food.other_food_types,
         );

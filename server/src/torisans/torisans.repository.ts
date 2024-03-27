@@ -72,14 +72,12 @@ export class TorisansRepository {
   async batchCreateTorisanFoodOtherFoodTypeWithTx(
     tx: any,
     userId: string,
-    torisanId: number,
     torisanStapleFoodId: number,
     otherFoodTypes: number[],
   ): Promise<number> {
     const result = await tx.torisan_staple_food_other_food_type.createMany({
       data: otherFoodTypes.map((otherFoodType) => {
         return {
-          torisan_id: torisanId,
           torisan_staple_food_id: torisanStapleFoodId,
           other_food_type: otherFoodType,
           user_id: userId,
