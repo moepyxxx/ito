@@ -45,6 +45,7 @@ export const useMutation = <
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
         router.push("/signin?authError=true");
       }
+      toast.info("セッションが切れました。ログインしてください");
       return;
     }
     toast.error(

@@ -7,8 +7,9 @@ import {
 } from "@apollo/client";
 import { useRouter } from "next/navigation";
 import { useQuery as apolloUseQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 
 export const useQuery = <
   TData = any,
@@ -18,7 +19,6 @@ export const useQuery = <
   options?: QueryHookOptions<NoInfer<TData>, NoInfer<TVariables>>
 ) => {
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [cookies] = useCookies(["access_token"]);
 
   const { loading, data, error } = apolloUseQuery<TData, TVariables>(query, {
@@ -30,7 +30,11 @@ export const useQuery = <
     },
   });
 
-  if (error) {
+  useEffect(() => {
+    if (error == null) {
+      return;
+    }
+
     if (error.networkError) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
@@ -38,16 +42,18 @@ export const useQuery = <
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
         router.push("/signin?authError=true");
       }
-    } else {
-      setErrorMessage(
-        "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
-      );
+      toast.info("セッションが切れました。ログインしてください");
+      return;
     }
-  }
+    toast.error(
+      "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
+    );
+  }, [error, router]);
+
+  console.log(data);
 
   return {
     loading,
     data,
-    errorMessage,
   };
 };
