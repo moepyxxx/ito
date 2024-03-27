@@ -8,6 +8,10 @@ type ErrorMessageInput =
       value: number;
     }
   | {
+      type: "maxNumber";
+      value: number;
+    }
+  | {
       type: "required";
     }
   | {
@@ -27,6 +31,8 @@ export const getErrorMessage = (input: ErrorMessageInput) => {
       return "最小" + input.value + "文字以上で入力してください";
     case "max":
       return "最大" + input.value + "文字以下で入力してください";
+    case "maxNumber":
+      return "最大" + input.value + "以下で入力してください";
     case "required":
       return "必須項目です";
     case "number":

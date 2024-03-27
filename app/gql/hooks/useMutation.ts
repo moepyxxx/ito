@@ -1,27 +1,30 @@
 import {
   DocumentNode,
+  MutationHookOptions,
   NoInfer,
   OperationVariables,
-  QueryHookOptions,
   TypedDocumentNode,
 } from "@apollo/client";
 import { useRouter } from "next/navigation";
-import { useQuery as apolloUseQuery } from "@apollo/client";
-import { useState } from "react";
+import { useMutation as apolloUseMutation } from "@apollo/client";
+import { useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 
-export const useQuery = <
+export const useMutation = <
   TData = any,
   TVariables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options?: QueryHookOptions<NoInfer<TData>, NoInfer<TVariables>>
+  options?: MutationHookOptions<NoInfer<TData>, NoInfer<TVariables>>
 ) => {
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [cookies] = useCookies(["access_token"]);
 
-  const { loading, data, error } = apolloUseQuery<TData, TVariables>(query, {
+  const [mutationFn, { data: result, loading, error }] = apolloUseMutation<
+    TData,
+    TVariables
+  >(query, {
     ...options,
     context: {
       headers: {
@@ -30,7 +33,11 @@ export const useQuery = <
     },
   });
 
-  if (error) {
+  useEffect(() => {
+    if (error == null) {
+      return;
+    }
+
     if (error.networkError) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
@@ -38,16 +45,16 @@ export const useQuery = <
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
         router.push("/signin?authError=true");
       }
-    } else {
-      setErrorMessage(
-        "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
-      );
+      return;
     }
-  }
+    toast.error(
+      "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
+    );
+  }, [error, router]);
 
   return {
+    mutationFn,
     loading,
-    data,
-    errorMessage,
+    result,
   };
 };

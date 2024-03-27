@@ -40,10 +40,9 @@ export const createTextBoxNumberSchema = (options: {
     const max = options.max;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore nullableのエラー出るが無視
-    schema = schema.refine(
-      (value) => (value !== null ? value <= max : true),
-      options.requiredMaxMessage
-    );
+    schema = schema.refine((value) => {
+      return value != null && !isNaN(value) ? value <= max : true;
+    }, options.requiredMaxMessage);
   }
 
   return schema;

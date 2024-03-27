@@ -1,5 +1,6 @@
 import { Button } from "@/components/atoms/Button";
 
+// 固有のfuncなどが入れられないのでサンプルとしてやや役に立たない
 export const SampleAction = (
   enableNext: boolean,
   currentStepIndex: number,

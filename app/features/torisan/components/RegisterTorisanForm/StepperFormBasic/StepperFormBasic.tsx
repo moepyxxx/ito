@@ -39,7 +39,7 @@ const schema = z.object({
     required: true,
     requiredMessage: getErrorMessage({ type: "required" }),
   }),
-  gender: createRadioGroupSchema({
+  gender_type: createRadioGroupSchema({
     required: true,
     requiredMessage: getErrorMessage({ type: "required" }),
   }),
@@ -54,7 +54,7 @@ export type FormEditType = {
   name: string;
   nickname: number | string | null;
   specie_type: number | null | string;
-  gender: number | null | string;
+  gender_type: number | null | string;
   birth_date: Date | null;
 };
 
@@ -84,14 +84,16 @@ export const StepperFormBasic: React.FC<Props> = ({
                 ? undefined
                 : initialValue.nickname.toString(),
             specie_type: initialValue.specie_type.toString(),
-            gender: initialValue.gender ? initialValue.gender.toString() : null,
+            gender_type: initialValue.gender_type
+              ? initialValue.gender_type.toString()
+              : null,
             birth_date: initialValue.birth_date,
           }
         : {
             name: "",
             nickname: NicknameDefaultSelect,
             specie_type: null,
-            gender: null,
+            gender_type: null,
             birth_date: null,
           },
     mode: "onChange",
@@ -128,9 +130,9 @@ export const StepperFormBasic: React.FC<Props> = ({
       <FormRadioGroup
         label="種類"
         selections={GenderSelections}
-        {...register("gender")}
+        {...register("gender_type")}
         required
-        errorMessage={errors.gender && errors.gender.message}
+        errorMessage={errors.gender_type && errors.gender_type.message}
       />
       <FormSelectMonth
         label="誕生日"

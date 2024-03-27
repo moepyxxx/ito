@@ -54,7 +54,7 @@ export const StepperFormConfirm: React.FC<Props> = ({
       {
         label: "性別",
         content: GenderSelections.find(
-          (gender) => gender.value === basic.gender
+          (gender) => gender.value === basic.gender_type
         )!.label,
       },
       {

@@ -14,7 +14,7 @@ const meta = {
         name: "いと",
         nickname: 1,
         birth_date: new Date("2021-01-01"),
-        gender: Gender.Man,
+        gender_type: Gender.Man,
         specie_type: Specie.SekiseiInko,
       },
       objective: {

@@ -16,3 +16,12 @@ export const TORISANS = gql`
     }
   }
 `;
+
+export const CREATE_TORISAN = gql`
+  mutation CreateTorisan($torisan: CreateTorisan!) {
+    createTorisan(torisan: $torisan) {
+      id
+      nickname
+    }
+  }
+`;

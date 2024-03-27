@@ -10,21 +10,18 @@ import { getErrorMessage } from "@/utils";
 const schema = z.object({
   body_weight: createTextBoxNumberSchema({
     required: false,
-    requiredMessage: getErrorMessage({ type: "required" }),
     max: 50,
-    requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
+    requiredMaxMessage: getErrorMessage({ type: "maxNumber", value: 50 }),
   }),
   amount_of_staple_food: createTextBoxNumberSchema({
     required: false,
-    requiredMessage: getErrorMessage({ type: "required" }),
     max: 50,
-    requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
+    requiredMaxMessage: getErrorMessage({ type: "maxNumber", value: 50 }),
   }),
   amount_of_water: createTextBoxNumberSchema({
     required: false,
-    requiredMessage: getErrorMessage({ type: "required" }),
     max: 50,
-    requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
+    requiredMaxMessage: getErrorMessage({ type: "maxNumber", value: 50 }),
   }),
 });
 

@@ -1,13 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { StepperFormObjective } from "./StepperFormObjective";
 import { SampleAction } from "../stories/sampleAction";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "torisan/RegisterTorisanForm/StepperFormObjective",
   component: StepperFormObjective,
   args: {
     renderStepperActions: (enableNext) => SampleAction(enableNext, 1, false),
-    onSubmit: (data) => console.warn(data),
+    onSubmit: (data) => fn()(data),
     initialValue: null,
   },
 } satisfies Meta<typeof StepperFormObjective>;
