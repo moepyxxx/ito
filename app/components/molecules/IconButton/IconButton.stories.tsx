@@ -48,3 +48,9 @@ export const Strong: Story = {
     strong: true,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
