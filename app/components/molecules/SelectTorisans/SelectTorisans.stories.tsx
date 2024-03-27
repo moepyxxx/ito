@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { SelectTorisans } from "./SelectTorisans";
 import { Stage } from "@ito/common";
+import { fn } from "@storybook/test";
 
 const meta = {
-  title: "organisms/SelectTorisans",
+  title: "molecules/SelectTorisans",
   component: SelectTorisans,
   args: {
     torisans: [
@@ -27,7 +28,8 @@ const meta = {
         stage: Stage.Observation,
       },
     ],
-    onSubmit: () => {},
+    onSubmit: fn(),
+    submitMessage: "鳥さんの情報を見る",
   },
   argTypes: {},
 } satisfies Meta<typeof SelectTorisans>;

@@ -1,4 +1,4 @@
-import { SelectTorisans } from "@/components/organisms/SelectTorisans";
+import { SelectTorisans } from "@/components/molecules/SelectTorisans";
 import { SUMMARY_TORISAN } from "@/gql/queries";
 import { StageType } from "@ito/common";
 import { useRouter } from "next/navigation";
