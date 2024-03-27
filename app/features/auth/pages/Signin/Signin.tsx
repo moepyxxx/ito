@@ -2,7 +2,7 @@
 
 import { signin } from "@/api";
 import { Title } from "@/components/molecules/Title";
-import { AuthForm } from "@/components/organisms/AuthForm/AuthForm";
+import { AuthForm } from "@/features/auth/components/AuthForm/AuthForm";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useCookies } from "react-cookie";
