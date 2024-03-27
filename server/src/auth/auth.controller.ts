@@ -46,10 +46,10 @@ export class AuthController {
     }
 
     return new AuthUser({
-      email: data?.user?.email,
-      id: data?.user?.id,
-      refresh_token: data?.session?.refresh_token,
-      access_token: data?.session?.access_token,
+      email: data.user!.email!,
+      id: data.user!.id,
+      refresh_token: data.session!.refresh_token,
+      access_token: data.session!.access_token,
     });
   }
 
@@ -64,7 +64,6 @@ export class AuthController {
 
     if (error && data.user == null) {
       if (error instanceof AuthApiError) {
-        console.log('api error dayo');
         throw new HttpException(
           CAN_NOT_AUTHORIZE_MESSAGE,
           HttpStatus.UNAUTHORIZED,
@@ -78,10 +77,10 @@ export class AuthController {
     }
 
     return new AuthUser({
-      email: data.user.email,
-      id: data.user.id,
-      refresh_token: data.session.refresh_token,
-      access_token: data.session.access_token,
+      email: data.user!.email!,
+      id: data.user!.id,
+      refresh_token: data.session!.refresh_token,
+      access_token: data.session!.access_token,
     });
   }
 }

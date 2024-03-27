@@ -1,5 +1,32 @@
-import { Field, ID, InputType, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, Int, ObjectType } from '@nestjs/graphql';
 import { GenderType, SpecieType, StageType } from '../../../common';
+
+@ObjectType({ description: '鳥さんの目標' })
+export class TorisanObjectiveObject {
+  @Field(() => Float, { nullable: true })
+  body_weight: number | null;
+
+  @Field(() => Float, { nullable: true })
+  amount_of_water: number | null;
+
+  @Field(() => Float, { nullable: true })
+  amount_of_staple_food: number | null;
+}
+
+@ObjectType({ description: '鳥さんのごはん' })
+export class TorisanFoodObject {
+  @Field(() => Int, { nullable: true })
+  staple_food_type: number;
+
+  @Field(() => String, { nullable: true })
+  any_staple_food: string | null;
+
+  @Field(() => [Int])
+  other_food_types: number[];
+
+  @Field(() => String, { nullable: true })
+  any_other_foods: string | null;
+}
 
 @ObjectType({ description: '鳥さん詳細' })
 export class Torisan {
@@ -24,17 +51,11 @@ export class Torisan {
   @Field(() => Int)
   gender_type: GenderType;
 
-  // @Field(() => Int, { nullable: true })
-  // objective_body_weight: number | null;
+  @Field(() => TorisanObjectiveObject)
+  objective: TorisanObjectiveObject;
 
-  // @Field(() => Int, { nullable: true })
-  // objective_amount_of_water: number | null;
-
-  // @Field(() => Int, { nullable: true })
-  // staple_food_id: number | null;
-
-  // @Field(() => [Int], { nullable: true })
-  // additional_food_ids: number[] | null;
+  @Field(() => TorisanFoodObject)
+  food: TorisanFoodObject;
 
   constructor(torisan: {
     id: number;
@@ -44,6 +65,8 @@ export class Torisan {
     gender_type: number;
     name: string;
     birth_date: Date;
+    objective: TorisanObjectiveObject;
+    food: TorisanFoodObject;
   }) {
     this.id = torisan.id;
     this.nickname = torisan.nickname;
@@ -52,26 +75,7 @@ export class Torisan {
     this.gender_type = torisan.gender_type as GenderType;
     this.name = torisan.name;
     this.birth_date = torisan.birth_date;
+    this.objective = torisan.objective;
+    this.food = torisan.food;
   }
-}
-
-@InputType()
-export class CreateTorisan {
-  @Field(() => String)
-  nickname: string;
-
-  @Field(() => String)
-  name: string;
-
-  @Field(() => Int)
-  stage_type: StageType;
-
-  @Field(() => Int)
-  specie_type: SpecieType;
-
-  @Field(() => Date)
-  birth_date: Date;
-
-  @Field(() => Int)
-  gender_type: GenderType;
 }

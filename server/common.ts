@@ -45,3 +45,6 @@ export const StageLabel: Record<StageType, string> = {
   [Stage.MedicalTreatment]: '通院ステージ',
   [Stage.Hospitalization]: '入院ステージ',
 };
+
+export const OtherFoodsAnySelect = 0;
+export const StapleFoodAnySelect = 0;

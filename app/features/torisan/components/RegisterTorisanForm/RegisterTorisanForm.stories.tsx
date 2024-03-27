@@ -6,7 +6,7 @@ const meta = {
   title: "torisan/RegisterTorisanForm",
   component: RegisterTorisanForm,
   args: {
-    onSubmit: (torisan: any) => console.warn(torisan),
+    onSubmit: (torisan) => console.warn(torisan),
   },
   argTypes: {},
 } satisfies Meta<typeof RegisterTorisanForm>;

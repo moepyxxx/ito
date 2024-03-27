@@ -20,9 +20,11 @@ export type Scalars = {
 
 export type CreateTorisan = {
   birth_date: Scalars['DateTime']['input'];
+  food: TorisanFood;
   gender_type: Scalars['Int']['input'];
   name: Scalars['String']['input'];
   nickname: Scalars['String']['input'];
+  objective: TorisanObjective;
   specie_type: Scalars['Int']['input'];
   stage_type: Scalars['Int']['input'];
 };
@@ -30,6 +32,7 @@ export type CreateTorisan = {
 export type Mutation = {
   __typename?: 'Mutation';
   createTorisan: Torisan;
+  signout: Scalars['Boolean']['output'];
 };
 
 
@@ -39,25 +42,53 @@ export type MutationCreateTorisanArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  torisan: Torisan;
-  torisans: Array<Torisan>;
-};
-
-
-export type QueryTorisanArgs = {
-  id: Scalars['Float']['input'];
+  torisans: Array<Scalars['Int']['output']>;
 };
 
 /** 鳥さん詳細 */
 export type Torisan = {
   __typename?: 'Torisan';
   birth_date: Scalars['DateTime']['output'];
+  food: TorisanFoodObject;
   gender_type: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   nickname: Scalars['String']['output'];
+  objective: TorisanObjectiveObject;
   specie_type: Scalars['Int']['output'];
   stage_type: Scalars['Int']['output'];
+};
+
+/** 鳥さんのごはん */
+export type TorisanFood = {
+  any_other_foods?: InputMaybe<Scalars['String']['input']>;
+  any_staple_food?: InputMaybe<Scalars['String']['input']>;
+  other_food_types: Array<Scalars['Int']['input']>;
+  staple_food_type?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** 鳥さんのごはん */
+export type TorisanFoodObject = {
+  __typename?: 'TorisanFoodObject';
+  any_other_foods?: Maybe<Scalars['String']['output']>;
+  any_staple_food?: Maybe<Scalars['String']['output']>;
+  other_food_types: Array<Scalars['Int']['output']>;
+  staple_food_type?: Maybe<Scalars['Int']['output']>;
+};
+
+/** 鳥さんの目標 */
+export type TorisanObjective = {
+  amount_of_staple_food?: InputMaybe<Scalars['Float']['input']>;
+  amount_of_water?: InputMaybe<Scalars['Float']['input']>;
+  body_weight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+/** 鳥さんの目標 */
+export type TorisanObjectiveObject = {
+  __typename?: 'TorisanObjectiveObject';
+  amount_of_staple_food?: Maybe<Scalars['Float']['output']>;
+  amount_of_water?: Maybe<Scalars['Float']['output']>;
+  body_weight?: Maybe<Scalars['Float']['output']>;
 };
 
 
@@ -141,6 +172,10 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Torisan: ResolverTypeWrapper<Torisan>;
+  TorisanFood: TorisanFood;
+  TorisanFoodObject: ResolverTypeWrapper<TorisanFoodObject>;
+  TorisanObjective: TorisanObjective;
+  TorisanObjectiveObject: ResolverTypeWrapper<TorisanObjectiveObject>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -155,6 +190,10 @@ export type ResolversParentTypes = {
   Query: {};
   String: Scalars['String']['output'];
   Torisan: Torisan;
+  TorisanFood: TorisanFood;
+  TorisanFoodObject: TorisanFoodObject;
+  TorisanObjective: TorisanObjective;
+  TorisanObjectiveObject: TorisanObjectiveObject;
 };
 
 export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
@@ -163,21 +202,38 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createTorisan?: Resolver<ResolversTypes['Torisan'], ParentType, ContextType, RequireFields<MutationCreateTorisanArgs, 'torisan'>>;
+  signout?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  torisan?: Resolver<ResolversTypes['Torisan'], ParentType, ContextType, RequireFields<QueryTorisanArgs, 'id'>>;
-  torisans?: Resolver<Array<ResolversTypes['Torisan']>, ParentType, ContextType>;
+  torisans?: Resolver<Array<ResolversTypes['Int']>, ParentType, ContextType>;
 };
 
 export type TorisanResolvers<ContextType = any, ParentType extends ResolversParentTypes['Torisan'] = ResolversParentTypes['Torisan']> = {
   birth_date?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  food?: Resolver<ResolversTypes['TorisanFoodObject'], ParentType, ContextType>;
   gender_type?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   nickname?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  objective?: Resolver<ResolversTypes['TorisanObjectiveObject'], ParentType, ContextType>;
   specie_type?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   stage_type?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TorisanFoodObjectResolvers<ContextType = any, ParentType extends ResolversParentTypes['TorisanFoodObject'] = ResolversParentTypes['TorisanFoodObject']> = {
+  any_other_foods?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  any_staple_food?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  other_food_types?: Resolver<Array<ResolversTypes['Int']>, ParentType, ContextType>;
+  staple_food_type?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TorisanObjectiveObjectResolvers<ContextType = any, ParentType extends ResolversParentTypes['TorisanObjectiveObject'] = ResolversParentTypes['TorisanObjectiveObject']> = {
+  amount_of_staple_food?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  amount_of_water?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  body_weight?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -186,5 +242,7 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Torisan?: TorisanResolvers<ContextType>;
+  TorisanFoodObject?: TorisanFoodObjectResolvers<ContextType>;
+  TorisanObjectiveObject?: TorisanObjectiveObjectResolvers<ContextType>;
 };
 

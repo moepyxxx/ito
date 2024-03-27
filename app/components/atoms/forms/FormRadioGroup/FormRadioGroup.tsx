@@ -1,19 +1,12 @@
-import { SyntheticEvent, forwardRef, useId } from "react";
+import { forwardRef, useId } from "react";
 import { Typography } from "../../Typography";
 import { Button } from "../../Button";
+import { InputProps } from "../FormCheckBox";
 
-export type InputProps = {
-  onChange: (e: SyntheticEvent) => void;
-  onBlur: (e: SyntheticEvent) => void;
-  name: string;
-  label: string;
-  required?: boolean;
-  disabled?: boolean;
-  errorMessage?: string;
-};
+export type Selection = { value: number; label: string; disabled?: boolean };
 
 type Props = InputProps & {
-  selections: { value: string; label: string; disabled?: boolean }[];
+  selections: Selection[];
   reset?: () => void;
 };
 
@@ -27,7 +20,7 @@ export const FormRadioGroup = forwardRef<HTMLInputElement, Props>(
     return (
       <fieldset
         role="radiogroup"
-        className="my-4"
+        className="my-4 relative"
         aria-invalid={errorMessage ? true : false}
         area-describedby={`${uniqueId}-error`}>
         <legend className="flex items-center">
@@ -37,14 +30,14 @@ export const FormRadioGroup = forwardRef<HTMLInputElement, Props>(
           )}
           {disabled && <Typography size="small">（選択できません）</Typography>}
         </legend>
-        <div className="mt-2">
+        <div className="mt-1">
           {selections.map((selection) => (
             <div key={selection.value}>
               <input
                 {...restArgs}
                 ref={ref}
                 type="radio"
-                value={selection.value}
+                value={selection.value.toString()}
                 id={`${uniqueId}-${selection.value}`}
                 disabled={disabled || selection.disabled}
               />
@@ -60,7 +53,7 @@ export const FormRadioGroup = forwardRef<HTMLInputElement, Props>(
           <Typography
             color="error"
             size="small"
-            className="mt-2"
+            className="mt-2 absolute bottom-[-28px] left-0"
             id={`${uniqueId}-error`}>
             {errorMessage}
           </Typography>

@@ -5,6 +5,7 @@ const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./features/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -19,6 +20,8 @@ const config: Config = {
       error: getHtmlCodeFromColorKey("error"),
       "thin-error": getHtmlCodeFromColorKey("thin_error"),
       white: getHtmlCodeFromColorKey("white"),
+      warning: getHtmlCodeFromColorKey("warning"),
+      "thin-warning": getHtmlCodeFromColorKey("thin_warning"),
     },
     fontFamily: {
       narrow: ["PT Sans Narrow", "sans-serif"],
@@ -26,6 +29,25 @@ const config: Config = {
       caveat: ["Caveat", "sans-serif"],
     },
   },
+  safelist: [
+    "bg-primary",
+    "bg-thin-primary",
+    "bg-secondary",
+    "bg-black",
+    "bg-deep-gray",
+    "bg-gray",
+    "bg-thin-gray",
+    "bg-error",
+    "bg-thin-error",
+    "bg-white",
+    "bg-warning",
+    "bg-thin-warning",
+    "text-primary",
+    "text-secondary",
+    "text-black",
+    "text-error",
+    "text-warning",
+  ],
   plugins: [],
 };
 export default config;

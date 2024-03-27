@@ -5,3 +5,9 @@ export const Specie = {
 } as const;
 export type SpecieKey = keyof typeof Specie;
 export type SpecieType = (typeof Specie)[keyof typeof Specie];
+
+export const SpecieSelections = [
+  { value: Specie.SekiseiInko, label: "セキセイインコ" },
+  { value: Specie.OkameInko, label: "オカメインコ" },
+  { value: Specie.KozakuraInko, label: "コザクラインコ" },
+];

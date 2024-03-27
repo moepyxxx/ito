@@ -4,7 +4,6 @@ const nextConfig = {
   // see: https://nextjs.org/docs/messages/swc-disabled
   experimental: {
     forceSwcTransforms: true,
-    serverActions: true,
   },
   rewrites: async () => {
     return [

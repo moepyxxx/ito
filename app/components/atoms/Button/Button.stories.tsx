@@ -31,6 +31,13 @@ export const Secondary: Story = {
     },
   },
 };
+export const SecondaryBorder: Story = {
+  args: {
+    variant: {
+      type: "secondary-border",
+    },
+  },
+};
 export const Default: Story = {
   args: {
     variant: {

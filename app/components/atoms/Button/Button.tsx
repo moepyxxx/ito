@@ -9,6 +9,7 @@ const buttonStyle = tv({
       primary: "bg-primary border-primary",
       secondary: "bg-secondary border-secondary text-white",
       default: "border-black text-sm w-28",
+      "secondary-border": "border-secondary text-secondary",
     },
     disabled: {
       true: "border-gray bg-gray text-deep-gray pointer-events-none",
@@ -33,7 +34,7 @@ export type Element =
 
 export type Variant =
   | {
-      type: "primary" | "secondary";
+      type: "primary" | "secondary" | "secondary-border";
       counter?: number;
     }
   | {

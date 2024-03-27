@@ -6,7 +6,7 @@ export const Paper: React.FC<WithBaseElementProps> = ({
   id,
 }) => {
   return (
-    <div className={`bg-white rounded shadow-md p-4 ${className}`} id={id}>
+    <div className={`bg-white rounded-xl shadow-md p-4 ${className}`} id={id}>
       {children}
     </div>
   );

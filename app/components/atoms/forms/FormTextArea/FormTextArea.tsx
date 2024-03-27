@@ -4,7 +4,7 @@ import { InputProps } from "../FormCheckBox";
 import { tv } from "tailwind-variants";
 
 const textAreaStyle = tv({
-  base: "mt-2 p-1 border border-solid border-deep-gray rounded w-full",
+  base: "mt-1 p-1 border border-solid border-deep-gray rounded max-w-96 w-full",
   variants: {
     disabled: {
       true: "text-deep-gray",
@@ -21,7 +21,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, Props>(
   ({ label, required, disabled, errorMessage, rows = 5, ...restArgs }, ref) => {
     const uniqueId = useId();
     return (
-      <div className="my-4">
+      <div className="my-4 relative">
         <label htmlFor={uniqueId} className="flex items-center">
           <Typography>{label}</Typography>
           {required && <Typography size="small">（入力必須です）</Typography>}
@@ -42,7 +42,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, Props>(
             color="error"
             size="small"
             id={`${uniqueId}-error`}
-            className="mt-2">
+            className="mt-2 absolute bottom-[-28px] left-0">
             {errorMessage}
           </Typography>
         )}

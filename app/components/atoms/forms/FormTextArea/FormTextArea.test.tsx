@@ -18,12 +18,14 @@ describe("FormTextArea", () => {
     render(<Base />);
     expect(screen.getByText(/気になることのメモ/)).toBeInTheDocument();
   });
+
   test("入力できること", async () => {
     render(<Base />);
     const textbox = screen.getByRole("textbox", { name: "気になることのメモ" });
     await user.type(textbox, "テスト");
     expect(textbox).toHaveValue("テスト");
   });
+
   test("必須の時入力がない場合はエラーメッセージが表示されること", async () => {
     render(<Required />);
     const textbox = screen.getByRole("textbox", {
@@ -36,6 +38,7 @@ describe("FormTextArea", () => {
     await user.click(screen.getByRole("button", { name: "データ確認" }));
     expect(screen.getByText(/必須項目です/)).toBeInTheDocument();
   });
+
   test("disabledの時入力できないこと", async () => {
     render(<Disabled />);
     const textbox = screen.getByRole("textbox", {

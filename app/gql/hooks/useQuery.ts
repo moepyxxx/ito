@@ -30,14 +30,18 @@ export const useQuery = <
     },
   });
 
-  if (error?.networkError) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore resultはserver側で定義して存在するよう設定したため
-    const { error: errorType, message } = error.networkError.result;
-    if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
-      router.push("/signin?authError=true");
+  if (error) {
+    if (error.networkError) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore resultはserver側で定義して存在するよう設定したため
+      const { error: errorType } = error.networkError.result;
+      if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
+        router.push("/signin?authError=true");
+      }
     } else {
-      setErrorMessage(message);
+      setErrorMessage(
+        "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
+      );
     }
   }
 

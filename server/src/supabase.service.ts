@@ -6,7 +6,7 @@ export class SupabaseService implements OnModuleInit {
   supabase: SupabaseClient;
   async onModuleInit() {
     const supabaseUrl = 'http://localhost:54321';
-    const supabaseKey = process.env.SUPABASE_KEY;
+    const supabaseKey = process.env.SUPABASE_KEY || '';
     this.supabase = createClient(supabaseUrl, supabaseKey);
   }
 }

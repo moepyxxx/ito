@@ -1,8 +1,7 @@
 import { Button } from "@/components/atoms/Button";
 import { TextLink } from "@/components/atoms/TextLink";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
-import { ErrorMessage } from "@/components/molecules/ErrorMessage/ErrorMessage";
-import { useErrorMessage } from "@/hooks";
+import { getErrorMessage } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,7 +18,6 @@ type Props = {
     label: string;
     href: string;
   };
-  errorMessage: null | string;
 };
 
 const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*()_+\-=<>?,./:;'"[\]{}~\\]+$/;
@@ -27,9 +25,7 @@ export const AuthForm: React.FC<Props> = ({
   onSubmit,
   submitLabel,
   otherLink,
-  errorMessage,
 }) => {
-  const getErrorMessage = useErrorMessage();
   const schema = z.object({
     email: z
       .string()
@@ -61,21 +57,22 @@ export const AuthForm: React.FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-96 mx-auto">
-      {errorMessage && <ErrorMessage message={errorMessage} />}
-      <FormTextBox
-        label="ユーザーID（メールアドレス）"
-        inputType="text"
-        {...register("email")}
-        required
-        errorMessage={errors.email && errors.email.message}
-      />
-      <FormTextBox
-        label="パスワード"
-        inputType="password"
-        {...register("password")}
-        required
-        errorMessage={errors.password && errors.password.message}
-      />
+      <div className="flex flex-col	gap-1">
+        <FormTextBox
+          label="ユーザーID（メールアドレス）"
+          inputType="text"
+          {...register("email")}
+          required
+          errorMessage={errors.email && errors.email.message}
+        />
+        <FormTextBox
+          label="パスワード"
+          inputType="password"
+          {...register("password")}
+          required
+          errorMessage={errors.password && errors.password.message}
+        />
+      </div>
       <div className="flex flex-col items-center mt-8">
         <Button
           variant={{ type: "primary" }}

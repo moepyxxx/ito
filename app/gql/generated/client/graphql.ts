@@ -19,9 +19,11 @@ export type Scalars = {
 
 export type CreateTorisan = {
   birth_date: Scalars['DateTime']['input'];
+  food: TorisanFood;
   gender_type: Scalars['Int']['input'];
   name: Scalars['String']['input'];
   nickname: Scalars['String']['input'];
+  objective: TorisanObjective;
   specie_type: Scalars['Int']['input'];
   stage_type: Scalars['Int']['input'];
 };
@@ -29,6 +31,7 @@ export type CreateTorisan = {
 export type Mutation = {
   __typename?: 'Mutation';
   createTorisan: Torisan;
+  signout: Scalars['Boolean']['output'];
 };
 
 
@@ -38,23 +41,51 @@ export type MutationCreateTorisanArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  torisan: Torisan;
-  torisans: Array<Torisan>;
-};
-
-
-export type QueryTorisanArgs = {
-  id: Scalars['Float']['input'];
+  torisans: Array<Scalars['Int']['output']>;
 };
 
 /** 鳥さん詳細 */
 export type Torisan = {
   __typename?: 'Torisan';
   birth_date: Scalars['DateTime']['output'];
+  food: TorisanFoodObject;
   gender_type: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   nickname: Scalars['String']['output'];
+  objective: TorisanObjectiveObject;
   specie_type: Scalars['Int']['output'];
   stage_type: Scalars['Int']['output'];
+};
+
+/** 鳥さんのごはん */
+export type TorisanFood = {
+  any_other_foods?: InputMaybe<Scalars['String']['input']>;
+  any_staple_food?: InputMaybe<Scalars['String']['input']>;
+  other_food_types: Array<Scalars['Int']['input']>;
+  staple_food_type?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** 鳥さんのごはん */
+export type TorisanFoodObject = {
+  __typename?: 'TorisanFoodObject';
+  any_other_foods?: Maybe<Scalars['String']['output']>;
+  any_staple_food?: Maybe<Scalars['String']['output']>;
+  other_food_types: Array<Scalars['Int']['output']>;
+  staple_food_type?: Maybe<Scalars['Int']['output']>;
+};
+
+/** 鳥さんの目標 */
+export type TorisanObjective = {
+  amount_of_staple_food?: InputMaybe<Scalars['Float']['input']>;
+  amount_of_water?: InputMaybe<Scalars['Float']['input']>;
+  body_weight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+/** 鳥さんの目標 */
+export type TorisanObjectiveObject = {
+  __typename?: 'TorisanObjectiveObject';
+  amount_of_staple_food?: Maybe<Scalars['Float']['output']>;
+  amount_of_water?: Maybe<Scalars['Float']['output']>;
+  body_weight?: Maybe<Scalars['Float']['output']>;
 };
