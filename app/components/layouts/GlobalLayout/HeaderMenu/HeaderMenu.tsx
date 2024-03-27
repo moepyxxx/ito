@@ -9,8 +9,8 @@ const subMenus: {
   icon: IconType;
   label: string;
 }[] = [
-  { path: "/faq", label: "よくある質問", icon: "faq" },
-  { path: "/account", label: "アカウント設定", icon: "account" },
+  { path: "/p/faq", label: "よくある質問", icon: "faq" },
+  { path: "/p/account", label: "アカウント設定", icon: "account" },
 ];
 
 export const HeaderMenu: React.FC = () => {
