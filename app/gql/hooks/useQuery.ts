@@ -50,8 +50,6 @@ export const useQuery = <
     );
   }, [error, router]);
 
-  console.log(data);
-
   return {
     loading,
     data,
