@@ -2,22 +2,26 @@
 
 import { signup } from "@/api";
 import { Title } from "@/components/molecules/Title";
+import { useSignin } from "@/contexts/AuthContext";
 import { AuthForm } from "@/features/auth/components/AuthForm/AuthForm";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 
 export const Signup: React.FC = () => {
   const router = useRouter();
-
-  const [_, setCookie] = useCookies(["access_token"]);
+  const appSignin = useSignin();
 
   const handleSubmit = async (data: AuthForm) => {
     const res = await signup({ user: data });
     if (res.error == null) {
-      setCookie("access_token", res.result?.accessToken);
-      router.push("/p");
+      if (res.result != null) {
+        appSignin({
+          accessToken: res.result.accessToken,
+          refreshToken: res.result.refreshToken,
+        });
+        router.push("/p");
+      }
       return;
     }
     toast.error(res.error.message);

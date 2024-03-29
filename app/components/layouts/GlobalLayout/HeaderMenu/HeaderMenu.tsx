@@ -2,7 +2,8 @@ import { IconType } from "@/components/atoms/Icon";
 import { Logo } from "@/components/atoms/Logo";
 import { IconButton } from "@/components/molecules/IconButton";
 import { IconTextLink } from "@/components/molecules/IconTextLink";
-import { mediaQuery, useAuth, useMediaQuery } from "@/hooks";
+import { mediaQuery, useMediaQuery } from "@/hooks";
+import { useAuth } from "@/contexts/AuthContext";
 
 const subMenus: {
   path: string;

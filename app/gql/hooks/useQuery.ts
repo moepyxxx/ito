@@ -8,8 +8,8 @@ import {
 import { useRouter } from "next/navigation";
 import { useQuery as apolloUseQuery } from "@apollo/client";
 import { useEffect } from "react";
-import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
+import { useAuthTokens } from "@/contexts/AuthContext";
 
 export const useQuery = <
   TData = any,
@@ -19,13 +19,13 @@ export const useQuery = <
   options?: QueryHookOptions<NoInfer<TData>, NoInfer<TVariables>>
 ) => {
   const router = useRouter();
-  const [cookies] = useCookies(["access_token"]);
+  const authTokens = useAuthTokens();
 
   const { loading, data, error } = apolloUseQuery<TData, TVariables>(query, {
     ...options,
     context: {
       headers: {
-        Authorization: `Bearer ${cookies.access_token}`,
+        Authorization: `Bearer ${authTokens?.accessToken}`,
       },
     },
   });
@@ -39,10 +39,10 @@ export const useQuery = <
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
       const { error: errorType } = error.networkError.result;
+      toast.info("セッションが切れました。ログインしてください");
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
         router.push("/signin?authError=true");
       }
-      toast.info("セッションが切れました。ログインしてください");
       return;
     }
     toast.error(

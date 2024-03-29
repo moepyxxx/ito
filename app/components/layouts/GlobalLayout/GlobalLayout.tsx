@@ -1,9 +1,10 @@
 "use client";
 
-import { mediaQuery, useAuth, useMediaQuery } from "@/hooks";
+import { mediaQuery, useMediaQuery } from "@/hooks";
 import { HeaderMenu } from "./HeaderMenu/HeaderMenu";
 import { SideNavigationMenu } from "./SideNavigationMenu";
 import { FixedNavigationMenu } from "./FixedNavigationMenu";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Props = {
   children: React.ReactNode;

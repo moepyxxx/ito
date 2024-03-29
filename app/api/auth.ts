@@ -1,4 +1,5 @@
 "use server";
+
 import { client, restRequest, Response } from ".";
 
 export type AuthReqBody = {
@@ -29,4 +30,16 @@ export async function signin(
   return restRequest(() =>
     client.create<AuthResUser>("/api/auth/signin", request)
   );
+}
+
+export async function refresh(
+  refreshToken: string
+): Promise<Response<AuthResUser>> {
+  return restRequest(() => {
+    return client.create<AuthResUser>("/api/auth/refresh", {
+      token: {
+        refreshToken: refreshToken + "/",
+      },
+    });
+  });
 }
