@@ -1,6 +1,7 @@
 "use client";
 
 import { signup } from "@/api";
+import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
 import { Title } from "@/components/molecules/Title";
 import { useSignin } from "@/contexts/AuthContext";
 import { AuthForm } from "@/features/auth/components/AuthForm/AuthForm";
@@ -27,7 +28,7 @@ export const Signup: React.FC = () => {
     toast.error(res.error.message);
   };
   return (
-    <>
+    <PageLayout>
       <Title title="サインアップ" />
       <AuthForm
         submitLabel="サインアップ"
@@ -37,6 +38,6 @@ export const Signup: React.FC = () => {
         }}
         onSubmit={handleSubmit}
       />
-    </>
+    </PageLayout>
   );
 };

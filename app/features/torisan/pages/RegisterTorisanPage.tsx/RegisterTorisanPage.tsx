@@ -1,6 +1,5 @@
 "use client";
 
-import { Typography } from "@/components/atoms/Typography";
 import {
   RegisterTorisan,
   RegisterTorisanForm,
@@ -13,6 +12,8 @@ import {
 import { CREATE_TORISAN } from "@/gql/queries";
 import { useMutation } from "@/gql/hooks";
 import { Stage } from "@ito/common";
+import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
+import { Title } from "@/components/molecules/Title";
 
 export const RegisterTorisanPage: React.FC = () => {
   const router = useRouter();
@@ -51,16 +52,9 @@ export const RegisterTorisanPage: React.FC = () => {
   };
 
   return (
-    <div className="px-4">
-      <div className="my-8">
-        <Typography className="text-center">
-          新しい鳥さんの登録をします
-        </Typography>
-        <Typography className="text-center">
-          鳥さんの情報を教えてください
-        </Typography>
-      </div>
+    <PageLayout>
+      <Title title="鳥さんの登録" description="鳥さんの情報を教えてください" />
       <RegisterTorisanForm onSubmit={handleSubmit} />
-    </div>
+    </PageLayout>
   );
 };

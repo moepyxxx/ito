@@ -1,4 +1,5 @@
 import { Typography } from "@/components/atoms/Typography";
+import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
 import { DescriptionLink } from "@/components/molecules/DescriptionLink";
 import { Title } from "@/components/molecules/Title";
 
@@ -52,7 +53,7 @@ const accountLinks: { heading: string; links: Link[] }[] = [
 
 export const AccountList: React.FC = () => {
   return (
-    <div className="px-4">
+    <PageLayout>
       <Title
         title="アカウント設定"
         description={`パートナーさん情報の確認・編集や
@@ -76,6 +77,6 @@ export const AccountList: React.FC = () => {
           </div>
         </div>
       ))}
-    </div>
+    </PageLayout>
   );
 };
