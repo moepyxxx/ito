@@ -2,15 +2,16 @@ import { IconType } from "@/components/atoms/Icon";
 import { Logo } from "@/components/atoms/Logo";
 import { IconButton } from "@/components/molecules/IconButton";
 import { IconTextLink } from "@/components/molecules/IconTextLink";
-import { mediaQuery, useAuth, useMediaQuery } from "@/hooks";
+import { mediaQuery, useMediaQuery } from "@/hooks";
+import { useAuth } from "@/contexts/AuthContext";
 
 const subMenus: {
   path: string;
   icon: IconType;
   label: string;
 }[] = [
-  { path: "/faq", label: "よくある質問", icon: "faq" },
-  { path: "/account", label: "アカウント設定", icon: "account" },
+  { path: "/p/faq", label: "よくある質問", icon: "faq" },
+  { path: "/p/account", label: "アカウント設定", icon: "account" },
 ];
 
 export const HeaderMenu: React.FC = () => {

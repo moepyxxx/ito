@@ -16,7 +16,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
       query: {
         $allModels: {
           async $allOperations(options) {
-            console.log(options);
             const [, result] = await prisma.$transaction([
               prisma.$executeRaw`SELECT set_config('app.user_id', ${userId}, false)`,
               options.query(options.args),

@@ -6,6 +6,11 @@ import { Icon, IconType } from "@/components/atoms/Icon";
 
 const iconButtonStyle = tv({
   base: "inline-flex flex-col items-center p-2 relative",
+  variants: {
+    disabled: {
+      true: "opacity-40 pointer-events-none",
+    },
+  },
 });
 
 type Props = {
@@ -15,6 +20,7 @@ type Props = {
   notification?: boolean;
   strong?: boolean;
   labelHidden?: boolean;
+  disabled?: boolean;
 };
 export const IconButton: React.FC<Props> = ({
   icon,
@@ -23,6 +29,7 @@ export const IconButton: React.FC<Props> = ({
   notification = false,
   strong = false,
   labelHidden = false,
+  disabled = false,
 }) => {
   const ariaLabel = labelHidden ? label : undefined;
   const Child = () => (
@@ -41,8 +48,9 @@ export const IconButton: React.FC<Props> = ({
   if (element.elementType === "button") {
     return (
       <button
+        disabled={disabled}
         onClick={element.onClick}
-        className={iconButtonStyle()}
+        className={iconButtonStyle({ disabled })}
         aria-label={ariaLabel}>
         <Child />
       </button>
@@ -52,7 +60,7 @@ export const IconButton: React.FC<Props> = ({
   return (
     <Link
       href={element.href}
-      className={iconButtonStyle()}
+      className={iconButtonStyle({ disabled })}
       aria-label={ariaLabel}>
       <Child />
     </Link>

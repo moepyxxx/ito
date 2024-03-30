@@ -7,6 +7,7 @@ import { client } from "@/gql/client";
 import { CookiesProvider } from "react-cookie";
 import { Slide, ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export default function RootLayout({
   children,
@@ -31,9 +32,11 @@ export default function RootLayout({
           transition={Slide}
         />
         <CookiesProvider defaultSetOptions={{ path: "/" }}>
-          <ApolloProvider client={client}>
-            <GlobalLayout>{children}</GlobalLayout>
-          </ApolloProvider>
+          <AuthProvider>
+            <ApolloProvider client={client}>
+              <GlobalLayout>{children}</GlobalLayout>
+            </ApolloProvider>
+          </AuthProvider>
         </CookiesProvider>
       </body>
     </html>

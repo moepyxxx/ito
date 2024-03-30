@@ -12,9 +12,14 @@ type Props = {
     stage: StageType;
     src: string;
   }[];
-  onSubmit: (torisanId: string) => void;
+  onSubmit: (selectedId: string) => void;
+  submitMessage: string;
 };
-export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
+export const SelectTorisans: React.FC<Props> = ({
+  torisans,
+  onSubmit,
+  submitMessage,
+}) => {
   const [selectedTorisanId, setSelectedTorisanId] = useState<string | null>(
     null
   );
@@ -38,9 +43,11 @@ export const SelectTorisans: React.FC<Props> = ({ torisans, onSubmit }) => {
           element={{
             elementType: "button",
             buttonType: "button",
-            onClick: () => onSubmit(selectedTorisanId as string),
+            onClick: () => {
+              onSubmit(selectedTorisanId as string);
+            },
           }}>
-          記録・観察をはじめる
+          {submitMessage}
         </Button>
       </div>
     </div>

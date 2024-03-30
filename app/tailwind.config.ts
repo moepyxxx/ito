@@ -22,6 +22,7 @@ const config: Config = {
       white: getHtmlCodeFromColorKey("white"),
       warning: getHtmlCodeFromColorKey("warning"),
       "thin-warning": getHtmlCodeFromColorKey("thin_warning"),
+      "thin-black": getHtmlCodeFromColorKey("thin-black"),
     },
     fontFamily: {
       narrow: ["PT Sans Narrow", "sans-serif"],
@@ -47,6 +48,7 @@ const config: Config = {
     "text-black",
     "text-error",
     "text-warning",
+    "text-thin-black",
   ],
   plugins: [],
 };

@@ -41,7 +41,13 @@ export type MutationCreateTorisanArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  torisans: Array<Scalars['Int']['output']>;
+  torisan: Torisan;
+  torisans: Array<TorisanBase>;
+};
+
+
+export type QueryTorisanArgs = {
+  id: Scalars['Float']['input'];
 };
 
 /** 鳥さん詳細 */
@@ -54,6 +60,18 @@ export type Torisan = {
   name: Scalars['String']['output'];
   nickname: Scalars['String']['output'];
   objective: TorisanObjectiveObject;
+  specie_type: Scalars['Int']['output'];
+  stage_type: Scalars['Int']['output'];
+};
+
+/** 鳥さんベーシック */
+export type TorisanBase = {
+  __typename?: 'TorisanBase';
+  birth_date: Scalars['DateTime']['output'];
+  gender_type: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  nickname: Scalars['String']['output'];
   specie_type: Scalars['Int']['output'];
   stage_type: Scalars['Int']['output'];
 };

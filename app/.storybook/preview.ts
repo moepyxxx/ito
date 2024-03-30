@@ -2,7 +2,7 @@ import { Preview } from "@storybook/react";
 import "../app/globals.css";
 import Image from "next/image";
 import { initialize, mswLoader } from "msw-storybook-addon";
-import { ApolloProviderDecorator } from "./decorators";
+import { ApolloProviderDecorator, AuthProviderDecorator } from "./decorators";
 
 initialize({
   onUnhandledRequest: ({ method, url }) => {
@@ -24,8 +24,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: "/sample",
+      },
+    },
   },
-  decorators: [ApolloProviderDecorator],
+  decorators: [ApolloProviderDecorator, AuthProviderDecorator],
   loaders: [mswLoader],
 };
 

@@ -79,3 +79,45 @@ export class Torisan {
     this.food = torisan.food;
   }
 }
+
+@ObjectType({ description: '鳥さんベーシック' })
+export class TorisanBase {
+  @Field(() => ID)
+  id: number;
+
+  @Field(() => String)
+  nickname: string;
+
+  @Field(() => Int)
+  stage_type: StageType;
+
+  @Field(() => Int)
+  specie_type: SpecieType;
+
+  @Field(() => String)
+  name: string;
+
+  @Field(() => Date)
+  birth_date: Date;
+
+  @Field(() => Int)
+  gender_type: GenderType;
+
+  constructor(torisan: {
+    id: number;
+    nickname: string;
+    stage_type: number;
+    specie_type: number;
+    gender_type: number;
+    name: string;
+    birth_date: Date;
+  }) {
+    this.id = torisan.id;
+    this.nickname = torisan.nickname;
+    this.stage_type = torisan.stage_type as StageType;
+    this.specie_type = torisan.specie_type as SpecieType;
+    this.gender_type = torisan.gender_type as GenderType;
+    this.name = torisan.name;
+    this.birth_date = torisan.birth_date;
+  }
+}

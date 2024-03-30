@@ -1,19 +1,27 @@
 import { IconType } from "@/components/atoms/Icon";
 import { IconButton } from "@/components/molecules/IconButton";
+import { usePathname } from "next/navigation";
 
 export const navigationMenus: {
   icon: IconType;
   path: string;
   label: string;
+  disable?: boolean;
 }[] = [
-  { icon: "home", path: "/home", label: "ホーム" },
-  { icon: "notification", path: "/notification", label: "お知らせ" },
-  { icon: "work", path: "/work", label: "観察・記録" },
-  { icon: "report", path: "/report", label: "レポート" },
-  { icon: "torisan", path: "/torisans", label: "鳥さん" },
+  { icon: "home", path: "/p/home", label: "ホーム" },
+  {
+    icon: "notification",
+    path: "/p/notification",
+    disable: true,
+    label: "お知らせ",
+  },
+  { icon: "work", path: "/p/work", label: "観察・記録" },
+  { icon: "report", path: "/p/report", label: "レポート" },
+  { icon: "torisan", path: "/p/torisan", label: "鳥さん" },
 ];
 
 export const FixedNavigationMenu: React.FC = () => {
+  const pathname = usePathname();
   return (
     <nav
       aria-label="メインメニュー"
@@ -23,6 +31,8 @@ export const FixedNavigationMenu: React.FC = () => {
           key={menu.path}
           icon={menu.icon}
           label={menu.label}
+          disabled={menu.disable}
+          strong={pathname === menu.path}
           element={{
             elementType: "a",
             href: menu.path,

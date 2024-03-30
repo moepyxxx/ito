@@ -11,6 +11,7 @@ export const ColorVariants = {
   white: "#FFFFFF",
   warning: "#EB721B",
   thin_warning: "#FFDBC1",
+  "thin-black": "#ADADAD",
 } as const;
 
 export type ColorVariantKeys = keyof typeof ColorVariants;
