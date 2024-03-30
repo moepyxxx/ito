@@ -1,29 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTorisan } from './models/createTorisan.model';
-import { Torisan } from './models/torisan.model';
+import { Torisan, TorisanBase } from './models/torisan.model';
 import { TorisansRepository } from './torisans.repository';
 
 @Injectable()
 export class TorisansService {
   constructor(private repository: TorisansRepository) {}
 
-  // async findAll(userId: string): Promise<Torisan[]> {
-  //   const summaries = await this.prisma
-  //     .getRlsClient(userId)
-  //     .torisan.findMany({});
-  //   return summaries.map((summary) => {
-  //     return new Torisan(summary);
-  //   });
-  // }
+  async findAll(userId: string): Promise<TorisanBase[]> {
+    const summaries = await this.repository.findTorisanBases(userId);
+    return summaries.map((summary) => {
+      return new TorisanBase(summary);
+    });
+  }
 
-  // async findDetailById(userId: string, id: number): Promise<Torisan> {
-  //   const torisan = await this.prisma.getRlsClient(userId).torisan.findUnique({
-  //     where: {
-  //       id,
-  //     },
-  //   });
-  //   return new Torisan(torisan);
-  // }
+  async findDetailById(userId: string, id: number): Promise<Torisan> {
+    return await this.repository.findTorisanById(userId, id);
+  }
 
   async create(torisan: CreateTorisan, userId: string): Promise<Torisan> {
     const { objective, food } = torisan;

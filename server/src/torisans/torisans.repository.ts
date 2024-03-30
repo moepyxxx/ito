@@ -3,12 +3,72 @@ import type {
   torisan as TorisanType,
   torisan_objective as TorisanObjectiveType,
   torisan_staple_food as TorisanStapleFoodType,
+  torisan_staple_food_other_food_type as TorisanStapleFoodOtherFoodType,
 } from '../../prisma/generated';
 import { PrismaService } from 'src/prisma.service';
+import { Torisan } from './models/torisan.model';
 
 @Injectable()
 export class TorisansRepository {
   constructor(private prisma: PrismaService) {}
+
+  async findTorisanBases(userId: string): Promise<TorisanType[]> {
+    return await this.prisma.getRlsClient(userId).torisan.findMany({});
+  }
+
+  async findTorisanById(userId: string, id: number): Promise<Torisan> {
+    const torisan = await this.prisma.getRlsClient(userId).torisan.findUnique({
+      where: {
+        id,
+      },
+    });
+    const torisanObjective = await this.prisma
+      .getRlsClient(userId)
+      .torisan_objective.findFirst({
+        where: {
+          torisan_id: id,
+        },
+      });
+
+    const torisanStapleFood = await this.prisma
+      .getRlsClient(userId)
+      .torisan_staple_food.findFirst({
+        where: {
+          torisan_id: id,
+        },
+      });
+
+    if (
+      torisan == null ||
+      torisanObjective == null ||
+      torisanStapleFood == null
+    ) {
+      throw new Error('Torisan not found');
+    }
+
+    let torisanStapleFoodOtherFoodTypes: TorisanStapleFoodOtherFoodType[] = [];
+    if (torisanStapleFood !== null) {
+      torisanStapleFoodOtherFoodTypes = await this.prisma
+        .getRlsClient(userId)
+        .torisan_staple_food_other_food_type.findMany({
+          where: {
+            torisan_staple_food_id: torisanStapleFood.id,
+          },
+        });
+    }
+
+    return new Torisan({
+      ...torisan,
+      objective: torisanObjective,
+      food: {
+        ...torisanStapleFood,
+        other_food_types: torisanStapleFoodOtherFoodTypes.map(
+          (torisanStapleFoodOtherFoodType) =>
+            torisanStapleFoodOtherFoodType.other_food_type,
+        ),
+      },
+    });
+  }
 
   async createTorisan(
     userId: string,
