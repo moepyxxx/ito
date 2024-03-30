@@ -3,7 +3,7 @@ import { Signin } from "./Signin";
 import { rest } from "msw";
 
 const meta = {
-  title: "page/Signin",
+  title: "Auth/page/Signin",
   component: Signin,
   argTypes: {},
   args: {},

@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants";
 import Link from "next/link";
 
 const linkStyle = tv({
-  base: "inline-block py-2 px-4 border-thin-black border rounded-lg bg-white",
+  base: "inline-block py-2 px-4 border-thin-black border rounded-lg bg-white w-full",
   variants: {
     disabled: {
       true: "opacity-40 pointer-events-none",
