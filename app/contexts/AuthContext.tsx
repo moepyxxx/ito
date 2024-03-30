@@ -7,6 +7,7 @@ type AuthContextType = {
   refreshToken: string;
   isAuth: boolean;
   signin: (params: { accessToken: string; refreshToken: string }) => void;
+  signout: () => void;
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -25,6 +26,12 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     setCookies("access_token", params.accessToken);
     setCookies("refresh_token", params.refreshToken);
     setIsAuth(true);
+  };
+
+  const signout = () => {
+    setCookies("access_token", "");
+    setCookies("refresh_token", "");
+    setIsAuth(false);
   };
 
   useMount(async () => {
@@ -57,6 +64,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         refreshToken,
         isAuth,
         signin,
+        signout,
       }}>
       {children}
     </AuthContext.Provider>
@@ -77,6 +85,14 @@ export const useSignin = () => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context.signin;
+};
+
+export const useSignout = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context.signout;
 };
 
 export const useAuthTokens = () => {

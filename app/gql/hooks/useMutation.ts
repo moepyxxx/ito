@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useMutation as apolloUseMutation } from "@apollo/client";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useAuthTokens } from "@/contexts/AuthContext";
+import { useAuthTokens, useSignout } from "@/contexts/AuthContext";
 
 export const useMutation = <
   TData = any,
@@ -20,6 +20,7 @@ export const useMutation = <
 ) => {
   const router = useRouter();
   const authTokens = useAuthTokens();
+  const signout = useSignout();
 
   const [mutationFn, { data: result, loading, error }] = apolloUseMutation<
     TData,
@@ -43,6 +44,7 @@ export const useMutation = <
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
       const { error: errorType } = error.networkError.result;
       toast.info("セッションが切れました。ログインしてください");
+      signout();
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
         router.push("/signin?authError=true");
       }
@@ -51,7 +53,7 @@ export const useMutation = <
     toast.error(
       "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
     );
-  }, [error, router]);
+  }, [error, router, signout]);
 
   return {
     mutationFn,

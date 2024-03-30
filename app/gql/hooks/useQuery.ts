@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useQuery as apolloUseQuery } from "@apollo/client";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useAuthTokens } from "@/contexts/AuthContext";
+import { useAuthTokens, useSignout } from "@/contexts/AuthContext";
 
 export const useQuery = <
   TData = any,
@@ -20,6 +20,7 @@ export const useQuery = <
 ) => {
   const router = useRouter();
   const authTokens = useAuthTokens();
+  const signout = useSignout();
 
   const { loading, data, error } = apolloUseQuery<TData, TVariables>(query, {
     ...options,
@@ -40,6 +41,7 @@ export const useQuery = <
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
       const { error: errorType } = error.networkError.result;
       toast.info("セッションが切れました。ログインしてください");
+      signout();
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
         router.push("/signin?authError=true");
       }
