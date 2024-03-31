@@ -14,7 +14,7 @@ const config: Config = {
       "thin-primary": getHtmlCodeFromColorKey("thin_primary"),
       secondary: getHtmlCodeFromColorKey("secondary"),
       black: getHtmlCodeFromColorKey("black"),
-      "deep-gray": getHtmlCodeFromColorKey("deep_gray"),
+      "deep-gray": getHtmlCodeFromColorKey("deep-gray"),
       gray: getHtmlCodeFromColorKey("gray"),
       "thin-gray": getHtmlCodeFromColorKey("thin_gray"),
       error: getHtmlCodeFromColorKey("error"),

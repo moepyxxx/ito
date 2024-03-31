@@ -11,3 +11,9 @@ export const SpecieSelections = [
   { value: Specie.OkameInko, label: "オカメインコ" },
   { value: Specie.KozakuraInko, label: "コザクラインコ" },
 ];
+
+export const SpecieLabel: Record<SpecieType, string> = {
+  [Specie.SekiseiInko]: "セキセイインコ",
+  [Specie.OkameInko]: "オカメインコ",
+  [Specie.KozakuraInko]: "コザクラインコ",
+};
