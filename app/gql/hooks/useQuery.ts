@@ -50,7 +50,7 @@ export const useQuery = <
     toast.error(
       "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
     );
-  }, [error, router]);
+  }, [error, router, signout]);
 
   return {
     loading,
