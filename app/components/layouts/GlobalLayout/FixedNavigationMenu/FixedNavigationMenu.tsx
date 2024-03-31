@@ -25,7 +25,7 @@ export const FixedNavigationMenu: React.FC = () => {
   return (
     <nav
       aria-label="メインメニュー"
-      className="fixed bottom-0 left-0 w-full flex px-5 py-1 justify-between items-center shadow-[0_-4px_8px_0_rgba(0,0,0,0.05)]">
+      className="fixed bottom-0 left-0 w-full flex px-5 py-1 justify-between items-center shadow-[0_-4px_8px_0_rgba(0,0,0,0.05)] bg-white">
       {navigationMenus.map((menu) => (
         <IconButton
           key={menu.path}
