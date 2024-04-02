@@ -1,4 +1,4 @@
-import { RegisterTorisanPage } from "@/features/torisan/pages/RegisterTorisanPage.tsx";
+import { RegisterTorisanPage } from "@/features/torisan/pages/RegisterTorisanPage";
 import { MetaDescription, MetaTitle } from "@/utils/meta";
 import { Metadata } from "next";
 

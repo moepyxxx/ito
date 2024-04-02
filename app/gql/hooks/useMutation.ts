@@ -43,9 +43,9 @@ export const useMutation = <
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
       const { error: errorType } = error.networkError.result;
-      toast.info("セッションが切れました。ログインしてください");
-      signout();
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
+        toast.info("セッションが切れました。ログインしてください");
+        signout();
         router.push("/signin?authError=true");
       }
       return;

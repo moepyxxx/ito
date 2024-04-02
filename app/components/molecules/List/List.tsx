@@ -1,29 +1,28 @@
 import { Typography } from "@/components/atoms/Typography";
-import { getHtmlCodeFromColorKey } from "@/utils/color";
+import { Note } from "../Note";
 
+export type ListItem = {
+  label: string;
+  content: string;
+};
 type Props = {
-  listItems: {
-    label: string;
-    content: string;
-  }[];
+  listItems: ListItem[];
+  note?: string;
 };
 
-export const List: React.FC<Props> = ({ listItems }) => {
+export const List: React.FC<Props> = ({ listItems, note }) => {
   return (
     <div>
+      {note && (
+        <Note>
+          <Typography size="small">{note}</Typography>
+        </Note>
+      )}
       {listItems.map((item, index) => (
         <div
           key={index}
-          className="flex flex-col items-left py-2"
-          style={
-            // tailwindでどうしてもbottomだけにstyleが当たらない（3.4.1の最新まで上げたがダメ）
-            index !== listItems.length - 1
-              ? {
-                  borderBottom: `1px solid ${getHtmlCodeFromColorKey("thin_gray")}`,
-                }
-              : {}
-          }>
-          <Typography size="xSmall" className="block pt-1">
+          className="flex flex-col items-left py-2 border-solid border-b-thin-gray border-b">
+          <Typography size="xSmall" className="block py-1">
             {item.label}
           </Typography>
           <Typography className="block">{item.content}</Typography>

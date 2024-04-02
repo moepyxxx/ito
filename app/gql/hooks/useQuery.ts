@@ -40,9 +40,9 @@ export const useQuery = <
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore resultはserver側で定義して存在するよう設定したため
       const { error: errorType } = error.networkError.result;
-      toast.info("セッションが切れました。ログインしてください");
-      signout();
       if (errorType === "UNAUTHORIZED_ERROR_TYPE") {
+        toast.info("セッションが切れました。ログインしてください");
+        signout();
         router.push("/signin?authError=true");
       }
       return;
@@ -50,7 +50,7 @@ export const useQuery = <
     toast.error(
       "予期しないエラーが発生しました。管理人へお問い合わせか、しばらく経ってからやり直してください"
     );
-  }, [error, router]);
+  }, [error, router, signout]);
 
   return {
     loading,
