@@ -5,7 +5,7 @@ export const ColorVariants = {
   black: "#000000",
   "deep-gray": "#D9D9D9",
   gray: "#F0F0ED",
-  thin_gray: "#F4F4F1",
+  "thin-gray": "#F4F4F1",
   error: "#E83737",
   thin_error: "#FADBDB",
   white: "#FFFFFF",

@@ -16,7 +16,7 @@ const config: Config = {
       black: getHtmlCodeFromColorKey("black"),
       "deep-gray": getHtmlCodeFromColorKey("deep-gray"),
       gray: getHtmlCodeFromColorKey("gray"),
-      "thin-gray": getHtmlCodeFromColorKey("thin_gray"),
+      "thin-gray": getHtmlCodeFromColorKey("thin-gray"),
       error: getHtmlCodeFromColorKey("error"),
       "thin-error": getHtmlCodeFromColorKey("thin_error"),
       white: getHtmlCodeFromColorKey("white"),
