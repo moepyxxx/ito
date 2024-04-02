@@ -13,12 +13,11 @@ import {
   createCheckboxSchema,
 } from "@/components/atoms/forms/FormCheckBox";
 import {
-  OtherFoodsAnySelect,
   OtherFoodsSelections,
-  StapleFoodAnySelect,
   StapleFoodSelections,
 } from "@/features/torisan/constants";
 import { getErrorMessage } from "@/utils";
+import { OtherFoodsAnySelect, StapleFoodAnySelect } from "@ito/common";
 
 const schema = z
   .object({
@@ -134,7 +133,7 @@ export const StepperFormFood: React.FC<Props> = ({
           errors.staple_food_type && errors.staple_food_type.message
         }
       />
-      {currentStapleFood === StapleFoodAnySelect && (
+      {currentStapleFood === StapleFoodAnySelect.toString() && (
         <FormTextBox
           label="主食（その他）"
           {...register("any_staple_food")}
@@ -152,7 +151,7 @@ export const StepperFormFood: React.FC<Props> = ({
           errors.other_food_types && errors.other_food_types.message
         }
       />
-      {currentOtherFoods.includes(OtherFoodsAnySelect) && (
+      {currentOtherFoods.includes(OtherFoodsAnySelect.toString()) && (
         <FormTextBox
           label="副食・おやつ・栄養剤（その他）"
           {...register("any_other_foods")}
