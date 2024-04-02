@@ -1,7 +1,7 @@
 import { ZodValidationPipe } from 'src/pipe/ZodValidationPipe';
 import { CreateTorisanZodInput } from './models/torisan.schema';
 import { CreateTorisan } from './models/createTorisan.model';
-import { Gender, Specie, Stage } from 'common';
+import { Gender, Specie, Stage } from '@ito/common';
 import { BadRequestException } from '@nestjs/common';
 
 describe('CreateTorisanValidationPipe', () => {

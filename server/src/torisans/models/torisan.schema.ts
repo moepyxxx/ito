@@ -1,4 +1,4 @@
-import { OtherFoodsAnySelect, StapleFoodAnySelect } from 'common';
+import { OtherFoodsAnySelect, StapleFoodAnySelect } from '@ito/common';
 import {
   getConstantsExceptionError,
   getMaxDateIsTodayError,

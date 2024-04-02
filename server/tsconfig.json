@@ -17,6 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "@ito/common/*": ["../common/*"]
+    }
   }
 }
