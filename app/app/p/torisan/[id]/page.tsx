@@ -1,3 +1,4 @@
+import { TorisanDetailPage } from "@/features/torisan/pages/TorisanDetailPage";
 import { MetaDescription, MetaTitle } from "@/utils/meta";
 import { Metadata } from "next";
 
@@ -6,6 +7,12 @@ export const metadata: Metadata = {
   description: MetaDescription,
 };
 
-export default function TorisanDetailPageEntry() {
-  return <p>詳細</p>;
+export default function TorisanDetailPageEntry({
+  params,
+}: {
+  params: { id: string };
+}) {
+  if (params.id == null || isNaN(Number(params.id))) return <></>;
+
+  return <TorisanDetailPage torisanId={Number(params.id)} />;
 }
