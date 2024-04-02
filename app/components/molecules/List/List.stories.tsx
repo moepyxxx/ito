@@ -30,3 +30,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {};
+export const WithNote: Story = {
+  args: {
+    note: "いとちゃんの特技は、歌を歌うこと, 手に乗ってダンスをすること, 友達のうにちゃんと一緒に飛ぶことです。",
+  },
+};
