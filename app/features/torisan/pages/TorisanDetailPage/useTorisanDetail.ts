@@ -2,11 +2,15 @@ import { useQuery } from "@/gql/hooks";
 import { TORISAN } from "@/gql/queries";
 import { Query } from "@/gql/generated/client/graphql";
 import { useMemo } from "react";
-import { GenderType, SpecieType, StageType } from "@ito/common";
 import {
+  GenderType,
   OtherFoodsAnySelect,
-  OtherFoodsSelections,
+  SpecieType,
+  StageType,
   StapleFoodAnySelect,
+} from "@ito/common";
+import {
+  OtherFoodsSelections,
   StapleFoodSelections,
 } from "@/features/torisan/constants";
 
@@ -55,7 +59,7 @@ export const useTorisanDetail = (torisanId: number) => {
           (selection) => selection.value === data.torisan.food.staple_food_type
         )?.label || "-",
       anyStapleFood:
-        data.torisan.food.staple_food_type === Number(StapleFoodAnySelect)
+        data.torisan.food.staple_food_type === StapleFoodAnySelect
           ? data.torisan.food.any_staple_food ?? "-"
           : null,
       otherFoods:
@@ -68,7 +72,7 @@ export const useTorisanDetail = (torisanId: number) => {
           )
           .join(", ") || "-",
       anyOtherFoods: data.torisan.food.other_food_types.includes(
-        Number(OtherFoodsAnySelect)
+        OtherFoodsAnySelect
       )
         ? data.torisan.food.any_other_foods ?? "-"
         : null,
