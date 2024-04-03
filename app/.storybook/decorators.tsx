@@ -1,7 +1,8 @@
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../gql/client";
 import React from "react";
-import { AuthProvider } from "../contexts/AuthContext";
+import { AuthContextType, AuthProvider } from "../contexts/AuthContext";
+import { fn } from "@storybook/test";
 
 export const ApolloProviderDecorator = (Story) => (
   <ApolloProvider client={client}>
@@ -9,8 +10,16 @@ export const ApolloProviderDecorator = (Story) => (
   </ApolloProvider>
 );
 
-export const AuthProviderDecorator = (Story) => (
-  <AuthProvider>
-    <Story />
-  </AuthProvider>
-);
+export const AuthProviderDecorator = (Story, context) => {
+  const mockedUseCustomAuth = fn<any, AuthContextType>().mockReturnValue({
+    isAuth: context.parameters.auth?.isAuth ?? false,
+    accessToken: "accessToken",
+    signin: fn(),
+    signout: fn(),
+  });
+  return (
+    <AuthProvider useCustomAuth={mockedUseCustomAuth}>
+      <Story />
+    </AuthProvider>
+  );
+};

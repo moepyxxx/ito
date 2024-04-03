@@ -2,7 +2,7 @@ import { FC, createContext, useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useMount } from "react-use";
 
-type AuthContextType = {
+export type AuthContextType = {
   accessToken: string;
   isAuth: boolean;
   signin: (params: { accessToken: string }) => void;
@@ -11,10 +11,7 @@ type AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export type Props = {
-  children: React.ReactNode;
-};
-export const AuthProvider: FC<Props> = ({ children }) => {
+const useAuth = () => {
   const [cookie, setCookies] = useCookies(["access_token"]);
   const [isAuth, setIsAuth] = useState(false);
 
@@ -53,17 +50,27 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     // }
   });
 
-  return (
-    <AuthContext.Provider
-      value={{
-        accessToken,
-        isAuth,
-        signin,
-        signout,
-      }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return {
+    accessToken,
+    isAuth,
+    signin,
+    signout,
+  };
+};
+
+// hooksを外から注入できるよう条件に応じてカスタムフックかデフォルトの認証フックを使用する
+const useAuthLogic = (useCustomAuth?: () => AuthContextType) => {
+  return useCustomAuth ? useCustomAuth : useAuth;
+};
+
+export type Props = {
+  children: React.ReactNode;
+  useCustomAuth?: () => AuthContextType;
+};
+export const AuthProvider: FC<Props> = ({ children, useCustomAuth }) => {
+  const auth = useAuthLogic(useCustomAuth)();
+
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 
 export const useIsAuth = () => {
