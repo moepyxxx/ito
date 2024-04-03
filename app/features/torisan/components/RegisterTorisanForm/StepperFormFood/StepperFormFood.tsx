@@ -1,19 +1,13 @@
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper";
-import { FormRadioGroup } from "@/components/atoms/forms/FormRadioGroup";
-import { FormCheckBox } from "@/components/atoms/forms/FormCheckBox";
-import {
-  OtherFoodsSelections,
-  StapleFoodSelections,
-} from "@/features/torisan/constants";
-import { OtherFoodsAnySelect, StapleFoodAnySelect } from "@ito/common";
 import {
   FormFoodEditType,
   FormFoodSubmitType,
   foodSchema,
+  getInitialFoodValue,
 } from "../../../schemas/food";
+import { RHFFormFood } from "../../RHF/RHFFormFood";
 
 type Props = {
   renderStepperActions: RenderStepActions;
@@ -31,24 +25,7 @@ export const StepperFormFood: React.FC<Props> = ({
     formState: { errors },
     control,
   } = useForm<FormFoodEditType, any, FormFoodSubmitType>({
-    defaultValues: initialValue
-      ? {
-          staple_food_type: initialValue.staple_food_type
-            ? initialValue.staple_food_type.toString()
-            : null,
-          any_staple_food: initialValue.any_staple_food,
-          other_food_types:
-            initialValue.other_food_types.length > 0
-              ? initialValue.other_food_types.map((food) => food.toString())
-              : [],
-          any_other_foods: initialValue.any_other_foods,
-        }
-      : {
-          staple_food_type: null,
-          any_staple_food: "",
-          other_food_types: [],
-          any_other_foods: "",
-        },
+    defaultValues: getInitialFoodValue(initialValue),
     mode: "onChange",
     resolver: zodResolver(foodSchema),
   });
@@ -64,43 +41,12 @@ export const StepperFormFood: React.FC<Props> = ({
 
   return (
     <div className="flex flex-col space-y-10">
-      <FormRadioGroup
-        label="主食"
-        selections={StapleFoodSelections}
-        {...register("staple_food_type")}
-        required
-        errorMessage={
-          errors.staple_food_type && errors.staple_food_type.message
-        }
+      <RHFFormFood
+        rhfRegister={register}
+        rhfErrors={errors}
+        currentStapleFood={currentStapleFood as string | null}
+        currentOtherFoods={currentOtherFoods as string[]}
       />
-      {currentStapleFood === StapleFoodAnySelect.toString() && (
-        <FormTextBox
-          label="主食（その他）"
-          {...register("any_staple_food")}
-          inputType="text"
-          errorMessage={
-            errors.any_staple_food && errors.any_staple_food.message
-          }
-        />
-      )}
-      <FormCheckBox
-        label="副食・おやつ・栄養剤"
-        selections={OtherFoodsSelections}
-        {...register("other_food_types")}
-        errorMessage={
-          errors.other_food_types && errors.other_food_types.message
-        }
-      />
-      {currentOtherFoods.includes(OtherFoodsAnySelect.toString()) && (
-        <FormTextBox
-          label="副食・おやつ・栄養剤（その他）"
-          {...register("any_other_foods")}
-          inputType="text"
-          errorMessage={
-            errors.any_other_foods && errors.any_other_foods.message
-          }
-        />
-      )}
       <div className="pt-2">
         {renderStepperActions(true, {
           onClickNext: (onNext: () => void) => {
