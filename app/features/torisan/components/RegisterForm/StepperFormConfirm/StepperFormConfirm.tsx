@@ -1,8 +1,5 @@
 import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper";
 
-import { FormSubmitType as TorisanBasic } from "../StepperFormBasic";
-import { FormSubmitType as TorisanObjective } from "../StepperFormObjective";
-import { FormSubmitType as TorisanFood } from "../StepperFormFood";
 import { Typography } from "@/components/atoms/Typography";
 import { List } from "@/components/molecules/List";
 import { useMemo } from "react";
@@ -11,18 +8,21 @@ import {
   NicknameSelections,
   OtherFoodsSelections,
   StapleFoodSelections,
-} from "@/features/torisan/constants";
+} from "../../../constants";
 import { GenderSelections, SpecieSelections } from "@ito/common";
 import { format } from "@formkit/tempo";
 import { TextButton } from "@/components/atoms/TextButton";
 import { Paper } from "@/components/atoms/Paper";
+import { FormBaseSubmitType } from "../../../schemas/basic";
+import { FormObjectiveSubmitType } from "../../../schemas/objective";
+import { FormFoodSubmitType } from "../../../schemas/food";
 
 type Props = {
   renderStepperActions: RenderStepActions;
   torisan: {
-    basic: TorisanBasic;
-    objective: TorisanObjective;
-    food: TorisanFood;
+    basic: FormBaseSubmitType;
+    objective: FormObjectiveSubmitType;
+    food: FormFoodSubmitType;
   };
   onSpecificStep: (step: string) => void;
 };

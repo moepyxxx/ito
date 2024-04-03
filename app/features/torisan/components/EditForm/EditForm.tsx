@@ -1,0 +1,142 @@
+import { FC } from "react";
+import {
+  FormObjectiveEditType,
+  FormObjectiveSubmitType,
+  getInitialObjectiveValue,
+  objectiveSchema,
+} from "../../schemas/objective";
+import {
+  FormFoodEditType,
+  FormFoodSubmitType,
+  addFoodOtherRule,
+  foodSchema,
+  getInitialFoodValue,
+} from "../../schemas/food";
+import { Title } from "@/components/molecules/Title";
+import { Typography } from "@/components/atoms/Typography";
+import { Paper } from "@/components/atoms/Paper";
+import { List } from "@/components/molecules/List";
+import {
+  GenderLabel,
+  GenderType,
+  SpecieLabel,
+  SpecieType,
+} from "../../../../../common/src";
+import { format } from "@formkit/tempo";
+import { useForm, useWatch } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RHFFormObjective } from "../RHF/RHFFormObjective";
+import { RHFFormFood } from "../RHF/RHFFormFood";
+import { Button } from "@/components/atoms/Button";
+
+export type DetailForEdit = FormObjectiveSubmitType & FormFoodSubmitType;
+
+export type DetailReadonly = {
+  nickname: string;
+  genderType: GenderType;
+  specieType: SpecieType;
+  birthDate: Date;
+};
+
+type Props = {
+  torisanId: number;
+  nickname: string;
+  detailForEdit: DetailForEdit;
+  detailReadonly: DetailReadonly;
+};
+
+export const EditForm: FC<Props> = ({
+  //   torisanId,
+  nickname,
+  detailForEdit,
+  detailReadonly,
+}) => {
+  const defaultValues = {
+    ...getInitialObjectiveValue({
+      body_weight: detailForEdit.body_weight,
+      amount_of_staple_food: detailForEdit.amount_of_staple_food,
+      amount_of_water: detailForEdit.amount_of_water,
+    }),
+    ...getInitialFoodValue({
+      staple_food_type: detailForEdit.staple_food_type,
+      any_staple_food: detailForEdit.any_staple_food,
+      other_food_types: detailForEdit.other_food_types,
+      any_other_foods: detailForEdit.any_other_foods,
+    }),
+  };
+
+  const {
+    register,
+    formState: { errors },
+    control,
+  } = useForm<FormObjectiveEditType & FormFoodEditType, any, DetailForEdit>({
+    defaultValues: defaultValues,
+    mode: "onChange",
+    resolver: zodResolver(addFoodOtherRule(objectiveSchema.merge(foodSchema))),
+  });
+
+  const currentStapleFood = useWatch({
+    control,
+    name: "staple_food_type",
+  });
+  const currentOtherFoods = useWatch({
+    control,
+    name: "other_food_types",
+  });
+
+  return (
+    <>
+      <Title title={`${nickname}の情報を編集`} />
+      <div className="space-y-5">
+        <div>
+          <Typography>基本情報（編集できません）</Typography>
+          <Paper>
+            <List
+              listItems={[
+                { label: "ニックネーム", content: detailReadonly.nickname },
+                {
+                  label: "性別",
+                  content: GenderLabel[detailReadonly.genderType],
+                },
+                {
+                  label: "種類",
+                  content: SpecieLabel[detailReadonly.specieType],
+                },
+                {
+                  label: "誕生日",
+                  content: format(detailReadonly.birthDate, "YYYY/MM"),
+                },
+              ]}
+            />
+          </Paper>
+        </div>
+        <div>
+          <Typography>標準目標情報</Typography>
+          <Paper>
+            {/** @ts-expect-error エラーでるが動く */}
+            <RHFFormObjective rhfRegister={register} rhfErrors={errors} />
+          </Paper>
+        </div>
+        <div>
+          <Typography>ごはんの環境</Typography>
+          <Paper>
+            <RHFFormFood
+              // @ts-expect-error エラーでるが動く
+              rhfRegister={register}
+              rhfErrors={errors}
+              currentStapleFood={currentStapleFood as string | null}
+              currentOtherFoods={currentOtherFoods as string[]}
+            />
+          </Paper>
+        </div>
+      </div>
+      <div className="text-center mt-6">
+        <Button
+          element={{ elementType: "button" }}
+          variant={{ type: "primary" }}>
+          保存する
+        </Button>
+      </div>
+    </>
+  );
+};

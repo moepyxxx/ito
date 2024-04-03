@@ -4,6 +4,7 @@ import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper
 import {
   FormFoodEditType,
   FormFoodSubmitType,
+  addFoodOtherRule,
   foodSchema,
   getInitialFoodValue,
 } from "../../../schemas/food";
@@ -27,7 +28,7 @@ export const StepperFormFood: React.FC<Props> = ({
   } = useForm<FormFoodEditType, any, FormFoodSubmitType>({
     defaultValues: getInitialFoodValue(initialValue),
     mode: "onChange",
-    resolver: zodResolver(foodSchema),
+    resolver: zodResolver(addFoodOtherRule(foodSchema)),
   });
 
   const currentStapleFood = useWatch({
