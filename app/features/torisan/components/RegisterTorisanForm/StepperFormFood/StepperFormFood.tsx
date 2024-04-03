@@ -1,84 +1,24 @@
 import { useForm, useWatch } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper";
-import {
-  FormRadioGroup,
-  createRadioGroupSchema,
-} from "@/components/atoms/forms/FormRadioGroup";
-import { createTextBoxSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
-import {
-  FormCheckBox,
-  createCheckboxSchema,
-} from "@/components/atoms/forms/FormCheckBox";
+import { FormRadioGroup } from "@/components/atoms/forms/FormRadioGroup";
+import { FormCheckBox } from "@/components/atoms/forms/FormCheckBox";
 import {
   OtherFoodsSelections,
   StapleFoodSelections,
 } from "@/features/torisan/constants";
-import { getErrorMessage } from "@/utils";
 import { OtherFoodsAnySelect, StapleFoodAnySelect } from "@ito/common";
-
-const schema = z
-  .object({
-    staple_food_type: createRadioGroupSchema({
-      required: true,
-      requiredMessage: getErrorMessage({ type: "required" }),
-    }),
-    any_staple_food: createTextBoxSchema({
-      required: false,
-      max: 50,
-      requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
-    }),
-    other_food_types: createCheckboxSchema({
-      required: false,
-    }),
-    any_other_foods: createTextBoxSchema({
-      required: false,
-      requiredMessage: getErrorMessage({ type: "required" }),
-      max: 50,
-      requiredMaxMessage: getErrorMessage({ type: "max", value: 50 }),
-    }),
-  })
-  .superRefine((data, ctx) => {
-    if (
-      data.staple_food_type === Number(StapleFoodAnySelect) &&
-      !data.any_staple_food
-    ) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["any_staple_food"],
-        message: "その他を選択している場合は記入してください",
-      });
-    }
-    return true;
-  })
-  .superRefine((data, ctx) => {
-    if (
-      data.other_food_types.includes(Number(OtherFoodsAnySelect)) &&
-      !data.any_other_foods
-    ) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["any_other_foods"],
-        message: "その他を選択している場合は記入してください",
-      });
-    }
-    return true;
-  });
-
-export type FormSubmitType = z.infer<typeof schema>;
-type FormEditType = {
-  staple_food_type: null | number | string;
-  any_staple_food: string;
-  other_food_types: (number | string)[];
-  any_other_foods: string;
-};
+import {
+  FormFoodEditType,
+  FormFoodSubmitType,
+  foodSchema,
+} from "../../../schemas/food";
 
 type Props = {
   renderStepperActions: RenderStepActions;
-  onSubmit: (data: FormSubmitType) => void;
-  initialValue: FormSubmitType | null;
+  onSubmit: (data: FormFoodSubmitType) => void;
+  initialValue: FormFoodSubmitType | null;
 };
 export const StepperFormFood: React.FC<Props> = ({
   renderStepperActions,
@@ -90,7 +30,7 @@ export const StepperFormFood: React.FC<Props> = ({
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<FormEditType, any, FormSubmitType>({
+  } = useForm<FormFoodEditType, any, FormFoodSubmitType>({
     defaultValues: initialValue
       ? {
           staple_food_type: initialValue.staple_food_type
@@ -110,7 +50,7 @@ export const StepperFormFood: React.FC<Props> = ({
           any_other_foods: "",
         },
     mode: "onChange",
-    resolver: zodResolver(schema),
+    resolver: zodResolver(foodSchema),
   });
 
   const currentStapleFood = useWatch({

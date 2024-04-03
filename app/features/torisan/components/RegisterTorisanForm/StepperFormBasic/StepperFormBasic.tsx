@@ -1,67 +1,26 @@
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper";
-import {
-  FormRadioGroup,
-  createRadioGroupSchema,
-} from "@/components/atoms/forms/FormRadioGroup";
+import { FormRadioGroup } from "@/components/atoms/forms/FormRadioGroup";
 import {
   NicknameDefaultSelect,
   NicknameSelections,
 } from "@/features/torisan/constants/nickname";
-import {
-  FormSelect,
-  createSelectSchema,
-} from "@/components/atoms/forms/FormSelect";
+import { FormSelect } from "@/components/atoms/forms/FormSelect";
 import { GenderSelections, SpecieSelections } from "@ito/common";
-import {
-  FormSelectMonth,
-  createSelectMonthSchema,
-} from "@/components/atoms/forms/FormSelectMonth";
-import { createTextBoxSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
-import { getErrorMessage } from "@/utils";
+import { FormSelectMonth } from "@/components/atoms/forms/FormSelectMonth";
 import { Alert } from "@/components/molecules/Alert";
-
-const schema = z.object({
-  name: createTextBoxSchema({
-    required: true,
-    requiredMessage: getErrorMessage({ type: "required" }),
-    max: 20,
-    requiredMaxMessage: getErrorMessage({ type: "max", value: 20 }),
-  }),
-  nickname: createRadioGroupSchema({
-    required: true,
-    requiredMessage: getErrorMessage({ type: "required" }),
-  }),
-  specie_type: createSelectSchema({
-    required: true,
-    requiredMessage: getErrorMessage({ type: "required" }),
-  }),
-  gender_type: createRadioGroupSchema({
-    required: true,
-    requiredMessage: getErrorMessage({ type: "required" }),
-  }),
-  birth_date: createSelectMonthSchema({
-    required: true,
-    requiredMessage: getErrorMessage({ type: "required" }),
-  }),
-});
-
-export type FormSubmitType = z.infer<typeof schema>;
-export type FormEditType = {
-  name: string;
-  nickname: number | string | null;
-  specie_type: number | null | string;
-  gender_type: number | null | string;
-  birth_date: Date | null;
-};
+import {
+  FormBaseEditType,
+  FormBaseSubmitType,
+  baseSchema,
+} from "../../../schemas/basic";
 
 type Props = {
   renderStepperActions: RenderStepActions;
-  onSubmit: (data: FormSubmitType) => void;
-  initialValue: FormSubmitType | null;
+  onSubmit: (data: FormBaseSubmitType) => void;
+  initialValue: FormBaseSubmitType | null;
 };
 export const StepperFormBasic: React.FC<Props> = ({
   renderStepperActions,
@@ -74,7 +33,7 @@ export const StepperFormBasic: React.FC<Props> = ({
     formState: { errors },
     setValue,
     getValues,
-  } = useForm<FormEditType, any, FormSubmitType>({
+  } = useForm<FormBaseEditType, any, FormBaseSubmitType>({
     defaultValues:
       initialValue != null
         ? {
@@ -97,7 +56,7 @@ export const StepperFormBasic: React.FC<Props> = ({
             birth_date: null,
           },
     mode: "onChange",
-    resolver: zodResolver(schema),
+    resolver: zodResolver(baseSchema),
   });
 
   return (

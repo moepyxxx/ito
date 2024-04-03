@@ -1,42 +1,20 @@
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormTextBox } from "@/components/atoms/forms/FormTextBox";
 import { RenderStepActions } from "@/components/layouts/StepperLayout/useStepper";
-import { createTextBoxNumberSchema } from "@/components/atoms/forms/FormTextBox/createTextBoxSchema";
 import { Note } from "@/components/molecules/Note";
-import { getErrorMessage } from "@/utils";
-
-const schema = z.object({
-  body_weight: createTextBoxNumberSchema({
-    required: false,
-    max: 50,
-    requiredMaxMessage: getErrorMessage({ type: "maxNumber", value: 50 }),
-  }),
-  amount_of_staple_food: createTextBoxNumberSchema({
-    required: false,
-    max: 50,
-    requiredMaxMessage: getErrorMessage({ type: "maxNumber", value: 50 }),
-  }),
-  amount_of_water: createTextBoxNumberSchema({
-    required: false,
-    max: 50,
-    requiredMaxMessage: getErrorMessage({ type: "maxNumber", value: 50 }),
-  }),
-});
-
-export type FormSubmitType = z.infer<typeof schema>;
-type FormEditType = {
-  body_weight: number | null;
-  amount_of_staple_food: number | null;
-  amount_of_water: number | null;
-};
+import {
+  FormObjectiveEditType,
+  FormObjectiveSubmitType,
+  objectiveSchema,
+} from "../../../schemas/objective";
 
 type Props = {
   renderStepperActions: RenderStepActions;
-  onSubmit: (data: FormSubmitType) => void;
-  initialValue: FormSubmitType | null;
+  onSubmit: (data: FormObjectiveSubmitType) => void;
+  initialValue: FormObjectiveSubmitType | null;
 };
+
 export const StepperFormObjective: React.FC<Props> = ({
   renderStepperActions,
   onSubmit,
@@ -46,7 +24,7 @@ export const StepperFormObjective: React.FC<Props> = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormEditType, any, FormSubmitType>({
+  } = useForm<FormObjectiveEditType, any, FormObjectiveSubmitType>({
     defaultValues:
       initialValue != null
         ? {
@@ -60,7 +38,7 @@ export const StepperFormObjective: React.FC<Props> = ({
             amount_of_water: null,
           },
     mode: "onChange",
-    resolver: zodResolver(schema),
+    resolver: zodResolver(objectiveSchema),
   });
 
   return (

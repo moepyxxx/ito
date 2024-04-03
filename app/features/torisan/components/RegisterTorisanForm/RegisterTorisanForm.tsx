@@ -3,20 +3,14 @@ import {
   StepperContent,
   StepperLabels,
 } from "@/components/layouts/StepperLayout";
-import {
-  FormSubmitType as TorisanBasic,
-  StepperFormBasic,
-} from "./StepperFormBasic";
-import {
-  FormSubmitType as TorisanObjective,
-  StepperFormObjective,
-} from "./StepperFormObjective";
-import {
-  FormSubmitType as TorisanFood,
-  StepperFormFood,
-} from "./StepperFormFood";
+import { StepperFormBasic } from "./StepperFormBasic";
+import { StepperFormObjective } from "./StepperFormObjective";
+import { StepperFormFood } from "./StepperFormFood";
 import { useState } from "react";
 import { StepperFormConfirm } from "./StepperFormConfirm";
+import { FormBaseSubmitType } from "../../schemas/basic";
+import { FormObjectiveSubmitType } from "../../schemas/objective";
+import { FormFoodSubmitType } from "../../schemas/food";
 
 const StepLabelPairs = [
   { step: "basic", label: "基本" },
@@ -25,9 +19,9 @@ const StepLabelPairs = [
   { step: "confirm", label: "確認" },
 ];
 
-export type RegisterTorisan = TorisanBasic & {
-  objective: TorisanObjective;
-  food: TorisanFood;
+export type RegisterTorisan = FormBaseSubmitType & {
+  objective: FormObjectiveSubmitType;
+  food: FormFoodSubmitType;
 };
 
 type Props = {
@@ -51,10 +45,14 @@ export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
     });
   });
 
-  const [torisanBasic, setTorisanBasic] = useState<TorisanBasic | null>(null);
+  const [torisanBasic, setTorisanBasic] = useState<FormBaseSubmitType | null>(
+    null
+  );
   const [torisanObjective, setTorisanObjective] =
-    useState<TorisanObjective | null>(null);
-  const [torisanFood, setTorisanFood] = useState<TorisanFood | null>(null);
+    useState<FormObjectiveSubmitType | null>(null);
+  const [torisanFood, setTorisanFood] = useState<FormFoodSubmitType | null>(
+    null
+  );
 
   const contents = () => {
     switch (currentStep) {
