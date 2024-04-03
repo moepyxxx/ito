@@ -1,5 +1,5 @@
+import { GenderType, SpecieType, StageType } from '@ito/common';
 import { Field, Float, ID, Int, ObjectType } from '@nestjs/graphql';
-import { GenderType, SpecieType, StageType } from '../../../common';
 
 @ObjectType({ description: '鳥さんの目標' })
 export class TorisanObjectiveObject {
