@@ -2,7 +2,7 @@
 
 import { StageType } from "@ito/common";
 import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
-import { TorisanProfileBoard } from "../../components/TorisanProfileBoard";
+import { ProfileBoard } from "../../components/ProfileBoard";
 import { SpecieSrcPath } from "../../constants";
 import { Button } from "@/components/atoms/Button";
 import { Typography } from "@/components/atoms/Typography";
@@ -68,7 +68,7 @@ export const Detail: React.FC<Props> = ({ torisanId }) => {
 
   return (
     <PageLayout>
-      <TorisanProfileBoard
+      <ProfileBoard
         nickname={base.nickname}
         genderType={base.genderType}
         birthDate={base.birthDate}

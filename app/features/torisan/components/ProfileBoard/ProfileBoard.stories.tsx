@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TorisanProfileBoard } from "./TorisanProfileBoard";
+import { ProfileBoard } from "./ProfileBoard";
 import { Gender, Specie, Stage } from "@ito/common";
 
 const meta = {
-  title: "torisan/TorisanProfileBoard",
-  component: TorisanProfileBoard,
+  title: "torisan/ProfileBoard",
+  component: ProfileBoard,
   args: {
     nickname: "いと",
     src: "/sample/icon.png",
@@ -15,7 +15,7 @@ const meta = {
     genderType: Gender.Woman,
   },
   argTypes: {},
-} satisfies Meta<typeof TorisanProfileBoard>;
+} satisfies Meta<typeof ProfileBoard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

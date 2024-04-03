@@ -19,15 +19,15 @@ const StepLabelPairs = [
   { step: "confirm", label: "確認" },
 ];
 
-export type RegisterTorisan = FormBaseSubmitType & {
+export type RegisterForm = FormBaseSubmitType & {
   objective: FormObjectiveSubmitType;
   food: FormFoodSubmitType;
 };
 
 type Props = {
-  onSubmit: (torisan: RegisterTorisan) => void;
+  onSubmit: (torisan: RegisterForm) => void;
 };
-export const RegisterTorisanForm: React.FC<Props> = ({ onSubmit }) => {
+export const RegisterForm: React.FC<Props> = ({ onSubmit }) => {
   const {
     currentStep,
     currentStepIndex,

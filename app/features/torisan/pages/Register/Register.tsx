@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  RegisterTorisan,
-  RegisterTorisanForm,
-} from "../../components/RegisterTorisanForm";
+import { RegisterForm } from "../../components/RegisterForm";
 import { useRouter } from "next/navigation";
 import {
   MutationCreateTorisanArgs,
@@ -22,7 +19,7 @@ export const Register: React.FC = () => {
     MutationCreateTorisanArgs
   >(CREATE_TORISAN);
 
-  const handleSubmit = (data: RegisterTorisan) => {
+  const handleSubmit = (data: RegisterForm) => {
     mutationFn({
       variables: {
         torisan: {
@@ -54,7 +51,7 @@ export const Register: React.FC = () => {
   return (
     <PageLayout>
       <Title title="鳥さんの登録" description="鳥さんの情報を教えてください" />
-      <RegisterTorisanForm onSubmit={handleSubmit} />
+      <RegisterForm onSubmit={handleSubmit} />
     </PageLayout>
   );
 };

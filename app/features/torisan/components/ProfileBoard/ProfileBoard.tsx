@@ -20,7 +20,8 @@ type Props = {
   specieType: SpecieType;
   genderType: GenderType;
 };
-export const TorisanProfileBoard: FC<Props> = ({
+
+export const ProfileBoard: FC<Props> = ({
   src,
   stageType,
   nickname,
