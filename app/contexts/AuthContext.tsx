@@ -71,10 +71,10 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
+export const useIsAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useIsAuth must be used within an AuthProvider");
   }
   return context.isAuth;
 };
@@ -82,7 +82,7 @@ export const useAuth = () => {
 export const useSignin = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useSignin must be used within an AuthProvider");
   }
   return context.signin;
 };
@@ -90,7 +90,7 @@ export const useSignin = () => {
 export const useSignout = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useSignout must be used within an AuthProvider");
   }
   return context.signout;
 };
@@ -98,7 +98,7 @@ export const useSignout = () => {
 export const useAuthTokens = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useAuthTokens must be used within an AuthProvider");
   }
   return {
     accessToken: context.accessToken,
