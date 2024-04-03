@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { AuthForm } from "./AuthForm";
+import { Form } from "./Form";
 
 const meta = {
-  title: "auth/AuthForm",
-  component: AuthForm,
+  title: "auth/Form",
+  component: Form,
   argTypes: {},
   args: {
     onSubmit: () => {},
@@ -13,7 +13,7 @@ const meta = {
     },
     submitLabel: "サインイン",
   },
-} satisfies Meta<typeof AuthForm>;
+} satisfies Meta<typeof Form>;
 
 export default meta;
 

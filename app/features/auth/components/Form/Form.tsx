@@ -21,11 +21,7 @@ type Props = {
 };
 
 const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*()_+\-=<>?,./:;'"[\]{}~\\]+$/;
-export const AuthForm: React.FC<Props> = ({
-  onSubmit,
-  submitLabel,
-  otherLink,
-}) => {
+export const Form: React.FC<Props> = ({ onSubmit, submitLabel, otherLink }) => {
   const schema = z.object({
     email: z
       .string()
