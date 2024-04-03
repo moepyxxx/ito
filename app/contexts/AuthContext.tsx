@@ -4,9 +4,8 @@ import { useMount } from "react-use";
 
 type AuthContextType = {
   accessToken: string;
-  refreshToken: string;
   isAuth: boolean;
-  signin: (params: { accessToken: string; refreshToken: string }) => void;
+  signin: (params: { accessToken: string }) => void;
   signout: () => void;
 };
 
@@ -16,26 +15,23 @@ export type Props = {
   children: React.ReactNode;
 };
 export const AuthProvider: FC<Props> = ({ children }) => {
-  const [cookie, setCookies] = useCookies(["access_token", "refresh_token"]);
+  const [cookie, setCookies] = useCookies(["access_token"]);
   const [isAuth, setIsAuth] = useState(false);
 
   const accessToken = cookie["access_token"];
-  const refreshToken = cookie["refresh_token"];
 
-  const signin = (params: { accessToken: string; refreshToken: string }) => {
+  const signin = (params: { accessToken: string }) => {
     setCookies("access_token", params.accessToken);
-    setCookies("refresh_token", params.refreshToken);
     setIsAuth(true);
   };
 
   const signout = () => {
     setCookies("access_token", "");
-    setCookies("refresh_token", "");
     setIsAuth(false);
   };
 
   useMount(async () => {
-    if (accessToken && refreshToken) {
+    if (accessToken) {
       setIsAuth(true);
     }
     // できた方が楽なのだが現状supabaseの不具合でrefresh tokenの更新がうまく動かないためコメントアウト
@@ -61,7 +57,6 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     <AuthContext.Provider
       value={{
         accessToken,
-        refreshToken,
         isAuth,
         signin,
         signout,
@@ -102,6 +97,5 @@ export const useAuthTokens = () => {
   }
   return {
     accessToken: context.accessToken,
-    refreshToken: context.refreshToken,
   };
 };

@@ -19,7 +19,6 @@ export const Signup: React.FC = () => {
       if (res.result != null) {
         appSignin({
           accessToken: res.result.accessToken,
-          refreshToken: res.result.refreshToken,
         });
         router.push("/p");
       }
