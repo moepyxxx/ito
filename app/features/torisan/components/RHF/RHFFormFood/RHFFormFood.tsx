@@ -16,8 +16,8 @@ import { FormCheckBox } from "@/components/atoms/forms/FormCheckBox";
 type Props = {
   rhfRegister: UseFormRegister<FormFoodEditType>;
   rhfErrors: FieldErrors<FormFoodEditType>;
-  currentStapleFood: string | null;
-  currentOtherFoods: string[];
+  currentStapleFood: number | null;
+  currentOtherFoods: number[];
 };
 
 export const RHFFormFood: FC<Props> = ({
@@ -37,7 +37,7 @@ export const RHFFormFood: FC<Props> = ({
           rhfErrors.staple_food_type && rhfErrors.staple_food_type.message
         }
       />
-      {currentStapleFood === StapleFoodAnySelect.toString() && (
+      {currentStapleFood === StapleFoodAnySelect && (
         <FormTextBox
           label="主食（その他）"
           {...rhfRegister("any_staple_food")}
@@ -55,7 +55,7 @@ export const RHFFormFood: FC<Props> = ({
           rhfErrors.other_food_types && rhfErrors.other_food_types.message
         }
       />
-      {currentOtherFoods.includes(OtherFoodsAnySelect.toString()) && (
+      {currentOtherFoods.includes(OtherFoodsAnySelect) && (
         <FormTextBox
           label="副食・おやつ・栄養剤（その他）"
           {...rhfRegister("any_other_foods")}

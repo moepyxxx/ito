@@ -25,10 +25,13 @@ export const createTextBoxNumberSchema = (options: {
   max?: number;
   requiredMaxMessage?: string;
 }) => {
-  let schema = z
-    .string()
-    .transform((value) => parseInt(value, 10))
-    .nullable();
+  let schema = z.preprocess(
+    (v) => (typeof v === "number" ? v.toString() : v),
+    z
+      .string()
+      .transform((value) => (value === null ? null : parseInt(value, 10)))
+      .nullable()
+  );
 
   if (options.required) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -59,9 +59,9 @@ export const addFoodOtherRule = (schema: z.ZodObject<any>) => {
 export type FormFoodSubmitType = z.infer<typeof foodSchema>;
 
 export type FormFoodEditType = {
-  staple_food_type: null | number | string;
+  staple_food_type: null | number;
   any_staple_food: string;
-  other_food_types: (number | string)[];
+  other_food_types: number[];
   any_other_foods: string;
 };
 
@@ -71,12 +71,12 @@ export const getInitialFoodValue = (
   initialValue
     ? {
         staple_food_type: initialValue.staple_food_type
-          ? initialValue.staple_food_type.toString()
+          ? initialValue.staple_food_type
           : null,
         any_staple_food: initialValue.any_staple_food,
         other_food_types:
           initialValue.other_food_types.length > 0
-            ? initialValue.other_food_types.map((food) => food.toString())
+            ? initialValue.other_food_types
             : [],
         any_other_foods: initialValue.any_other_foods,
       }

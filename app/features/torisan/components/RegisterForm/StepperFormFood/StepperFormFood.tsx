@@ -45,8 +45,8 @@ export const StepperFormFood: React.FC<Props> = ({
       <RHFFormFood
         rhfRegister={register}
         rhfErrors={errors}
-        currentStapleFood={currentStapleFood as string | null}
-        currentOtherFoods={currentOtherFoods as string[]}
+        currentStapleFood={currentStapleFood}
+        currentOtherFoods={currentOtherFoods}
       />
       <div className="pt-2">
         {renderStepperActions(true, {

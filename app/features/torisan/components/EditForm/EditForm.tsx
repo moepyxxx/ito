@@ -85,7 +85,6 @@ export const EditForm: FC<Props> = ({
     name: "other_food_types",
   });
 
-  // TODO: objectiveのかたが変になるエラーが死活問題なので直す
   const onSubmit = handleSubmit((data) => console.warn("submit", data));
 
   return (
@@ -128,8 +127,8 @@ export const EditForm: FC<Props> = ({
               // @ts-expect-error エラーでるが動く
               rhfRegister={register}
               rhfErrors={errors}
-              currentStapleFood={currentStapleFood as string | null}
-              currentOtherFoods={currentOtherFoods as string[]}
+              currentStapleFood={currentStapleFood}
+              currentOtherFoods={currentOtherFoods}
             />
           </Paper>
         </div>

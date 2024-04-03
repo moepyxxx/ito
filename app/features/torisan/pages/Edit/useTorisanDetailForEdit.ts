@@ -35,7 +35,7 @@ export const useTorisanDetailForEdit = (torisanId: number) => {
       amount_of_staple_food:
         data.torisan.objective.amount_of_staple_food ?? null,
       amount_of_water: data.torisan.objective.amount_of_water ?? null,
-      staple_food_type: data.torisan.food.staple_food_type,
+      staple_food_type: data.torisan.food.staple_food_type!,
       any_staple_food: data.torisan.food.any_staple_food ?? "",
       other_food_types: data.torisan.food.other_food_types,
       any_other_foods: data.torisan.food.any_other_foods ?? "",

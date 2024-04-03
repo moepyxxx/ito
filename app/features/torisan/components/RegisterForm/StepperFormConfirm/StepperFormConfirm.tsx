@@ -40,7 +40,7 @@ export const StepperFormConfirm: React.FC<Props> = ({
         content:
           basic.nickname === NicknameNothingSelect
             ? basic.name
-            : basic.nickname +
+            : basic.name +
               NicknameSelections.find(
                 (selection) => selection.value === basic.nickname
               )!.label,

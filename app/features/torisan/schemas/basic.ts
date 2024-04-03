@@ -35,9 +35,9 @@ export const baseSchema = z.object({
 export type FormBaseSubmitType = z.infer<typeof baseSchema>;
 export type FormBaseEditType = {
   name: string;
-  nickname: number | string | null;
-  specie_type: number | null | string;
-  gender_type: number | null | string;
+  nickname: number | null;
+  specie_type: number | null;
+  gender_type: number | null;
   birth_date: Date | null;
 };
 
@@ -46,13 +46,9 @@ export const getInitialBaseValue = (initialValue: FormBaseSubmitType | null) =>
     ? {
         name: initialValue.name,
         nickname:
-          initialValue.nickname == null
-            ? undefined
-            : initialValue.nickname.toString(),
-        specie_type: initialValue.specie_type.toString(),
-        gender_type: initialValue.gender_type
-          ? initialValue.gender_type.toString()
-          : null,
+          initialValue.nickname == null ? undefined : initialValue.nickname,
+        specie_type: initialValue.specie_type,
+        gender_type: initialValue.gender_type ? initialValue.gender_type : null,
         birth_date: initialValue.birth_date,
       }
     : {
