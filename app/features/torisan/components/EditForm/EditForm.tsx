@@ -67,6 +67,7 @@ export const EditForm: FC<Props> = ({
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
     control,
   } = useForm<FormObjectiveEditType & FormFoodEditType, any, DetailForEdit>({
@@ -83,6 +84,9 @@ export const EditForm: FC<Props> = ({
     control,
     name: "other_food_types",
   });
+
+  // TODO: objectiveのかたが変になるエラーが死活問題なので直す
+  const onSubmit = handleSubmit((data) => console.warn("submit", data));
 
   return (
     <>
@@ -132,7 +136,7 @@ export const EditForm: FC<Props> = ({
       </div>
       <div className="text-center mt-6">
         <Button
-          element={{ elementType: "button" }}
+          element={{ elementType: "button", onClick: onSubmit }}
           variant={{ type: "primary" }}>
           保存する
         </Button>
