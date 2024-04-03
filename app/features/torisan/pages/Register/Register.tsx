@@ -15,7 +15,7 @@ import { Stage } from "@ito/common";
 import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
 import { Title } from "@/components/molecules/Title";
 
-export const RegisterTorisanPage: React.FC = () => {
+export const Register: React.FC = () => {
   const router = useRouter();
   const { mutationFn } = useMutation<
     Pick<Mutation, "createTorisan">,

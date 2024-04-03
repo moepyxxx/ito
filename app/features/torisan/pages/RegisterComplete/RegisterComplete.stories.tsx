@@ -1,11 +1,11 @@
 import type { Meta } from "@storybook/react";
 
-import { RegisterCompletePage } from "./RegisterCompletePage";
+import { RegisterComplete } from "./RegisterComplete";
 
 // eslint-disable-next-line storybook/story-exports
 const meta = {
-  title: "torisan/page/RegisterCompletePage",
-  component: RegisterCompletePage,
+  title: "torisan/page/RegisterComplete",
+  component: RegisterComplete,
   args: {
     torisanId: 0,
   },
@@ -21,7 +21,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof RegisterCompletePage>;
+} satisfies Meta<typeof RegisterComplete>;
 
 export default meta;
 

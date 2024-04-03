@@ -9,13 +9,13 @@ import { Typography } from "@/components/atoms/Typography";
 import { useMemo } from "react";
 import { List, ListItem } from "@/components/molecules/List";
 import { Paper } from "@/components/atoms/Paper";
-import { useTorisanDetail } from "./useTorisanDetail";
+import { useDetail } from "./useDetail";
 
 type Props = {
   torisanId: number;
 };
-export const TorisanDetailPage: React.FC<Props> = ({ torisanId }) => {
-  const { loading, base, objective, food } = useTorisanDetail(torisanId);
+export const Detail: React.FC<Props> = ({ torisanId }) => {
+  const { loading, base, objective, food } = useDetail(torisanId);
 
   const objectiveList = useMemo(() => {
     if (objective == null) return [];

@@ -1,4 +1,4 @@
-import { RegisterCompletePage } from "@/features/torisan/pages/RegisterCompletePage/RegisterCompletePage";
+import { RegisterComplete } from "@/features/torisan/pages/RegisterComplete/RegisterComplete";
 import { MetaDescription, MetaTitle } from "@/utils/meta";
 import { Metadata } from "next";
 
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function RegisterTorisanPageEntry() {
-  return <RegisterCompletePage />;
+  return <RegisterComplete />;
 }

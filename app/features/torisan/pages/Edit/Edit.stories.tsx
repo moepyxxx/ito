@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TorisanEditPage } from "./TorisanEditPage";
+import { Edit } from "./Edit";
 import { createMockTorisan } from "@/gql/mock";
 
 const meta = {
-  title: "torisan/page/TorisanEditPage",
-  component: TorisanEditPage,
+  title: "torisan/page/Edit",
+  component: Edit,
   args: {
     torisanId: 1,
   },
@@ -15,7 +15,7 @@ const meta = {
       handlers: [createMockTorisan()],
     },
   },
-} satisfies Meta<typeof TorisanEditPage>;
+} satisfies Meta<typeof Edit>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

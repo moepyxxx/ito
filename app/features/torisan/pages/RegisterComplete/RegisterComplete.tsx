@@ -9,7 +9,7 @@ import { useSearchParams, notFound } from "next/navigation";
 import { useMemo } from "react";
 import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
 
-export const RegisterCompletePage: React.FC = () => {
+export const RegisterComplete: React.FC = () => {
   const searchParams = useSearchParams();
 
   const torisanId = useMemo(() => {

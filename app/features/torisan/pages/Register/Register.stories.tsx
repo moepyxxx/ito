@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { RegisterTorisanPage } from "./RegisterTorisanPage";
+import { Register } from "./Register";
 
 const meta = {
-  title: "torisan/page/RegisterTorisanPage",
-  component: RegisterTorisanPage,
+  title: "torisan/page/Register",
+  component: Register,
   args: {},
   argTypes: {},
-} satisfies Meta<typeof RegisterTorisanPage>;
+} satisfies Meta<typeof Register>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

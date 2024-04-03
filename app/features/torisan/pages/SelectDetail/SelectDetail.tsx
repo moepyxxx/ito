@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { StageType } from "@ito/common";
 import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
 
-export const SelectPage: React.FC = () => {
+export const SelectDetail: React.FC = () => {
   const { loading, data } = useQuery<Pick<Query, "torisans">>(TORISANS);
   const router = useRouter();
 

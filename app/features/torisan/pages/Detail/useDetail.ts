@@ -14,7 +14,7 @@ import {
   StapleFoodSelections,
 } from "@/features/torisan/constants";
 
-export const useTorisanDetail = (torisanId: number) => {
+export const useDetail = (torisanId: number) => {
   const { loading, data } = useQuery<Pick<Query, "torisan">>(TORISAN, {
     variables: { id: torisanId },
   });

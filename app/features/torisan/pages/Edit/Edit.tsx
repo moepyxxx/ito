@@ -6,7 +6,7 @@ import { useTorisanDetailForEdit } from "./useTorisanDetailForEdit";
 type Props = {
   torisanId: number;
 };
-export const TorisanEditPage: React.FC<Props> = ({ torisanId }) => {
+export const Edit: React.FC<Props> = ({ torisanId }) => {
   const { loading, detailForEdit } = useTorisanDetailForEdit(torisanId);
 
   if (loading || detailForEdit == null) return <></>;

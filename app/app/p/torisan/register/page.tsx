@@ -1,4 +1,4 @@
-import { RegisterTorisanPage } from "@/features/torisan/pages/RegisterTorisanPage";
+import { Register } from "@/features/torisan/pages/Register";
 import { MetaDescription, MetaTitle } from "@/utils/meta";
 import { Metadata } from "next";
 
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function RegisterTorisanPageEntry() {
-  return <RegisterTorisanPage />;
+  return <Register />;
 }
