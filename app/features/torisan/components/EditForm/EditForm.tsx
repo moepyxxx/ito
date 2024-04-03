@@ -40,14 +40,12 @@ export type DetailReadonly = {
 
 type Props = {
   torisanId: number;
-  nickname: string;
   detailForEdit: DetailForEdit;
   detailReadonly: DetailReadonly;
 };
 
 export const EditForm: FC<Props> = ({
   //   torisanId,
-  nickname,
   detailForEdit,
   detailReadonly,
 }) => {
@@ -71,7 +69,7 @@ export const EditForm: FC<Props> = ({
     formState: { errors },
     control,
   } = useForm<FormObjectiveEditType & FormFoodEditType, any, DetailForEdit>({
-    defaultValues: defaultValues,
+    defaultValues,
     mode: "onChange",
     resolver: zodResolver(addFoodOtherRule(objectiveSchema.merge(foodSchema))),
   });
@@ -89,7 +87,7 @@ export const EditForm: FC<Props> = ({
 
   return (
     <>
-      <Title title={`${nickname}の情報を編集`} />
+      <Title title={`${detailReadonly.nickname}の情報を編集`} />
       <div className="space-y-5">
         <div>
           <Typography>基本情報（編集できません）</Typography>

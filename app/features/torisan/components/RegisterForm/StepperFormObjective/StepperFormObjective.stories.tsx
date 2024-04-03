@@ -4,7 +4,7 @@ import { SampleAction } from "../stories/sampleAction";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "torisan/RegisterTorisanForm/StepperFormObjective",
+  title: "torisan/RegisterForm/StepperFormObjective",
   component: StepperFormObjective,
   args: {
     renderStepperActions: (enableNext) => SampleAction(enableNext, 1, false),

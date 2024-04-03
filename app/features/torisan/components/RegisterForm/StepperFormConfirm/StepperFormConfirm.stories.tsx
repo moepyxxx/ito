@@ -4,7 +4,7 @@ import { SampleAction } from "../stories/sampleAction";
 import { Gender, Specie } from "@ito/common";
 
 const meta = {
-  title: "torisan/RegisterTorisanForm/StepperFormConfirm",
+  title: "torisan/RegisterForm/StepperFormConfirm",
   component: StepperFormConfirm,
   args: {
     renderStepperActions: (enableNext) => SampleAction(enableNext, 0, false),

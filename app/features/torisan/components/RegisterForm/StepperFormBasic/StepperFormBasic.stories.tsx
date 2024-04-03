@@ -5,7 +5,7 @@ import { Gender, Specie } from "@ito/common";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "torisan/RegisterTorisanForm/StepperFormBasic",
+  title: "torisan/RegisterForm/StepperFormBasic",
   component: StepperFormBasic,
   args: {
     renderStepperActions: (enableNext) => SampleAction(enableNext, 0, false),

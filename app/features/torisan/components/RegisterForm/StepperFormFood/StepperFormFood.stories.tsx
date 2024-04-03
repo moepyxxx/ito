@@ -4,7 +4,7 @@ import { SampleAction } from "../stories/sampleAction";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "torisan/RegisterTorisanForm/StepperFormFood",
+  title: "torisan/RegisterForm/StepperFormFood",
   component: StepperFormFood,
   args: {
     renderStepperActions: (enableNext) => SampleAction(enableNext, 2, true),

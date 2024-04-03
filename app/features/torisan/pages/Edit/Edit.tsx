@@ -17,7 +17,6 @@ export const Edit: React.FC<Props> = ({ torisanId }) => {
     <PageLayout>
       <EditForm
         torisanId={torisanId}
-        nickname={detailReadonly.nickname}
         detailForEdit={detailForEdit}
         detailReadonly={detailReadonly}
       />
