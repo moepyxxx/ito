@@ -102,6 +102,13 @@ export const TorisanDetailPage: React.FC<Props> = ({ torisanId }) => {
           </Paper>
         </div>
       </div>
+      <div className="flex justify-center my-5">
+        <Button
+          variant={{ type: "secondary-border" }}
+          element={{ elementType: "a", href: `/p/torisan/${torisanId}/edit` }}>
+          鳥さん情報を編集
+        </Button>
+      </div>
     </PageLayout>
   );
 };
