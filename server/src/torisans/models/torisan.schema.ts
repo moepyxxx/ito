@@ -1,6 +1,19 @@
-import { OtherFoodsAnySelect, StapleFoodAnySelect } from '@ito/common';
 import {
-  getConstantsExceptionError,
+  Gender,
+  GenderType,
+  OtherFood,
+  OtherFoodType,
+  OtherFoodsAnySelect,
+  Specie,
+  SpecieType,
+  Stage,
+  StageType,
+  StapleFood,
+  StapleFoodAnySelect,
+  StapleFoodType,
+} from '@ito/common';
+import { createCustomUnion } from 'utils/createCustomUnion';
+import {
   getMaxDateIsTodayError,
   getMaxCharsError,
   getMaxIntError,
@@ -8,7 +21,6 @@ import {
 } from 'utils/getRequestErrorMessage';
 import { z } from 'zod';
 
-// note: enumの定義の方法にやや伸び代あり
 export const createTorisanSchema = z
   .object({
     name: z
@@ -19,22 +31,10 @@ export const createTorisanSchema = z
       .string()
       .min(1, getRequiredError('ニックネーム'))
       .max(25, getMaxCharsError('ニックネーム', 25)),
-    stage_type: z
-      .number({ required_error: getRequiredError('ステージ') })
-      .positive()
-      .gte(1, getConstantsExceptionError('ステージ'))
-      .lte(3, getConstantsExceptionError('ステージ')),
-    specie_type: z
-      .number({ required_error: getRequiredError('鳥さんの種類') })
-      .positive()
-      .gte(1, getConstantsExceptionError('鳥さんの種類'))
-      .lte(3, getConstantsExceptionError('鳥さんの種類')),
+    stage_type: createCustomUnion<StageType>(Stage, 'ステージ'),
+    specie_type: createCustomUnion<SpecieType>(Specie, '鳥さんの種類'),
     birth_date: z.date().max(new Date(), getMaxDateIsTodayError('誕生日')),
-    gender_type: z
-      .number({ required_error: getRequiredError('性別') })
-      .positive()
-      .gte(1, getConstantsExceptionError('性別'))
-      .lte(3, getConstantsExceptionError('性別')),
+    gender_type: createCustomUnion<GenderType>(Gender, '性別'),
     objective: z
       .object({
         body_weight: z
@@ -56,21 +56,13 @@ export const createTorisanSchema = z
       .required(),
     food: z
       .object({
-        staple_food_type: z
-          .number({ required_error: getRequiredError('主食') })
-          .nonnegative()
-          .gte(0, getConstantsExceptionError('主食'))
-          .lte(2, getConstantsExceptionError('主食')),
+        staple_food_type: createCustomUnion<StapleFoodType>(StapleFood, '主食'),
         any_staple_food: z
           .string()
           .max(50, getMaxCharsError('主食（その他）', 50))
           .nullable(),
         other_food_types: z.array(
-          z
-            .number()
-            .nonnegative()
-            .gte(0, getConstantsExceptionError('副食'))
-            .lte(7, getConstantsExceptionError('副食')),
+          createCustomUnion<OtherFoodType>(OtherFood, '副食'),
         ),
         any_other_foods: z
           .string()
