@@ -16,5 +16,7 @@
       "@ito/common/*": ["./index.ts"]
     },
     "types": ["node"]
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
