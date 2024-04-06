@@ -28,6 +28,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { RHFFormObjective } from "../RHF/RHFFormObjective";
 import { RHFFormFood } from "../RHF/RHFFormFood";
 import { Button } from "@/components/atoms/Button";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export type DetailForEdit = FormObjectiveSubmitType & FormFoodSubmitType;
 
@@ -45,10 +47,12 @@ type Props = {
 };
 
 export const EditForm: FC<Props> = ({
-  //   torisanId,
+  torisanId,
   detailForEdit,
   detailReadonly,
 }) => {
+  const router = useRouter();
+
   const defaultValues = {
     ...getInitialObjectiveValue({
       body_weight: detailForEdit.body_weight,
@@ -83,7 +87,11 @@ export const EditForm: FC<Props> = ({
     name: "other_food_types",
   });
 
-  const onSubmit = handleSubmit((data) => console.warn("submit", data));
+  const onSubmit = handleSubmit((data) => {
+    console.warn("submit", data);
+    toast.success(`編集が完了しました`);
+    router.push(`/p/torisan/${torisanId}`);
+  });
 
   return (
     <>

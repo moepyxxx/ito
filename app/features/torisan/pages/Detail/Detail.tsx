@@ -102,7 +102,7 @@ export const Detail: React.FC<Props> = ({ torisanId }) => {
           </Paper>
         </div>
       </div>
-      <div className="flex justify-center my-5">
+      <div className="flex justify-center my-5 text-center">
         <Button
           variant={{ type: "secondary-border" }}
           element={{ elementType: "a", href: `/p/torisan/${torisanId}/edit` }}>
