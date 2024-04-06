@@ -15,13 +15,18 @@
     "autoincrement",
     "chromaui",
     "codegen",
+    "formkit",
     "hookform",
+    "Inko",
+    "Kozakura",
     "loadmap",
     "nestjs",
     "nextjs",
     "nextval",
     "noto",
+    "Okame",
     "restc",
+    "Sekisei",
     "signin",
     "Signout",
     "signup",
@@ -34,10 +39,6 @@
     "unichan",
     "unmocked",
     "unoptimized",
-    "vsts",
-    "Sekisei",
-    "Okame",
-    "Inko",
-    "Kozakura"
+    "vsts"
   ]
 }
