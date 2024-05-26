@@ -4,7 +4,7 @@ import type {
   torisan_objective as TorisanObjectiveType,
   torisan_staple_food as TorisanStapleFoodType,
   torisan_staple_food_other_food_type as TorisanStapleFoodOtherFoodType,
-} from '../../prisma/generated';
+} from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import { Torisan } from './models/torisan.model';
 
@@ -106,6 +106,26 @@ export class TorisansRepository {
     });
   }
 
+  async updateTorisanObjective(
+    userId: string,
+    torisanId: number,
+    torisan: Omit<
+      TorisanObjectiveType,
+      'id' | 'created_at' | 'updated_at' | 'user_id' | 'torisan_id'
+    >,
+  ): Promise<TorisanObjectiveType> {
+    return await this.prisma.getRlsClient(userId).torisan_objective.update({
+      where: {
+        torisan_id: torisanId,
+      },
+      data: {
+        body_weight: torisan.body_weight,
+        amount_of_water: torisan.amount_of_water,
+        amount_of_staple_food: torisan.amount_of_staple_food,
+      },
+    });
+  }
+
   async createTorisanFood(
     userId: string,
     torisanId: number,
@@ -115,6 +135,28 @@ export class TorisansRepository {
     >,
   ): Promise<TorisanStapleFoodType> {
     return await this.prisma.getRlsClient(userId).torisan_staple_food.create({
+      data: {
+        torisan_id: torisanId,
+        staple_food_type: torisan.staple_food_type,
+        any_staple_food: torisan.any_staple_food,
+        any_other_foods: torisan.any_other_foods,
+        user_id: userId,
+      },
+    });
+  }
+
+  async updateTorisanFood(
+    userId: string,
+    torisanId: number,
+    torisan: Omit<
+      TorisanStapleFoodType,
+      'id' | 'created_at' | 'updated_at' | 'user_id' | 'torisan_id'
+    >,
+  ): Promise<TorisanStapleFoodType> {
+    return await this.prisma.getRlsClient(userId).torisan_staple_food.update({
+      where: {
+        torisan_id: torisanId,
+      },
       data: {
         torisan_id: torisanId,
         staple_food_type: torisan.staple_food_type,
@@ -142,5 +184,18 @@ export class TorisansRepository {
         }),
       });
     return result.count;
+  }
+
+  async batchDeleteTorisanFoodOtherFoodType(
+    userId: string,
+    torisanStapleFoodId: number,
+  ) {
+    await this.prisma
+      .getRlsClient(userId)
+      .torisan_staple_food_other_food_type.deleteMany({
+        where: {
+          torisan_staple_food_id: torisanStapleFoodId,
+        },
+      });
   }
 }

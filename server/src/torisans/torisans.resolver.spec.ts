@@ -1,5 +1,8 @@
 import { ZodValidationPipe } from 'src/pipe/ZodValidationPipe';
-import { CreateTorisanZodInput } from './models/torisan.schema';
+import {
+  CreateTorisanZodInput,
+  createTorisanSchema,
+} from './models/torisan.schema';
 import { CreateTorisan } from './models/createTorisan.model';
 import { Gender, Specie, Stage } from '@ito/common';
 import { BadRequestException } from '@nestjs/common';
@@ -27,7 +30,9 @@ describe('CreateTorisanValidationPipe', () => {
   };
 
   beforeEach(() => {
-    target = new ZodValidationPipe<CreateTorisanZodInput, CreateTorisan>();
+    target = new ZodValidationPipe<CreateTorisanZodInput, CreateTorisan>(
+      createTorisanSchema,
+    );
   });
 
   const tables: [Partial<CreateTorisanZodInput>, string][] = [
@@ -35,8 +40,11 @@ describe('CreateTorisanValidationPipe', () => {
     [{ name: '' }, '名前は必須です'],
     [{ nickname: 'あ'.repeat(26) }, 'ニックネームは最大25文字です'],
     [{ nickname: '' }, 'ニックネームは必須です'],
+    // @ts-expect-error テストしたいため
     [{ stage_type: 5 }, 'ステージには適切な値が入力してください'],
+    // @ts-expect-error テストしたいため
     [{ specie_type: 5 }, '鳥さんの種類には適切な値が入力してください'],
+    // @ts-expect-error テストしたいため
     [{ gender_type: 4 }, '性別には適切な値が入力してください'],
     [
       {
@@ -69,6 +77,7 @@ describe('CreateTorisanValidationPipe', () => {
       {
         food: {
           ...baseInput.food,
+          // @ts-expect-error テストしたいため
           staple_food_type: 3,
         },
       },
@@ -98,6 +107,7 @@ describe('CreateTorisanValidationPipe', () => {
       {
         food: {
           ...baseInput.food,
+          // @ts-expect-error テストしたいため
           other_food_types: [10],
         },
       },

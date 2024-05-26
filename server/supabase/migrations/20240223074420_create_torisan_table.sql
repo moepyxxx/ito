@@ -28,7 +28,8 @@ CREATE TABLE torisan_objective (
     amount_of_water real default NULL,
     amount_of_staple_food real default NULL,
     created_at timestamp with time zone NOT NULL DEFAULT now(),
-    updated_at timestamp with time zone NOT NULL DEFAULT now()
+    updated_at timestamp with time zone NOT NULL DEFAULT now(),
+    unique (torisan_id)
 );
 
 CREATE INDEX torisan_objective_user_id_idx
@@ -52,7 +53,8 @@ CREATE TABLE torisan_staple_food (
     any_staple_food character varying(100) DEFAULT NULL,
     any_other_foods character varying(100) DEFAULT NULL,
     created_at timestamp with time zone NOT NULL DEFAULT now(),
-    updated_at timestamp with time zone NOT NULL DEFAULT now()
+    updated_at timestamp with time zone NOT NULL DEFAULT now(),
+    unique (torisan_id)
 );
 
 CREATE INDEX torisan_staple_food_user_id_idx

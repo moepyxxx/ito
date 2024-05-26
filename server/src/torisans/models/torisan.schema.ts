@@ -109,3 +109,12 @@ export const createTorisanSchema = z
   .required();
 
 export type CreateTorisanZodInput = z.infer<typeof createTorisanSchema>;
+
+export const editTorisanSchema = z
+  .object({
+    objective: objectiveSchema,
+    food: foodSchema,
+  })
+  .required();
+
+export type EditTorisanZodInput = z.infer<typeof editTorisanSchema>;
