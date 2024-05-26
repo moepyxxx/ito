@@ -30,6 +30,12 @@ import { RHFFormFood } from "../RHF/RHFFormFood";
 import { Button } from "@/components/atoms/Button";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@/gql/hooks";
+import {
+  Mutation,
+  MutationEditTorisanArgs,
+} from "@/gql/generated/client/graphql";
+import { EDIT_TORISAN } from "@/gql/queries";
 
 export type DetailForEdit = FormObjectiveSubmitType & FormFoodSubmitType;
 
@@ -78,6 +84,11 @@ export const EditForm: FC<Props> = ({
     resolver: zodResolver(addFoodOtherRule(objectiveSchema.merge(foodSchema))),
   });
 
+  const { mutationFn } = useMutation<
+    Pick<Mutation, "editTorisan">,
+    MutationEditTorisanArgs
+  >(EDIT_TORISAN);
+
   const currentStapleFood = useWatch({
     control,
     name: "staple_food_type",
@@ -88,9 +99,28 @@ export const EditForm: FC<Props> = ({
   });
 
   const onSubmit = handleSubmit((data) => {
-    console.warn("submit", data);
-    toast.success(`編集が完了しました`);
-    router.push(`/p/torisan/${torisanId}`);
+    mutationFn({
+      variables: {
+        torisanId,
+        torisan: {
+          objective: {
+            body_weight: data.body_weight,
+            amount_of_staple_food: data.amount_of_staple_food,
+            amount_of_water: data.amount_of_water,
+          },
+          food: {
+            staple_food_type: data.staple_food_type,
+            any_staple_food: data.any_staple_food,
+            any_other_foods: data.any_other_foods,
+            other_food_types: data.other_food_types,
+          },
+        },
+      },
+      onCompleted: () => {
+        toast.success(`編集が完了しました`);
+        router.push(`/p/torisan/${torisanId}`);
+      },
+    });
   });
 
   return (

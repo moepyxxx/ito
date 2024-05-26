@@ -29,15 +29,27 @@ export type CreateTorisan = {
   stage_type: Scalars['Int']['input'];
 };
 
+export type EditTorisan = {
+  food: TorisanFood;
+  objective: TorisanObjective;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createTorisan: Torisan;
+  editTorisan: Torisan;
   signout: Scalars['Boolean']['output'];
 };
 
 
 export type MutationCreateTorisanArgs = {
   torisan: CreateTorisan;
+};
+
+
+export type MutationEditTorisanArgs = {
+  torisan: EditTorisan;
+  torisanId: Scalars['Float']['input'];
 };
 
 export type Query = {
@@ -183,6 +195,7 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   CreateTorisan: CreateTorisan;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
+  EditTorisan: EditTorisan;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
@@ -202,6 +215,7 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   CreateTorisan: CreateTorisan;
   DateTime: Scalars['DateTime']['output'];
+  EditTorisan: EditTorisan;
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
@@ -222,6 +236,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createTorisan?: Resolver<ResolversTypes['Torisan'], ParentType, ContextType, RequireFields<MutationCreateTorisanArgs, 'torisan'>>;
+  editTorisan?: Resolver<ResolversTypes['Torisan'], ParentType, ContextType, RequireFields<MutationEditTorisanArgs, 'torisan' | 'torisanId'>>;
   signout?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 

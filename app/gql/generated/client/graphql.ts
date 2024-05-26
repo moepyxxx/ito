@@ -28,15 +28,27 @@ export type CreateTorisan = {
   stage_type: Scalars['Int']['input'];
 };
 
+export type EditTorisan = {
+  food: TorisanFood;
+  objective: TorisanObjective;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createTorisan: Torisan;
+  editTorisan: Torisan;
   signout: Scalars['Boolean']['output'];
 };
 
 
 export type MutationCreateTorisanArgs = {
   torisan: CreateTorisan;
+};
+
+
+export type MutationEditTorisanArgs = {
+  torisan: EditTorisan;
+  torisanId: Scalars['Float']['input'];
 };
 
 export type Query = {
