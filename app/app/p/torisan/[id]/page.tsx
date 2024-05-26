@@ -1,4 +1,4 @@
-import { TorisanDetailPage } from "@/features/torisan/pages/TorisanDetailPage";
+import { Detail } from "@/features/torisan/pages/Detail";
 import { MetaDescription, MetaTitle } from "@/utils/meta";
 import { Metadata } from "next";
 
@@ -14,5 +14,5 @@ export default function TorisanDetailPageEntry({
 }) {
   if (params.id == null || isNaN(Number(params.id))) return <></>;
 
-  return <TorisanDetailPage torisanId={Number(params.id)} />;
+  return <Detail torisanId={Number(params.id)} />;
 }

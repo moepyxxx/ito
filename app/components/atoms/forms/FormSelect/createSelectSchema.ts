@@ -4,13 +4,16 @@ export const createSelectSchema = (options: {
   required: boolean;
   requiredMessage?: string;
 }) => {
-  let schema = z
-    .string({
-      invalid_type_error: options.requiredMessage
-        ? options.requiredMessage
-        : undefined,
-    })
-    .transform((value) => parseInt(value, 10));
+  let schema = z.preprocess(
+    (v) => (typeof v === "number" ? v.toString() : v),
+    z
+      .string({
+        invalid_type_error: options.requiredMessage
+          ? options.requiredMessage
+          : undefined,
+      })
+      .transform((value) => parseInt(value, 10))
+  );
 
   if (!options.required) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -4,14 +4,14 @@ import { mediaQuery, useMediaQuery } from "@/hooks";
 import { HeaderMenu } from "./HeaderMenu/HeaderMenu";
 import { SideNavigationMenu } from "./SideNavigationMenu";
 import { FixedNavigationMenu } from "./FixedNavigationMenu";
-import { useAuth } from "@/contexts/AuthContext";
+import { useIsAuth } from "@/contexts/AuthContext";
 
 type Props = {
   children: React.ReactNode;
 };
 export const GlobalLayout: React.FC<Props> = ({ children }) => {
   const isSp = useMediaQuery(mediaQuery.sp);
-  const isAuth = useAuth();
+  const isAuth = useIsAuth();
   return (
     <div className="max-w-[800px] mx-auto">
       <HeaderMenu />

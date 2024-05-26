@@ -54,6 +54,7 @@ type Query {
 type Mutation {
   signout: Boolean!
   createTorisan(torisan: CreateTorisan!): Torisan!
+  editTorisan(torisan: EditTorisan!, torisanId: Float!): Torisan!
 }
 
 input CreateTorisan {
@@ -80,4 +81,9 @@ input TorisanFood {
   any_staple_food: String
   other_food_types: [Int!]!
   any_other_foods: String
+}
+
+input EditTorisan {
+  objective: TorisanObjective!
+  food: TorisanFood!
 }

@@ -1,4 +1,4 @@
-import { SelectPage } from "@/features/torisan/pages/SelectPage";
+import { SelectDetail } from "@/features/torisan/pages/SelectDetail";
 import { MetaDescription, MetaTitle } from "@/utils/meta";
 import { Metadata } from "next";
 
@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   description: MetaDescription,
 };
 
-export default function TorisanSelectPage() {
-  return <SelectPage />;
+export default function TorisanSelectDetailPage() {
+  return <SelectDetail />;
 }

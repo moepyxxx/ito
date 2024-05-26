@@ -4,6 +4,7 @@ export const Stage = {
   MedicalTreatment: 2,
   Hospitalization: 3,
 } as const;
+
 export type StageKey = keyof typeof Stage;
 export type StageType = (typeof Stage)[keyof typeof Stage];
 

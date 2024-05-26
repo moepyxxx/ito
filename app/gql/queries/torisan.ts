@@ -44,3 +44,11 @@ export const CREATE_TORISAN = gql`
     }
   }
 `;
+
+export const EDIT_TORISAN = gql`
+  mutation UpdateTorisan($torisan: EditTorisan!, $torisanId: Float!) {
+    editTorisan(torisan: $torisan, torisanId: $torisanId) {
+      id
+    }
+  }
+`;

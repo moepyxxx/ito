@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateTorisan } from './models/createTorisan.model';
 import { Torisan, TorisanBase } from './models/torisan.model';
 import { TorisansRepository } from './torisans.repository';
+import { EditTorisan } from './models/editTorisan.model';
 
 @Injectable()
 export class TorisansService {
@@ -80,5 +81,55 @@ export class TorisansService {
         other_food_types: food.other_food_types,
       },
     });
+  }
+
+  async edit(
+    torisanId: number,
+    torisan: EditTorisan,
+    userId: string,
+  ): Promise<Pick<Torisan, 'objective' | 'food' | 'id'>> {
+    const { objective, food } = torisan;
+
+    const updatedObjective = await this.repository.updateTorisanObjective(
+      userId,
+      torisanId,
+      {
+        body_weight: objective.body_weight,
+        amount_of_water: objective.amount_of_water,
+        amount_of_staple_food: objective.amount_of_staple_food,
+      },
+    );
+
+    const updatedFood = await this.repository.updateTorisanFood(
+      userId,
+      torisanId,
+      {
+        staple_food_type: food.staple_food_type,
+        any_staple_food: food.any_staple_food,
+        any_other_foods: food.any_other_foods,
+      },
+    );
+
+    await this.repository.batchDeleteTorisanFoodOtherFoodType(
+      userId,
+      torisanId,
+    );
+
+    if (food.other_food_types.length > 0) {
+      await this.repository.batchCreateTorisanFoodOtherFoodType(
+        userId,
+        updatedFood.id,
+        food.other_food_types,
+      );
+    }
+
+    return {
+      objective: updatedObjective,
+      food: {
+        ...updatedFood,
+        other_food_types: food.other_food_types,
+      },
+      id: torisanId,
+    };
   }
 }

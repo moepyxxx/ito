@@ -3,7 +3,7 @@ import { Logo } from "@/components/atoms/Logo";
 import { IconButton } from "@/components/molecules/IconButton";
 import { IconTextLink } from "@/components/molecules/IconTextLink";
 import { mediaQuery, useMediaQuery } from "@/hooks";
-import { useAuth } from "@/contexts/AuthContext";
+import { useIsAuth } from "@/contexts/AuthContext";
 
 const subMenus: {
   path: string;
@@ -16,7 +16,7 @@ const subMenus: {
 
 export const HeaderMenu: React.FC = () => {
   const isSp = useMediaQuery(mediaQuery.sp);
-  const isAuth = useAuth();
+  const isAuth = useIsAuth();
 
   return (
     <div className="w-full flex items-center justify-between">

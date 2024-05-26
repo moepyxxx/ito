@@ -29,7 +29,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "vitest.setup.ts",
-    "features/torisan/pages/RegisterTorisanPage"
+    "features/torisan/pages/Register"
   ],
   "exclude": ["node_modules"]
 }

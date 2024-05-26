@@ -4,7 +4,7 @@ import { signin } from "@/api";
 import { PageLayout } from "@/components/layouts/PageLayout/PageLayout";
 import { Title } from "@/components/molecules/Title";
 import { useSignin } from "@/contexts/AuthContext";
-import { AuthForm } from "@/features/auth/components/AuthForm/AuthForm";
+import { AuthForm, Form } from "@/features/auth/components/Form";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
@@ -19,7 +19,6 @@ export const Signin: React.FC = () => {
       if (res.result != null) {
         appSignin({
           accessToken: res.result.accessToken,
-          refreshToken: res.result.refreshToken,
         });
         router.push("/p");
       }
@@ -30,7 +29,7 @@ export const Signin: React.FC = () => {
   return (
     <PageLayout>
       <Title title="サインイン" />
-      <AuthForm
+      <Form
         submitLabel="サインイン"
         otherLink={{
           href: "/signup",
