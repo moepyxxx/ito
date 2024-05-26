@@ -35,7 +35,7 @@ import {
   Mutation,
   MutationEditTorisanArgs,
 } from "@/gql/generated/client/graphql";
-import { EDIT_TORISAN } from "@/gql/queries";
+import { EDIT_TORISAN, TORISAN } from "@/gql/queries";
 
 export type DetailForEdit = FormObjectiveSubmitType & FormFoodSubmitType;
 
@@ -87,7 +87,9 @@ export const EditForm: FC<Props> = ({
   const { mutationFn } = useMutation<
     Pick<Mutation, "editTorisan">,
     MutationEditTorisanArgs
-  >(EDIT_TORISAN);
+  >(EDIT_TORISAN, {
+    refetchQueries: [TORISAN, "Torisan"],
+  });
 
   const currentStapleFood = useWatch({
     control,
